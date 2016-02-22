@@ -10,5 +10,5 @@ Kami berasal dari kelas PPL-B kelompok 04. Anggota kelompok kami, antara lain :
 - Dennis Pratama Kamah                    ( 1306464562 )
 - Muhammad Adriyanto                      ( 1206239535 )
 
-# Informasi lain seputar proyek ini, ada pada dokumen ProjectCharter.md
+Informasi lain seputar proyek ini, ada pada dokumen ProjectCharter.md
 
