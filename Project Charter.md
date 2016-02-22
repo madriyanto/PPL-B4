@@ -8,9 +8,11 @@
 #####-Dennis Pratama Kamah                  ( 1306464562 )
 #####-Muhammmad Adriyanto                   ( 1206239535 )
 
-1. Latar Belakang Permasalahan
-2. Tujuan Bisnis
-3. Daftar Resiko Yang Teridentifikasi
+-------------------------------------------------------------------------------------------------------------------------------
+
+######1. Latar Belakang Permasalahan
+######2. Tujuan Bisnis
+######3. Daftar Resiko Yang Teridentifikasi
 
   1. Project Risk
     - Sulit terjalinnya kerja sama (kolaborasi) antara satu atau lebih organisasi yang bersangkutan untuk dapat terintegrasi dengan aplikasi ini (membutuhkan komunikasi yang intens dan efektif dengan pihak petinggi organisasi)
