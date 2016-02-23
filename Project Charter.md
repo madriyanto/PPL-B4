@@ -16,6 +16,19 @@ Kami mendapatkan ide proyek ini dari sebuah website yang bernama www.lapor.go.id
 Untuk ke depannya, jika tujuan utama kami sudah tercapai, tidak menutup kemungkinan untuk melebarkan lingkup permasalahan, seperti laporan mengenai fasilitas atau perilaku di lingkungan Fasilkom UI.
 
 ######2. Tujuan Bisnis
+ * Tujuan
+	       Tujuan dari proyek ini yaitu terciptanya sebuah sistem yang dapat menampung aspirasi warga Fasilkom terhadap suatu proker yang dilaksanakan oleh BO/BSO tertentu. Sehingga dengan itu, warga Fasilkom dapat dengan mudah menyuarakan aspirasinya. Selain itu, dengan adanya data laporan tersebut, BO/BSO yang dilaporkan dapat dengan cepat mengevaluasi proker yang telah mereka laksanakan agar dapat lebih baik lagi pada proker selanjutnya.
+
+ * Target Pengguna dan Target Pasar
+     Target Pengguna :
+        Para pemangku jabatan maupun orang-orang yang duduk langsung di kepengurusan organisasi di Fasilkom UI, pihak luar organisasi khususnya para mahasiswa Fakultas Ilmu Komputer UI sebagai pengawas dari kinerja organisasi di Fasilkom UI
+     Target Pasar :
+        Para civitas academica di Fasilkom UI, khususnya berkenaan dengan kemahasiswaan, baik mahasiswa maupun dosen.
+
+
+ * Keluaran Yang Diharapkan
+        Keluaran yang diharapkan dari pengembangan proyek ini adalah mahasiswa atau dosen yang menggunakan aplikasi tersebut agar memudahkan mereka dalam memberi saran, ide, atau komentar mengenai program kerja yang dilakukan oleh organisasi tertentu dan organisasi tersebut dapat melakukan berbagai perbaikan untuk program kerja tersebut.
+
 ######3. Daftar Resiko Yang Teridentifikasi
 
   * Project Risk
