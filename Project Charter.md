@@ -45,3 +45,9 @@ Keluaran yang diharapkan dari pengembangan proyek ini adalah mahasiswa atau dose
     - Kemungkinan target pasar tidak tertarik menggunakan website karena terlalu menyusahkan
     - Biaya untuk me-maintain server / database tinggi jika tidak ada dukungan hosting
     - Reliabilitas server yang dapat mengakibatkan situs tidak dapat diakses
+
+######4. Estimasi
+  * Waktu
+    - +- 3 bulan
+  * Usaha
+    - 
