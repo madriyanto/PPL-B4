@@ -11,6 +11,10 @@
 -------------------------------------------------------------------------------------------------------------------------------
 
 ######1. Latar Belakang Permasalahan
+Kami mendapatkan ide proyek ini dari sebuah website yang bernama www.lapor.go.id. Website tersebut bertujuan untuk melaporkan aspirasi masyarakat terhadap layanan masyarakat pada instasi pemerintah terkait. Terinspirasi dari tujuan website tersebut, kami juga ingin menerapkannya di lingkungan Fasilkom. Namun, untuk saat ini fokus dari proyek kami ini bukan tentang layanan fasilitas di Fasilkom, yakni kami berfokus terhadap aspirasi warga Fasilkom terhadap suatu program kerja (proker) yang dilakukan oleh organisasi mahasiswa yang ada di Fasilkom (biasa disebut Badan Otonom dan Badan Semi Otonom). Mengapa kami berfokus pada penilaian proker? Pertama,kami yakin dari setiap proker yang telah dilakukan oleh Badan Otonom dan Badan Semi Otonom (BO/BSO) pasti akan ada aspirasi yang ingin disampaikan. Baik itu berupa kesan maupun pesan dari proker yang telah diikuti tersebut. Kedua, karena di beberapa BO/BSO memiliki sebuah bidang yang bertugas untuk menilai keberhasilan suatu proker. Tentu dalam melaksanakan tugasnya, bidang tersebut membutuhkan beberapa data yang menunjukkan penilaian terhadap proker BO/BSO yang dia tugasi. Karena itu, kami terinspirasi untuk membuat sebuah sistem yang dapat menampung aspirasi warga Fasilkom terhadap pelaksanaan proker yang dilakukan oleh BO/BSO.
+
+Untuk ke depannya, jika tujuan utama kami sudah tercapai, tidak menutup kemungkinan untuk melebarkan lingkup permasalahan, seperti laporan mengenai fasilitas atau perilaku di lingkungan Fasilkom UI.
+
 ######2. Tujuan Bisnis
 ######3. Daftar Resiko Yang Teridentifikasi
 
