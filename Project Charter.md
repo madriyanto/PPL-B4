@@ -48,9 +48,11 @@ Keluaran yang diharapkan dari pengembangan proyek ini adalah mahasiswa atau dose
 
 ######4. Estimasi
   * Waktu
-    - +- 3 bulan
+    - Perkiraan waktu yang diperlukan dalam pembuatan website ini adalah sekitar tiga bulan. Hal ini dikarenakan mengikuti batas waktu mata kuliah PPL.
+    - Selama tiga bulan, kami akan melakukan aktivitas-aktivitas sesuai dengan tabel rencana perkuliahan PPL. Aktivitas-aktivitas tersebut diantaranya: pembuatan dna pelaksanaan user stories, tasks, backlogs, sprints (3 kali), dan peluncuran deliverables.
   * Usaha
-    - 
+    - Mempelajari tools baru yang mungkin diperlukan dalam proyek ini.
+    - Mencari dan mempelajari framework yang paling cocok digunakan untuk pengembangan website.
 
 ######5. Project Vision
 Memudahkan pengguna untuk menyuarakan pendapat terhadap sesuatu yang terjadi pada suatu lingkup lingkungan. Dalam project ini kami mendefinisikan pengguna merupakan civitas academica Fasilkom UI dan lingkungan merupakan lingkup lingkungan Fasilkom UI, sementara sesuatu yang dapat terjadi akan kami batasi dalam lingkup program kerja lembaga yang ada di Fasilkom UI.
