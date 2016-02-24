@@ -51,3 +51,23 @@ Keluaran yang diharapkan dari pengembangan proyek ini adalah mahasiswa atau dose
     - +- 3 bulan
   * Usaha
     - 
+
+######5. Project Vision
+Memudahkan pengguna untuk menyuarakan pendapat terhadap sesuatu yang terjadi pada suatu lingkup lingkungan. Dalam project ini kami mendefinisikan pengguna merupakan civitas academica Fasilkom UI dan lingkungan merupakan lingkup lingkungan Fasilkom UI, sementara sesuatu yang dapat terjadi akan kami batasi dalam lingkup program kerja lembaga yang ada di Fasilkom UI.
+
+######6. SCRUM CORE TEAM
+  * Product Owner :
+
+  * SCRUM Team :
+    - Alief Al Fathan Harritssatya Darmawan	( 1306381591 )
+    - Arief Prasetyo				                    ( 1306381635 )
+    - Bima Artha Prasetyo 			               ( 1306407350 )
+    - Dennis Pratama Kamah			               ( 1306464562 )
+    - Muhammad Adriyanto			                 ( 1206239535 )
+
+  * SCRUM Master :
+    * Dosen :
+      - Dr. Ir. Eko Kuswardono Budiardjo M.Sc.
+      - Satrio Baskoro Yudhoatmojo S.Kom., M.T.I.
+    * Asisten Dosen :
+      - Haura Syarafa
