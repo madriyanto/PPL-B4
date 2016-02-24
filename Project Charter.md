@@ -40,3 +40,14 @@ Keluaran yang diharapkan dari pengembangan proyek ini adalah mahasiswa atau dose
     - Isu keamanan (securityi) dalam hal filtering fitur komentar/saran/keluhan yang buruk/tidak etis pada aplikasi yang ada yang dapat terjadi, sehingga diperlukan mekanisme khusus untuk mencegah kemungkinan event yang ada (misal perlu menambah capability pada admin sistem agar dapat memoderator diskusi yang ada)
     - Kemungkinan terlalu fokusnya pengembangan sistem hanya pada desain tampilan (UX Design) dari sistem yang ada sedemikian rupa dikarenakan penggunaannya harus ramah terhadap banyak user (user-friendly) dimana nantinya sistem yang ada dimanfaatkan secara langsung oleh user, tanpa tergantung fitur lainnya (condong hanya untuk menyampaikan keluhan)
 
+  * Business Risk
+    - Tidak adanya dukungan untuk menggunakan hosting
+    - Kemungkinan target pasar tidak tertarik menggunakan website karena terlalu menyusahkan
+    - Biaya untuk me-maintain server / database tinggi jika tidak ada dukungan hosting
+    - Reliabilitas server yang dapat mengakibatkan situs tidak dapat diakses
+
+######4. Estimasi
+  * Waktu
+    - +- 3 bulan
+  * Usaha
+    - 
