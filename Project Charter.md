@@ -58,7 +58,7 @@ Keluaran yang diharapkan dari pengembangan proyek ini adalah mahasiswa atau dose
 Memudahkan pengguna untuk menyuarakan pendapat terhadap sesuatu yang terjadi pada suatu lingkup lingkungan. Dalam project ini kami mendefinisikan pengguna merupakan civitas academica Fasilkom UI dan lingkungan merupakan lingkup lingkungan Fasilkom UI, sementara sesuatu yang dapat terjadi akan kami batasi dalam lingkup program kerja lembaga yang ada di Fasilkom UI.
 
 ######6. SCRUM CORE TEAM
-  * Product Owner :
+  * Product Owner : Alief Al Fathan Harritssatya Darmawan
 
   * SCRUM Team :
     - Alief Al Fathan Harritssatya Darmawan	( 1306381591 )
