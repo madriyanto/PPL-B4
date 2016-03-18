@@ -9,15 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<p>Username: <?php echo $username; ?></p>
-	<p>Name: <?php echo $name; ?></p>
-	<p>NPM: <?php echo $npm; ?></p>
-	<p>Role: <?php echo $role; ?></p>
-	<p>Organization Code: <?php echo $org_code; ?></p>
-	<p>Faculty: <?php echo $faculty; ?></p>
-	<p>Study Program: <?php echo $study_program; ?></p>
-	<p>Educational Program: <?php echo $educational_program; ?></p>
-	<p><a href="index.php/Close">Log Out</a></p>
+	<p>PictLink: <?php echo $PictLink; ?></p>
+	<p>Username: <?php echo $Username; ?></p>
+	<p>Name: <?php echo $Name; ?></p>
+	<p>NPM: <?php echo $NPM; ?></p>
+	<p>Role: <?php echo $Role; ?></p>
+	<p>Faculty: <?php echo $Faculty; ?></p>
+	<p>Contact: <?php echo $Contact; ?></p>
+	<p><a href="Close">Log Out</a></p>
 </div>
 
 </body>
