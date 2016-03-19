@@ -6,6 +6,7 @@ class Close extends CI_Controller {
 	public function __construct()
     {
 		parent::__construct();
+		$this->load->library('session');
 		$this->load->model('logout_model');
 		require 'application/libraries/SSO/SSO.php';
 		$cas_path = 'application/libraries/CAS-1.3.4/CAS.php';
@@ -14,6 +15,7 @@ class Close extends CI_Controller {
 
 	public function index()
 	{
+		session_destroy();
 		SSO\SSO::logout();
 	}
 }

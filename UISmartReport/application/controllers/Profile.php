@@ -6,6 +6,7 @@ class Profile extends CI_Controller {
 	public function __construct()
     {
 		parent::__construct();
+		$this->load->library('session');
 		$this->load->model('loginuser_model');
 		require 'application/libraries/SSO/SSO.php';
 		$cas_path = 'application/libraries/CAS-1.3.4/CAS.php';
@@ -29,6 +30,15 @@ class Profile extends CI_Controller {
 		if(!$this->loginuser_model->check_user($data1['Username']))
 		{
 			$this->loginuser_model->insert_user($data1, $data2);
+		}
+		$session_id = $this->session->userdata('username');
+		if(!isset($_SESSION['username']))
+		{
+			$newdata = array(
+		        'username'  => $data1['Username'],
+		        'logged_in' => TRUE
+			);
+			$this->session->set_userdata($newdata);
 		}
 		$data3 = $this->loginuser_model->get_user($data1['Username']);
 		$this->load->view('profile', $data3);
