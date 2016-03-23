@@ -9,7 +9,7 @@
 <div id="container">
 	<?php echo validation_errors(); ?>
 
-	<?php echo form_open('Loginsp'); ?>
+	<?php echo form_open('http://madriyanto.com/UISmartReport/index.php/Loginsp'); ?>
 
 	<h5>Username</h5>
 	<input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />

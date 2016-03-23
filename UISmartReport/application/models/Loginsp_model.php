@@ -25,4 +25,10 @@ class Loginsp_model extends CI_Model {
 	        	return true;
 	        }
 		}
+
+		public function check_sp($username)
+		{
+	        $query = $this->db->query('select IsSPAcc from ACCOUNT where Username="'.$username.'";');
+	        return $query->result();
+		}
 }

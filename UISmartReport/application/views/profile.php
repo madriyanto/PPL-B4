@@ -12,7 +12,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<p>PictLink: <?php echo $PictLink; ?></p>
 	<p>Username: <?php echo $Username; ?></p>
 	<p>Name: <?php echo $Name; ?></p>
-	<p>NPM: <?php echo $NPM; ?></p>
+	<?php
+	if($Role == 'mahasiswa'){
+		echo "<p>NPM: ".$NPM."</p>";
+	else{
+		echo "<p>NIP: ".$NPM."</p>.";
+	} ?>
 	<p>Role: <?php echo $Role; ?></p>
 	<p>Faculty: <?php echo $Faculty; ?></p>
 	<p>Contact: <?php echo $Contact; ?></p>

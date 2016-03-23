@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Profile extends CI_Controller {
+class ProfileSP extends CI_Controller {
 
 	public function __construct()
     {
@@ -17,14 +17,14 @@ class Profile extends CI_Controller {
 		$session_id = $this->session->userdata('username');
 		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id))
 		{
-			$data = $this->loginuser_model->get_user($session_id);
-			$this->load->view('profile', $data);
+			redirect('profile');
 		}
-		else if(isset($session_id) && $this->Loginsp_model->check_sp($session_id)) {
-			redirect('profilesp');
+		else if(isset($session_id)) {
+			$data = $this->loginuser_model->get_user($session_id);
+			$this->load->view('formsuccess', $data);
 		}
 		else {
-			redirect('login');
+			redirect('loginsp');
 		}
 	}
 }

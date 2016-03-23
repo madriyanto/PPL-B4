@@ -8,24 +8,27 @@ class Loginsp extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Loginsp_model');
 		$this->load->library('session');
+		$this->load->helper('url');
+		$this->load->helper(array('form', 'url'));
     }
 
 	public function index()
     {
-		$this->load->helper(array('form', 'url'));
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
+		$this->form_validation->set_rules('username', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
 			$session_id = $this->session->userdata('username');
-			if(isset($_SESSION['username']))
+			if(isset($session_id) && $this->Loginsp_model->check_sp($session_id))
 			{
-				$user = $this->Loginsp_model->get_user($session_id);
-				$this->load->view('formsuccess', $user);
+				redirect('profilesp');
+			}
+			else if(isset($session_id)) {
+				redirect('profile');
 			}
 			else {
 				$this->load->view('loginspacc');
@@ -47,26 +50,13 @@ class Loginsp extends CI_Controller {
 				        'logged_in' => TRUE
 					);
 					$this->session->set_userdata($newdata);
-					$this->load->view('formsuccess', $user);
+					redirect('profilesp');
 				}
 				else
 				{
 					$this->load->view('loginspacc');
 				}
 			}
-		}
-	}
-
-	public function username_check($str)
-	{
-		if ($str == 'test')
-		{
-			$this->form_validation->set_message('username_check', 'The {field} field can not be the word "test"');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
 		}
 	}
 }
