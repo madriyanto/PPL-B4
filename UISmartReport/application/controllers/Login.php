@@ -18,22 +18,24 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		$session_id = $this->session->userdata('username');
-		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id))
+		if(isset($session_id))
 		{
-			redirect('profile');
-		}
-		else if(isset($session_id)) {
-			redirect('loginsp');
+			redirect('Timeline');
 		}
 		else {
-			if(!SSO\SSO::check())
-			{
+			if(!SSO\SSO::check()) {
 				SSO\SSO::authenticate();
 			}
+
 			$user = SSO\SSO::getUser();
+			if($user->role == 'mahasiswa') {
+				$npm = $user->npm;
+			} else {
+				$npm = $user->nip;
+			}
 			$data1 = array(
 		        'Username' => $user->username,
-		        'NPM' => $user->npm,
+		        'NPM' => $npm,
 		        'Role' => $user->role,
 		        'Faculty' => $user->faculty
 			);
@@ -41,16 +43,16 @@ class Login extends CI_Controller {
 		        'Username' => $data1['Username'],
 		        'Name' => $user->name
 			);
-			if(!$this->loginuser_model->check_user($data1['Username']))
+			if(!$this->Loginuser_model->check_user($data1['Username']))
 			{
-				$this->loginuser_model->insert_user($data1, $data2);
+				$this->Loginuser_model->insert_user($data1, $data2);
 			}
 			$newdata = array(
 			        'username'  => $data1['Username'],
 			        'logged_in' => TRUE
 			);
 			$this->session->set_userdata($newdata);
-			redirect('profile');
+			redirect('Profile');
 		}
 	}
 }

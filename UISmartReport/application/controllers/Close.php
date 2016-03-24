@@ -15,7 +15,7 @@ class Close extends CI_Controller {
 
 	public function index()
 	{
-		session_destroy();
-		SSO\SSO::logout();
+		$this->session->sess_destroy();
+		redirect('Welcome');
 	}
 }

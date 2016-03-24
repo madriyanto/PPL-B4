@@ -14,9 +14,9 @@ class Timeline extends CI_Controller {
 	public function index()
 	{
 		$session_id = $this->session->userdata('username');
-		if(!isset($session_id)))
+		if(!isset($session_id))
 		{
-			redirect('login');
+			redirect('Welcome');
 		}
 		else
 		{

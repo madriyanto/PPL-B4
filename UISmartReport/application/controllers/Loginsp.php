@@ -23,14 +23,10 @@ class Loginsp extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			$session_id = $this->session->userdata('username');
-			if(isset($session_id) && $this->Loginsp_model->check_sp($session_id))
+			if(isset($session_id))
 			{
-				redirect('profilesp');
-			}
-			else if(isset($session_id)) {
-				redirect('profile');
-			}
-			else {
+				redirect('Timeline');
+			} else {
 				$this->load->view('loginspacc');
 			}
 		}
@@ -50,7 +46,7 @@ class Loginsp extends CI_Controller {
 				        'logged_in' => TRUE
 					);
 					$this->session->set_userdata($newdata);
-					redirect('profilesp');
+					redirect('ProfileSP');
 				}
 				else
 				{

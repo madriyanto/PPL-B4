@@ -15,16 +15,14 @@ class ProfileSP extends CI_Controller {
 	public function index()
 	{
 		$session_id = $this->session->userdata('username');
-		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id))
-		{
-			redirect('profile');
-		}
-		else if(isset($session_id)) {
-			$data = $this->loginuser_model->get_user($session_id);
+		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
+			redirect('Profile');
+		} else if(isset($session_id)) {
+			$data = $this->Loginsp_model->get_user($session_id);
 			$this->load->view('formsuccess', $data);
 		}
 		else {
-			redirect('loginsp');
+			redirect('Loginsp');
 		}
 	}
 }

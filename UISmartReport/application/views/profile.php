@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php
 	if($Role == 'mahasiswa'){
 		echo "<p>NPM: ".$NPM."</p>";
-	else{
+	}else{
 		echo "<p>NIP: ".$NPM."</p>.";
 	} ?>
 	<p>Role: <?php echo $Role; ?></p>
