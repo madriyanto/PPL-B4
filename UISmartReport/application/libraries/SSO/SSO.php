@@ -29,45 +29,36 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace SSO;
-
 use phpCAS;
-
 // ------------------------------------------------------------------------
 //  Constants
 // ------------------------------------------------------------------------
-
 /**
  * CAS server host address
  */
 define('CAS_SERVER_HOST', 'sso.ui.ac.id');
-
 /**
  * CAS server uri
  */
 define('CAS_SERVER_URI', '/cas2');
-
 /**
  * CAS server port
  */
 define('CAS_SERVER_PORT', 443);
-
 // ------------------------------------------------------------------------
 //  CAS Initialization
 // ------------------------------------------------------------------------
-
 // ONLY DO THIS IF phpCAS EXISTS (i.e. installing via Composer). Thanks to Fariskhi for noticing the bug.
 if (class_exists('phpCAS')) {
   /**
    * Create phpCAS client
    */
   phpCAS::client(CAS_VERSION_2_0, CAS_SERVER_HOST, CAS_SERVER_PORT, CAS_SERVER_URI);
-
   /**
    * Set no validation.
    */
   phpCAS::setNoCasServerValidation();
 }
-
 /**
  * The SSO class is a simple phpCAS interface for authenticating using
  * SSO-UI CAS service.
@@ -80,7 +71,6 @@ if (class_exists('phpCAS')) {
  */
 class SSO
 {
-
   /**
    * Authenticate the user.
    *
@@ -89,7 +79,6 @@ class SSO
   public static function authenticate() {
     return phpCAS::forceAuthentication();
   }
-
   /**
    * Check if the user is already authenticated.
    *
@@ -98,14 +87,12 @@ class SSO
   public static function check() {
     return phpCAS::checkAuthentication();
   }
-
   /**
    * Logout from SSO.
    */
   public static function logout() {
     phpCAS::logout();
   }
-
   /**
    * Returns the authenticated user.
    *
@@ -113,27 +100,27 @@ class SSO
    */
   public static function getUser() {
     $details = phpCAS::getAttributes();
-
     // Create new user object, initially empty.
     $user = new \stdClass();
     $user->username = phpCAS::getUser();
     $user->name = $details['nama'];
-    $user->npm = $details['npm'];
     $user->role = $details['peran_user'];
-    $user->org_code = $details['kd_org'];
-
-    $data = json_decode(file_get_contents( __DIR__ . '/additional-info.json'), true)[$user->org_code];
-    $user->faculty = $data['faculty'];
-    $user->study_program = $data['study_program'];
-    $user->educational_program = $data['educational_program'];
-
+    if ($user->role === 'mahasiswa') {
+      $user->npm = $details['npm'];
+      $user->org_code = $details['kd_org'];
+      $data = json_decode(file_get_contents( __DIR__ . '/additional-info.json'), true)[$user->org_code];
+      $user->faculty = $data['faculty'];
+      $user->study_program = $data['study_program'];
+      $user->educational_program = $data['educational_program'];
+    }
+    else if ($user->role === 'staff') {
+      $user->nip = $details['nip'];
+    }
     return $user;
   }
-
   // ----------------------------------------------------------
   // Manual Installation Stuff
   // ----------------------------------------------------------
-
   /**
    * Sets the path to CAS.php. Use only when not installing via Composer.
    *
@@ -141,20 +128,16 @@ class SSO
    */
   public static function setCASPath($cas_path) {
     require $cas_path;
-
     // Initialize CAS client.
     self::init();
   }
-
   /**
    * Initialize CAS client. Called by setCASPath().
    */
   private static function init() {
     // Create CAS client.
-    phpCAS::client(CAS_VERSION_2_0, CAS_SERVER_HOST, CAS_SERVER_PORT, CAS_SERVER_URI);
-
+    phpCAS::client(CAS_VERSION_2_0, CAS_SERVER_HOST, CAS_SERVER_PORT, CAS_SERVER_URI, false);
     // Set no validation.
     phpCAS::setNoCasServerValidation();
   }
-
 }
