@@ -9,13 +9,13 @@
 <div id="container">
 	<?php echo validation_errors(); ?>
 
-	<?php echo form_open('http://madriyanto.com/UISmartReport/index.php/Loginsp'); ?>
+	<?php echo form_open('Loginsp'); ?>
 
 	<h5>Username</h5>
 	<input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />
 
 	<h5>Password</h5>
-	<input type="text" name="password" value="<?php echo set_value('password'); ?>" size="50" />
+	<input type="password" name="password" value="" size="50" />
 
 	<div><input type="submit" value="Submit" /></div>
 

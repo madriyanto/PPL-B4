@@ -9,7 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<p>Login Success!</p>
 	<p>PictLink: <?php echo $PictLink; ?></p>
 	<p>Username: <?php echo $Username; ?></p>
 	<p>Name: <?php echo $Name; ?></p>

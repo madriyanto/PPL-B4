@@ -13,7 +13,7 @@ class Timeline_model extends CI_Model {
 
 		public function retrieve_posts()
 		{
-			$query = $this->db->query('select * from POST order by Id desc');
+			$query = $this->db->query('select * from POST order by IsPinned desc, Id desc');
 	        return $query->result();
 		}
 }

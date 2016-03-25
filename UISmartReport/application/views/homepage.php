@@ -9,7 +9,7 @@
 <div id="container">
 	<h5>HOMEPAGE</h5>
 	<p>Terms and Conditions</p>
-	<a href='index.php/login'>I Agree</a>
+	<a href='Login'>I Agree</a>
 </div>
 
 </body>

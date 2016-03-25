@@ -46,7 +46,7 @@ class Loginsp extends CI_Controller {
 				        'logged_in' => TRUE
 					);
 					$this->session->set_userdata($newdata);
-					redirect('ProfileSP');
+					redirect('Timeline');
 				}
 				else
 				{

@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
 	<p><?php echo $result; ?></p>
-	<?php echo form_open('http://madriyanto.com/UISmartReport/index.php/ForgetPassword'); ?>
+	<?php echo form_open('ForgetPassword'); ?>
 
 	<h5>Email</h5>
 	<input type="email" name="email" value="" size="50" />
