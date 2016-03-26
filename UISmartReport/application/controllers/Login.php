@@ -49,7 +49,7 @@ class Login extends CI_Controller {
 			}
 			$newdata = array(
 			        'username'  => $data1['Username'],
-			        'logged_in' => TRUE
+			        'SPAcc' => FALSE
 			);
 			$this->session->set_userdata($newdata);
 			redirect('Timeline');

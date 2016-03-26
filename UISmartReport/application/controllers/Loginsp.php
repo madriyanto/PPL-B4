@@ -43,7 +43,7 @@ class Loginsp extends CI_Controller {
 				{
 					$newdata = array(
 				        'username'  => $user['Username'],
-				        'logged_in' => TRUE
+				        'SPAcc' => TRUE
 					);
 					$this->session->set_userdata($newdata);
 					redirect('Timeline');
