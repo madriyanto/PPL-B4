@@ -21,11 +21,9 @@
 	<br/><label>Post</label><br/>
 	<textarea name="post" rows="5" cols="50" style="resize:none"></textarea>
 	<br/><label>To: </label>
-	<select name="mention">
 	<?php foreach ($mention as $row){
-		echo "<option value=\"".$row->Username."\">".$row->Name."</option>";
+		echo "<input type=\"checkbox\" name=\"mention[]\" value=\"".$row->Username."\">".$row->Name;
 	} ?>
-	</select>
 	<br/><label>Attachment</label>
 	<input type="file" name="userfile" size="20" />
 	<label>Post as Anonymous</label>

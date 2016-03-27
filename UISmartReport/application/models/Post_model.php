@@ -33,16 +33,27 @@ class Post_model extends CI_Model {
 			$query = $this->db->query('select Name, Username from MENTION A, ACCOUNT B where A.SPAcc=B.Username and PostId="'.$id.'";');
 	        return $query->result();
 		}
+		
+		public function is_mentioned($post_id, $username)
+		{
+			$query = $this->db->query('select * from MENTION where PostId="'.$post_id.'" and SPAcc="'.$username.'";');
+	        $result = $query->result();
+			if ($result == null) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 
 		public function get_lastest_post_id()
 		{
-			$query = $this->db->query('select max(Id) as max from POST');
+			$query = $this->db->query('select max(Id) as max from POST;');
 	        $result = $query->result();
 	        $count = 0;
 	        foreach($result as $row){
 	        	$count = $row->max;
 	        }
-	        return $count+1;
+	        return $count;
 		}
 
 		public function count_comment($post_id)
@@ -67,9 +78,9 @@ class Post_model extends CI_Model {
 			$this->db->update('POST', $data);
 		}
 
-		public function edit_mention($data, $id)
+		public function delete_mention($id)
 		{
 			$this->db->where('PostId', $id);
-			$this->db->update('MENTION', $data);
+			$this->db->delete('MENTION');
 		}
 }

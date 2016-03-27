@@ -38,7 +38,6 @@ class Post extends CI_Controller {
 	{
 		$session_id = $this->session->userdata('username');
 		$data = $this->Post_model->get_post($id);
-		$data['to'] = $this->Post_model->get_mentions($id);
 		if(!isset($session_id))
 		{
 			redirect('Welcome');
@@ -171,11 +170,18 @@ class Post extends CI_Controller {
 
 							$this->Post_model->edit_post($newdata1, $id);
 
-							$newdata2 = array(
-								'SPAcc' => $this->input->post('mention')
-							);
-							$this->Post_model->edit_mention($newdata2, $id);
-
+							$this->Post_model->delete_mention($id);
+							if ($this->input->post('mention') != null) {
+								foreach ($this->input->post('mention') as $mention) {
+									if($mention != null) {
+										$newdata2 = array(
+											'PostId' => $id,
+											'SPAcc' => $mention
+										);
+										$this->Post_model->insert_mention($newdata2);
+									}
+								}
+							}
 							$data['error'] = 'Edit Success!';
 							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
 							$this->load->view('editview', $data);

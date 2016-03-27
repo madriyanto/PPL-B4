@@ -122,11 +122,17 @@ class Timeline extends CI_Controller {
 
 					$this->Post_model->insert_post($newdata1);
 
-					$newdata2 = array(
-						'PostId'  => $this->Post_model->get_lastest_post_id(),
-						'SPAcc' => $this->input->post('mention'),
-					);
-					$this->Post_model->insert_mention($newdata2);
+					if ($this->input->post('mention') != null) {
+						foreach ($this->input->post('mention') as $mention) {
+							if($mention != null) {
+								$newdata2 = array(
+									'PostId'  => $this->Post_model->get_lastest_post_id(),
+									'SPAcc' => $mention,
+								);
+								$this->Post_model->insert_mention($newdata2);
+							}
+						}
+					}
 
 					$data['error'] = '';
 					$data['timeline'] = $this->Timeline_model->retrieve_posts();

@@ -21,18 +21,18 @@
 	<br/><label>Post</label><br/>
 	<textarea name="post" rows="5" cols="50" style="resize:none"><?php echo $Data; ?></textarea>
 	<br/><label>To: </label>
-	<select name="mention">
-	<?php foreach ($mention as $row){
-		if($row->Name == $to)
-		{
-			echo "<option value=\"".$row->Username."\" selected>".$row->Name."</option>";
+	<?php
+		foreach ($mention as $row) {
+			if($this->Post_model->is_mentioned($Id, $row->Username))
+			{
+				echo "<input type=\"checkbox\" name=\"mention[]\" value=\"".$row->Username."\" checked>".$row->Name;
+			}
+			else
+			{
+				echo "<input type=\"checkbox\" name=\"mention[]\" value=\"".$row->Username."\">".$row->Name;
+			}
 		}
-		else
-		{
-			echo "<option value=\"".$row->Username."\">".$row->Name."</option>";
-		}
-	} ?>
-	</select>
+	?>
 	<br/><label>Attachment</label>
 	<input type="file" name="userfile" value="<?php echo "\"$Attachments\""; ?>" size="20" />
 	<label>Post as Anonymous</label>
