@@ -21,8 +21,8 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('url');
-		$this->load->view('templates/header', $data);
+	
 		$this->load->view('homepage');
-		$this->load->view('templates/footer', $data);
+	
 	}
 }
