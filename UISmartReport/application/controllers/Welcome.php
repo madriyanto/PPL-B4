@@ -21,6 +21,11 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('url');
+		$this->load->library('session');
+		$session_id = $this->session->userdata('username');
+		if (isset($session_id)) {
+			redirect('Timeline');
+		}
 		$data['title'] = 'Homepage';
 		$this->load->view('templates/header', $data);
 		$this->load->view('homepage');

@@ -11,6 +11,7 @@ class Post extends CI_Controller {
 		$this->load->helper('date');
 		$this->load->library('upload');
 		$this->load->model('Timeline_model');
+		$this->load->model('Post_model');
     }
 
     public function index()
@@ -27,7 +28,7 @@ class Post extends CI_Controller {
 		}
 		else
 		{
-			$data = $this->Timeline_model->get_post($id);
+			$data = $this->Post_model->get_post($id);
 			$data['isSPAcc'] = $this->session->userdata('SPAcc');
 			$this->load->view('postview', $data);
 		}
@@ -36,8 +37,8 @@ class Post extends CI_Controller {
 	public function edit($id)
 	{
 		$session_id = $this->session->userdata('username');
-		$data = $this->Timeline_model->get_post($id);
-		$data['to'] = $this->Timeline_model->get_mentions($id);
+		$data = $this->Post_model->get_post($id);
+		$data['to'] = $this->Post_model->get_mentions($id);
 		if(!isset($session_id))
 		{
 			redirect('Welcome');
@@ -86,7 +87,7 @@ class Post extends CI_Controller {
 
 					if ($this->form_validation->run() == FALSE)
 					{
-						$data = $this->Timeline_model->get_post($id);
+						$data = $this->Post_model->get_post($id);
 						$data['error'] = '';
 						$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
 						$this->load->view('editview', $data);
@@ -119,7 +120,7 @@ class Post extends CI_Controller {
 						$is_attached = $_FILES['userfile']['error'] != 4;
 						if (!$attachment && $is_attached)
 						{
-							$data = $this->Timeline_model->get_post($id);
+							$data = $this->Post_model->get_post($id);
 							$data['error'] = $this->upload->display_errors();
 							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
 							$this->load->view('editview', $data);
@@ -168,12 +169,12 @@ class Post extends CI_Controller {
 								}
 							}
 
-							$this->Timeline_model->edit_post($newdata1, $id);
+							$this->Post_model->edit_post($newdata1, $id);
 
 							$newdata2 = array(
 								'SPAcc' => $this->input->post('mention')
 							);
-							$this->Timeline_model->edit_mention($newdata2, $id);
+							$this->Post_model->edit_mention($newdata2, $id);
 
 							$data['error'] = 'Edit Success!';
 							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
@@ -182,6 +183,58 @@ class Post extends CI_Controller {
 					}
 				}
 			}
+		}
+	}
+	
+	public function pin($id)
+	{
+		$session_id = $this->session->userdata('username');
+		$is_sp_acc = $this->session->userdata('SPAcc');
+		$post_mentions = $this->Post_model->get_mentions($id);
+		$is_mentioned = false;
+		foreach ($post_mentions as $row){
+			if ($this->session->userdata('username') == $row->Username) {
+				$is_mentioned = true;
+			}
+		}
+		if(!isset($session_id))
+		{
+			redirect('Welcome');
+		}
+		else if((isset($session_id) && !$is_sp_acc) || !$is_mentioned)
+		{
+			redirect('Timeline');
+		}
+		else
+		{
+			$this->Post_model->pin_post($id);
+			redirect('Timeline');
+		}
+	}
+
+	public function unpin($id)
+	{
+		$session_id = $this->session->userdata('username');
+		$is_sp_acc = $this->session->userdata('SPAcc');
+		$post_mentions = $this->Post_model->get_mentions($id);
+		$is_mentioned = false;
+		foreach ($post_mentions as $row){
+			if ($this->session->userdata('username') == $row->Username) {
+				$is_mentioned = true;
+			}
+		}
+		if(!isset($session_id))
+		{
+			redirect('Welcome');
+		}
+		else if((isset($session_id) && !$is_sp_acc) || !$is_mentioned)
+		{
+			redirect('Timeline');
+		}
+		else
+		{
+			$this->Post_model->unpin_post($id);
+			redirect('Timeline');
 		}
 	}
 }

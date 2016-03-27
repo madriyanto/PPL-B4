@@ -58,7 +58,12 @@
 				}
 			}
 
-			echo "<h2> <a href=\"./Post/view/".$row->Id."\">".$row->Title."</a></h2>";
+			if ($row->IsPinned) {
+				echo "<h2> <a href=\"./Post/view/".$row->Id."\">".$row->Title." (Pinned)</a></h2>";
+			} else {
+				echo "<h2> <a href=\"./Post/view/".$row->Id."\">".$row->Title."</a></h2>";
+			}
+			
 			if ($row->IsAnonymous && $isSPAcc) {
 				echo "<p>Posted by <a href=\"./People/view/".$row->OwnerId."\">".$row->OwnerId."</a> (Anonymous) On ".$timespan."</p>";
 			} else if($row->IsAnonymous && !$isSPAcc) {
@@ -67,27 +72,18 @@
 				echo "<p>Posted by <a href=\"./People/view/".$row->OwnerId."\">".$row->OwnerId."</a> On ".$timespan."</p>";
 			}
 			echo "<p>To: ";
-			$post_mentions = $this->Timeline_model->get_mentions($row->Id);
+			$post_mentions = $this->Post_model->get_mentions($row->Id);
 			foreach ($post_mentions as $row2){
 				echo "<br/>".$row2->Name;
 			}
 			echo "</p>";
-			echo "<p>Post: ".$row->Data."</p>";
 			echo "<img src=\"".$row->Attachments."\"/>";
-			if ($row->IsPinned) {
-				echo "<p>Status: Pinned</p>";
-			} else {
-				echo "<p>Status: Not Pinned</p>";
-			}
-			$count = $this->Timeline_model->count_comment($row->Id);
+			echo "<p>".$row->Data."</p>";
+			$count = $this->Post_model->count_comment($row->Id);
 			foreach ($count as $row2) {
 				echo $row2->comment.' Comments';	
 			}
-			if ($isSPAcc && !$row->IsPinned) {
-				echo "<br/><a href=\"Timeline/pin/".$row->Id."\">Pin this post</a>";
-			} else if ($isSPAcc && $row->IsPinned) {
-				echo "<br/><a href=\"Timeline/unpin/".$row->Id."\">Unpin this post</a>";
-			}
+			echo "<br/><a href=\"./Post/view/".$row->Id."\">Show details</a>";
 			if ($is_editable) {
 				echo "<br/><a href=\"Post/edit/".$row->Id."\">Edit</a>";
 				echo "<br/>Close";

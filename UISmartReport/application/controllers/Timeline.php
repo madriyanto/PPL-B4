@@ -11,6 +11,7 @@ class Timeline extends CI_Controller {
 		$this->load->helper('date');
 		$this->load->library('upload');
 		$this->load->model('Timeline_model');
+		$this->load->model('Post_model');
     }
 
 	public function index()
@@ -119,13 +120,13 @@ class Timeline extends CI_Controller {
 						}
 					}
 
-					$this->Timeline_model->insert_post($newdata1);
+					$this->Post_model->insert_post($newdata1);
 
 					$newdata2 = array(
-						'PostId'  => $this->Timeline_model->get_lastest_post_id(),
+						'PostId'  => $this->Post_model->get_lastest_post_id(),
 						'SPAcc' => $this->input->post('mention'),
 					);
-					$this->Timeline_model->insert_mention($newdata2);
+					$this->Post_model->insert_mention($newdata2);
 
 					$data['error'] = '';
 					$data['timeline'] = $this->Timeline_model->retrieve_posts();
@@ -134,44 +135,6 @@ class Timeline extends CI_Controller {
 					$this->load->view('tlview', $data);
 				}
 			}
-		}
-	}
-
-	public function pin($id)
-	{
-		$session_id = $this->session->userdata('username');
-		$is_sp_acc = $this->session->userdata('SPAcc');
-		if(!isset($session_id))
-		{
-			redirect('Welcome');
-		}
-		else if(isset($session_id) && !$is_sp_acc)
-		{
-			redirect('Timeline');
-		}
-		else
-		{
-			$this->Timeline_model->pin_post($id);
-			redirect('Timeline');
-		}
-	}
-
-	public function unpin($id)
-	{
-		$session_id = $this->session->userdata('username');
-		$is_sp_acc = $this->session->userdata('SPAcc');
-		if(!isset($session_id))
-		{
-			redirect('Welcome');
-		}
-		else if(isset($session_id) && !$is_sp_acc)
-		{
-			redirect('Timeline');
-		}
-		else
-		{
-			$this->Timeline_model->unpin_post($id);
-			redirect('Timeline');
 		}
 	}
 }

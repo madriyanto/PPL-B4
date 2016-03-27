@@ -13,7 +13,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<a href=<?php echo "\"".base_url()."index.php/Profile\""; ?>><h3>Profile</h3></a>
 	<a href=<?php echo "\"".base_url()."index.php/Close\""; ?>><h3>Log Out</h3></a>
 	
-	<h2><?php echo $Title; ?></h2>
+	<h2>
+	<?php
+		if ($IsPinned) {
+			echo $Title." (Pinned)";
+		} else {
+			echo $Title;
+		}
+	?>
+	</h2>
 	<?php 
 		date_default_timezone_set("Asia/Jakarta");
 		$timestamp = mysql_to_unix($Timestamp);
@@ -37,36 +45,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 		if ($IsAnonymous && $isSPAcc) {
-		echo "<p>Posted by <a href=\"./People/view/".$OwnerId."\">".$OwnerId."</a> (Anonymous) On ".$timespan."</p>";
+		echo "<p>Posted by <a href=\"".base_url()."index.php/People/view/".$OwnerId."\">".$OwnerId."</a> (Anonymous) On ".$timespan."</p>";
 		} else if($IsAnonymous && !$isSPAcc) {
 		echo "<p>Posted by Anonymous On ".$timespan."</p>";
 		} else {
-		echo "<p>Posted by <a href=\"./People/view/".$OwnerId."\">".$OwnerId."</a> On ".$timespan."</p>";
+		echo "<p>Posted by <a href=\"".base_url()."index.php/People/view/".$OwnerId."\">".$OwnerId."</a> On ".$timespan."</p>";
 		}
 		echo "<p>To: ";
-		$post_mentions = $this->Timeline_model->get_mentions($Id);
+		$post_mentions = $this->Post_model->get_mentions($Id);
+		$is_mentioned = false;
 		foreach ($post_mentions as $row){
 			echo "<br/>".$row->Name;
+			if ($this->session->userdata('username') == $row->Username) {
+				$is_mentioned = true;
+			}
 		}
 		echo "</p>";
-		echo "<p>Post: ".$Data."</p>";
 		echo "<img src=\"".$Attachments."\"/>";
-		if ($IsPinned) {
-			echo "<p>Status: Pinned</p>";
-		} else {
-			echo "<p>Status: Not Pinned</p>";
-		}
-		if ($isSPAcc && !$row->IsPinned) {
-		echo "<br/><a href=\"Timeline/pin/".$row->Id."\">Pin this post</a>";
-		} else if ($isSPAcc && $row->IsPinned) {
-			echo "<br/><a href=\"Timeline/unpin/".$row->Id."\">Unpin this post</a>";
+		echo "<p>".$Data."</p>";
+		if ($isSPAcc && !$IsPinned) {
+			if($this->session->userdata('username') == $OwnerId || $is_mentioned) {
+				echo "<br/><a href=\"".base_url()."index.php/Post/pin/".$Id."\">Pin this post</a>";
+			}
+		} else if ($isSPAcc && $IsPinned) {
+			if($this->session->userdata('username') == $OwnerId || $is_mentioned) {
+				echo "<br/><a href=\"".base_url()."index.php/Post/unpin/".$Id."\">Unpin this post</a>";
+			}
 		}
 		if ($is_editable) {
 			echo "<br/>Edit";
 			echo "<br/>Close";
 		}
 		echo "<h3>Comments</h3>";
-		$comments = $this->Timeline_model->get_comments($Id);
+		$comments = $this->Post_model->get_comments($Id);
 		foreach ($comments as $row) {
 			echo "<p><b>".$row->OwnerId."</b></p>";
 			echo "<p>".$row->Data."</p>";	
