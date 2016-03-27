@@ -43,18 +43,17 @@
     <div class="col-sm-4 loginForm">
       <h2 class="text-center"><b>Login</b></h2>
       <h4 class="text-center">Please fill your username and password</h4><br>
-	  <form role="form">
+	  <form role="form" name="myForm" action="<?php echo base_url('index.php/loginsp'); ?>" method="post" accept-charset="utf-8">
 		<?php echo validation_errors(); ?>
-		<?php echo form_open('Loginsp'); ?>
 		<div class="form-group">
 			<label for="text">Username</label>
-			<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>"/>
+			<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" required/>
 		</div>
 		<div class="form-group">
 			<label for="text">Password</label>
-			<input type="password" class="form-control" name="password" />
+			<input type="password" class="form-control" name="password" required/>
 		</div>
-		Forgot your password? Click <a href="#">here</a><br><br>
+		Forgot your password? Click <a href="<?php echo base_url('index.php/forgetpassword/index'); ?>">here</a><br><br>
 		<button class="btn btn-primary btn-lg" type="submit" value="Submit">Login</button>
 		</form>
     </div>
