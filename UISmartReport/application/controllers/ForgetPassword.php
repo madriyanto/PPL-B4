@@ -16,7 +16,6 @@ class ForgetPassword extends CI_Controller {
 
 	public function index()
 	{
-	
 		$session_id = $this->session->userdata('username');
 		if(isset($session_id))
 		{
@@ -32,8 +31,11 @@ class ForgetPassword extends CI_Controller {
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$data['result'] = '';		 				
+				$data['result'] = '';
+				$datahead['title'] = 'Forget Password';
+				$this->load->view('templates/header', $datahead);
 				$this->load->view('forgetpass', $data);
+				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -58,7 +60,10 @@ class ForgetPassword extends CI_Controller {
 				} else {
 					$data['result'] = 'Email Address Is Not Valid';
 				}
+				$datahead['title'] = 'Forget Password';
+				$this->load->view('templates/header', $datahead);
 				$this->load->view('forgetpass', $data);
+				$this->load->view('templates/footer');
 			}
 		}
 	}

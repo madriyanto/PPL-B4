@@ -14,7 +14,7 @@ class Loginsp extends CI_Controller {
 
 	public function index()
     {
-		
+
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('username', 'Username', 'required');
@@ -27,7 +27,10 @@ class Loginsp extends CI_Controller {
 			{
 				redirect('Timeline');
 			} else {
+				$data['title'] = 'Special Account Login';
+				$this->load->view('templates/header', $data);
 				$this->load->view('loginspacc');
+				$this->load->view('templates/footer');
 			}
 		}
 		else
@@ -35,7 +38,10 @@ class Loginsp extends CI_Controller {
 			$user = $this->Loginsp_model->get_user($this->input->post('username'));
 			if($user == null)
 			{
+				$data['title'] = 'Special Account Login';
+				$this->load->view('templates/header', $data);
 				$this->load->view('loginspacc');
+				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -50,7 +56,10 @@ class Loginsp extends CI_Controller {
 				}
 				else
 				{
+					$data['title'] = 'Special Account Login';
+					$this->load->view('templates/header', $data);
 					$this->load->view('loginspacc');
+					$this->load->view('templates/footer');
 				}
 			}
 		}
