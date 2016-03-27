@@ -15,8 +15,7 @@ class UpdatePassword extends CI_Controller {
 	public function index()
 	{
 		$session_id = $this->session->userdata('username');
-		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id))
-		{
+		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
 			redirect('Timeline');
 		} else if(!isset($session_id)) {
 			redirect('Welcome');

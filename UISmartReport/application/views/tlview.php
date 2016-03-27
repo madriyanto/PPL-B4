@@ -42,7 +42,7 @@
 			$timespan = timespan($timestamp)." Ago";
 
 			if ((now() - $timestamp) >= (24*60*60)) {
-				$timespan = date('d F, Y', $timestamp);
+				$timespan = date('F d, Y', $timestamp);
 			}
 
 			$is_editable = false;
@@ -58,13 +58,13 @@
 				}
 			}
 
-			echo "<h2>".$row->Title."</h2>";
+			echo "<h2> <a href=\"./Post/view/".$row->Id."\">".$row->Title."</a></h2>";
 			if ($row->IsAnonymous && $isSPAcc) {
-				echo "<p>Posted by ".$row->OwnerId." (Anonymous) On ".$timespan."</p>";
+				echo "<p>Posted by <a href=\"./People/view/".$row->OwnerId."\">".$row->OwnerId."</a> (Anonymous) On ".$timespan."</p>";
 			} else if($row->IsAnonymous && !$isSPAcc) {
 				echo "<p>Posted by Anonymous On ".$timespan."</p>";
 			} else {
-				echo "<p>Posted by ".$row->OwnerId." On ".$timespan."</p>";
+				echo "<p>Posted by <a href=\"./People/view/".$row->OwnerId."\">".$row->OwnerId."</a> On ".$timespan."</p>";
 			}
 			echo "<p>To: ";
 			$post_mentions = $this->Timeline_model->get_mentions($row->Id);
@@ -89,7 +89,7 @@
 				echo "<br/><a href=\"Timeline/unpin/".$row->Id."\">Unpin this post</a>";
 			}
 			if ($is_editable) {
-				echo "<br/>Edit";
+				echo "<br/><a href=\"Post/edit/".$row->Id."\">Edit</a>";
 				echo "<br/>Close";
 			}
 			echo "<div>";

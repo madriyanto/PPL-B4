@@ -22,6 +22,18 @@ class Timeline_model extends CI_Model {
 	        return $query->result();
 		}
 
+		public function get_post($id)
+		{
+			$query = $this->db->query('select * from POST A where A.Id="'.$id.'";');
+	        return $query->row_array();
+		}
+
+		public function get_comments($id)
+		{
+			$query = $this->db->query('select * from COMMENT where PostId="'.$id.'";');
+	        return $query->result();
+		}
+
 		public function get_mentions($id)
 		{
 			$query = $this->db->query('select Name from MENTION A, ACCOUNT B where A.SPAcc=B.Username and PostId="'.$id.'";');
@@ -59,5 +71,17 @@ class Timeline_model extends CI_Model {
 		public function unpin_post($post_id)
 		{
 			$query = $this->db->query('update POST set IsPinned="0" where Id="'.$post_id.'";');
+		}
+
+		public function edit_post($data, $id)
+		{
+			$this->db->where('Id', $id);
+			$this->db->update('POST', $data);
+		}
+
+		public function edit_mention($data, $id)
+		{
+			$this->db->where('PostId', $id);
+			$this->db->update('MENTION', $data);
 		}
 }

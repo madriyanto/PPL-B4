@@ -15,8 +15,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<p>Email: <?php echo $Email; ?></p>
 	<p>About: <?php echo $About; ?></p>
 	<p>Contact: <?php echo $Contact; ?></p>
+	<?php if($this->session->userdata('username') == $Username) {?>
 	<p><a href="UpdatePassword">Update Password</a></p>
 	<p><a href="Close">Log Out</a></p>
+	<?php } ?>
 </div>
 
 </body>
