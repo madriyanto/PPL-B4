@@ -47,9 +47,9 @@ $(document).ready(function(){
 		</div>
 		<div class="col-md-6"> 
 			<form role="form" name="agree">
-				<p class="text-center"><a href="<?php echo base_url('index.php/login/index'); ?>" class="btn btn-primary btn-lg" role="button" disabled="true">Login SSO</a></p>
+				<p class="text-center"><a href="<?php echo base_url('index.php/Login/index'); ?>" class="btn btn-primary btn-lg" role="button" disabled="true">Login SSO</a></p>
 				<p><h1 class="text-center">or</h1></p>
-				<p class="text-center"><a href="<?php echo base_url('index.php/loginsp/index'); ?>" class="btn btn-primary btn-lg" role="button" disabled="true">Login SA*</a></p>
+				<p class="text-center"><a href="<?php echo base_url('index.php/Loginsp/index'); ?>" class="btn btn-primary btn-lg" role="button" disabled="true">Login SA*</a></p>
 				<div class="checkbox text-center">
 					<label><input type="checkbox" id="check">Please read the Agreement <a data-toggle="modal" data-target="#TermsAndConditions">here</a> before login here</label>
 				</div>
