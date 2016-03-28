@@ -24,7 +24,7 @@
 			<div class="navbar-brand">UI Smart Report</div>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
-			<a href="<?php echo base_url('index.php/login/index'); ?>"><li class="navbar-brand">Login SSO</li></a>
+			<a href="<?php echo base_url('index.php/Login/index'); ?>"><li class="navbar-brand">Login SSO</li></a>
 			<li class="navbar-brand">About Us</li>
 		</ul>
 	</div>
