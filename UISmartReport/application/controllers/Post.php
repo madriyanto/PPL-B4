@@ -28,9 +28,28 @@ class Post extends CI_Controller {
 		}
 		else
 		{
-			$data = $this->Post_model->get_post($id);
-			$data['isSPAcc'] = $this->session->userdata('SPAcc');
-			$this->load->view('postview', $data);
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('comment', 'Comment', 'required');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data = $this->Post_model->get_post($id);
+				$data['isSPAcc'] = $this->session->userdata('SPAcc');
+				$this->load->view('postview', $data);
+			}
+			else
+			{
+				$newdata = array(
+				    'Data'  => $this->input->post('comment'),
+				    'PostId' => $id,
+				    'OwnerId' => $session_id
+				);
+				$this->Post_model->insert_comment($newdata);
+				$data = $this->Post_model->get_post($id);
+				$data['isSPAcc'] = $this->session->userdata('SPAcc');
+				$this->load->view('postview', $data);
+			}
 		}
 	}
 

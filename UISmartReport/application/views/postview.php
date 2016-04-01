@@ -79,10 +79,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		echo "<h3>Comments</h3>";
 		$comments = $this->Post_model->get_comments($Id);
 		foreach ($comments as $row) {
-			echo "<p><b>".$row->OwnerId."</b></p>";
+			$timestamp = mysql_to_unix($row->Timestamp);
+			$timespan = timespan($timestamp)." Ago";
+
+			if ((now() - $timestamp) >= (24*60*60)) {
+				$timespan = date('F d, Y', $timestamp);
+			}
+
+			echo "<p><b><a href=".base_url()."People/view/".$row->Username.">".$row->Name."<a> On ".$timespan."</b></p>";
 			echo "<p>".$row->Data."</p>";	
 		}
 	?>
+	<?php echo form_open('Post/view/'.$Id); ?>
+		<label>Comment: </label><br/>
+		<input type="text" name="comment" size="50" /><br/>
+		<input type="submit" value="Submit" />
+	</form>
 </div>
 
 </body>

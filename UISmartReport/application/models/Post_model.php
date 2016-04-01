@@ -15,6 +15,11 @@ class Post_model extends CI_Model {
 		{
 	        $this->db->insert('MENTION', $data);
 		}
+
+		public function insert_comment($data)
+		{
+	        $this->db->insert('COMMENT', $data);
+		}
 		
         public function get_post($id)
 		{
@@ -24,7 +29,7 @@ class Post_model extends CI_Model {
 
 		public function get_comments($id)
 		{
-			$query = $this->db->query('select * from COMMENT where PostId="'.$id.'";');
+			$query = $this->db->query('select * from COMMENT A, ACCOUNT B where A.OwnerId=B.Username and PostId="'.$id.'";');
 	        return $query->result();
 		}
 

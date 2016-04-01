@@ -19,7 +19,10 @@ class Timeline extends CI_Controller {
 		$session_id = $this->session->userdata('username');
 		if(!isset($session_id))
 		{
-			redirect('Welcome');
+			$data['title'] = 'Homepage';
+			$this->load->view('templates/header', $data);
+			$this->load->view('homepage');
+			$this->load->view('templates/footer');
 		}
 		else
 		{
