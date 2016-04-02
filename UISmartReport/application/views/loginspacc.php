@@ -36,7 +36,7 @@
 		<h2 class="text-center"><b>Login</b></h2>
 		<h4 class="text-center">Please fill your username and password</h4><br>
 		<form role="form" name="myForm" action="<?php echo base_url('index.php/Loginsp'); ?>" method="post" accept-charset="utf-8">
-			<?php echo validation_errors(); ?>
+			<?php echo $result; ?>
 			<div class="form-group">
 				<label for="text">Username</label>
 				<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" required/>
