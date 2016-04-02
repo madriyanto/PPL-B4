@@ -20,8 +20,8 @@ class Loginuser_model extends CI_Model {
 
 		public function insert_user($data1, $data2)
 		{
-	        $this->db->insert('USERS', $data1);
 	        $this->db->insert('ACCOUNT', $data2);
+	        $this->db->insert('USERS', $data1);
 		}
 
 		public function get_user($username)
