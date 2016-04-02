@@ -51,7 +51,7 @@ $(document).ready(function(){
 		<h2 class="text-center"><b>Reset Password</b></h2><br>
 		<h4 class="special">Please fill your email here if you forgot the password. We will give a new password and please to change your password</h4><br>
 		<form role="form" name="myForm" action="<?php echo base_url('index.php/ForgetPassword'); ?>" method="post" accept-charset="utf-8">
-			<?php echo validation_errors(); ?>
+			<?php echo $result; ?>
 			<div class="form-group">
 				<label for="text">Email Account :</label>
 				<input type="text" class="form-control" name="email" required/>
