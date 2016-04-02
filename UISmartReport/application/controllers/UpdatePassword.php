@@ -18,7 +18,7 @@ class UpdatePassword extends CI_Controller {
 		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
 			redirect('Timeline');
 		} else if(!isset($session_id)) {
-			redirect('Welcome');
+			redirect('Timeline');
 		} else {
 			$this->load->helper(array('form', 'url'));
 

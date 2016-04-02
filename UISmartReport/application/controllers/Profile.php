@@ -19,7 +19,8 @@ class Profile extends CI_Controller {
 			$data = $this->Loginuser_model->get_user($session_id);
 			$this->load->view('profile', $data);
 		} else if(isset($session_id)) {
-			redirect('ProfileSP');
+			$data = $this->Loginsp_model->get_user($session_id);
+			$this->load->view('formsuccess', $data);
 		}
 		else {
 			redirect('Welcome');
