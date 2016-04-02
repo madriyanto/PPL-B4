@@ -28,6 +28,7 @@ class Loginsp extends CI_Controller {
 				redirect('Timeline');
 			} else {
 				$data['title'] = 'Special Account Login';
+				$data['result'] = '';
 				$this->load->view('templates/header', $data);
 				$this->load->view('loginspacc');
 				$this->load->view('templates/footer');
@@ -39,6 +40,7 @@ class Loginsp extends CI_Controller {
 			if($user == null)
 			{
 				$data['title'] = 'Special Account Login';
+				$data['result'] = 'User Is Not Registered';
 				$this->load->view('templates/header', $data);
 				$this->load->view('loginspacc');
 				$this->load->view('templates/footer');
@@ -57,6 +59,7 @@ class Loginsp extends CI_Controller {
 				else
 				{
 					$data['title'] = 'Special Account Login';
+					$data['result'] = 'Wrong Password!';
 					$this->load->view('templates/header', $data);
 					$this->load->view('loginspacc');
 					$this->load->view('templates/footer');
