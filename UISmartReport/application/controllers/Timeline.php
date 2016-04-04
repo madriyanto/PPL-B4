@@ -12,6 +12,8 @@ class Timeline extends CI_Controller {
 		$this->load->library('upload');
 		$this->load->model('Timeline_model');
 		$this->load->model('Post_model');
+		$this->load->model('Loginuser_model');
+		$this->load->model('Loginsp_model');
     }
 
 	public function index()
@@ -35,11 +37,19 @@ class Timeline extends CI_Controller {
 
 			if ($this->form_validation->run() == FALSE)
 			{
+				if ($this->session->userdata('SPAcc')) {
+					$data = $this->Loginsp_model->get_user($this->session->userdata('username'));
+				} else {
+					$data = $this->Loginuser_model->get_user($this->session->userdata('username'));
+				}
 				$data['error'] = '';
 				$data['timeline'] = $this->Timeline_model->retrieve_posts();
 				$data['isSPAcc'] = $this->session->userdata('SPAcc');
 				$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
+				$datahead['title'] = 'Timeline';
+				$this->load->view('templates/header', $datahead);
 				$this->load->view('tlview', $data);
+				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -69,11 +79,19 @@ class Timeline extends CI_Controller {
 				$is_attached = $_FILES['userfile']['error'] != 4;
 				if (!$attachment && $is_attached)
 				{
+					if ($this->session->userdata('SPAcc')) {
+						$data = $this->Loginsp_model->get_user($this->session->userdata('username'));
+					} else {
+						$data = $this->Loginuser_model->get_user($this->session->userdata('username'));
+					}
 					$data['error'] = $this->upload->display_errors();
 					$data['timeline'] = $this->Timeline_model->retrieve_posts();
 					$data['isSPAcc'] = $this->session->userdata('SPAcc');
 					$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
+					$datahead['title'] = 'Timeline';
+					$this->load->view('templates/header', $datahead);
 					$this->load->view('tlview', $data);
+					$this->load->view('templates/footer');
 				}
 				else
 				{
@@ -137,11 +155,20 @@ class Timeline extends CI_Controller {
 						}
 					}
 
+					if ($this->session->userdata('SPAcc')) {
+						$data = $this->Loginsp_model->get_user($this->session->userdata('username'));
+					} else {
+						$data = $this->Loginuser_model->get_user($this->session->userdata('username'));
+					}
+
 					$data['error'] = '';
 					$data['timeline'] = $this->Timeline_model->retrieve_posts();
 					$data['isSPAcc'] = $this->session->userdata('SPAcc');
 					$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
+					$datahead['title'] = 'Timeline';
+					$this->load->view('templates/header', $datahead);
 					$this->load->view('tlview', $data);
+					$this->load->view('templates/footer');
 				}
 			}
 		}
