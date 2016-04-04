@@ -1,16 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Example</title>
-</head>
+<style>
+	.postButton{
+		background: #FFFF00;
+		color: black;
+		border-style: none;
+	}
+	.finalPost{
+		background: #FFFF00;
+		color: black;
+		border-style: none;
+		margin-left: 100px;
+		margin-right: 100px;
+	}
+	.anonim{
+		margin-left: 100px;
+	}
+</style>
+<script>
+$(document).ready(function(){
+	$('#mention').tokenfield(function(){
+		autocomplete: {
+			source: ['Organisasi1', 'Organisasi2', 'Organisasi3', 'Organisasi4', 'Organisasi5'];
+			delay: 100
+		}
+		showAutocompleteOnFocus: true
+	})
+});
+</script>
 <body>
-
-<div id="container">
-	<a href="Welcome"><h3>Homepage</h3></a>
-	<a href="Profile"><h3>Profile</h3></a>
-	<a href="Close"><h3>Log Out</h3></a>
-
+<nav class="navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div class="navbar-brand"><img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="30" height="30"></div>
+			<div class="navbar-brand">UI Smart Report</div>
+			<div class="navbar-brand">About Us</div>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><span class="navbar-brand"><a href="Welcome">Timeline</a></span></li>
+				<li><span class="navbar-brand"><a href="Profile">Profile</a></span></li>
+				<li><span class="navbar-brand"><a href="Close">Logout</a></span></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<br><br><br><br>
+<div id="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-4">
+		<h1>Timeline</h1>
+		<button type="button" class="btn btn-info btn-primary btn-lg postButton" data-toggle="modal" data-target="#myModal">Post</button>
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title "><b>Post</b></h4>
+					</div>
+					
+					<div class="modal-body">
+					<form role="form" action="<?php echo base_url('index.php/Timeline'); ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+						<div id="row">
+							<div class="col-md-7">
+								<div class="form-group">
+									<input type="text" name="mention" class="form-control" id="mention" placeholder="To Organization" />
+								</div>
+								<div class="form-group">
+									<input type="text" name="title" class="form-control" id="title" placeholder="An Event" />
+								</div>
+								<div class="form-group">
+									<textarea name="post" class="form-control" rows="8" id="comment" placeholder="Description"></textarea>
+								</div>
+								<div class="form-group">
+									Gambar<input type="file" name="userfile" class="form-control" id="userfile" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<button type="submit" data-dismiss="modal" class="btn btn-info btn-primary btn-lg finalPost"><h3>Post!</h3></button>
+								<div class="checkbox anonim">
+									<label><input type="checkbox" name="anonymous" value=""/>Anonim Post</label>
+								</div>
+							</div>
+						</div>
+					</form>
+					</div>
+					<div class="modal-footer">
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<h3 class="text-right">Bima Artha Prasetyo</h3>
+		<h3 class="text-right">1306407350</h3>
+		<h3 class="text-right">Mahasiswa S1 Ilmu Komputer</h3>
+	</div>
+	<div class="col-md-3">
+		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+	</div>
+</div>
+	
+<!--
 	<?php echo validation_errors(); ?>
 	<?php echo $error; ?>
 
@@ -92,6 +188,6 @@
 	}
 	?>
 </div>
-
+-->
 </body>
 </html>
