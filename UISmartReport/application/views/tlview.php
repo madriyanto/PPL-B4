@@ -17,11 +17,11 @@
 </style>
 <script>
 $(document).ready(function(){
-	$('#mention').tokenfield(function(){
+	$('#mention').tokenfield({
 		autocomplete: {
-			source: ['Organisasi1', 'Organisasi2', 'Organisasi3', 'Organisasi4', 'Organisasi5']
+			source: ['Organisasi1', 'Organisasi2', 'Organisasi3', 'Organisasi4', 'Organisasi5'],
 			delay: 100
-		}
+		},
 		showAutocompleteOnFocus: true
 	})
 });
@@ -100,7 +100,7 @@ $(document).ready(function(){
 		<?php if (!$isSPAcc) { ?>
 		<h3 class="text-right"><?php echo $Name; ?></h3>
 		<h3 class="text-right"><?php echo $NPM; ?></h3>
-		<h3 class="text-right"><?php echo $Role.' '.$Faculty; ?></h3>
+		<h3 class="text-right"><?php echo ucwords(strtolower($Role.' '.$Faculty)); ?></h3>
 		<?php } else { ?>
 		<h3 class="text-right"><?php echo $Name; ?></h3>
 		<h3 class="text-right"><?php echo $Email; ?></h3>
@@ -108,7 +108,11 @@ $(document).ready(function(){
 		<?php } ?>
 	</div>
 	<div class="col-md-3">
+		<?php if ($PictLink == null) { ?>
 		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+		<?php } else { ?>
+		<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+		<?php } ?>
 	</div>
 </div>
 	
