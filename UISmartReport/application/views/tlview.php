@@ -1,29 +1,41 @@
 <style>
-	.postButton{
-		background: #FFFF00;
-		color: black;
-		border-style: none;
-	}
-	.finalPost{
-		background: #FFFF00;
-		color: black;
-		border-style: none;
-		margin-left: 100px;
-		margin-right: 100px;
-	}
-	.anonim{
-		margin-left: 100px;
-	}
+.box-post {
+    background-color: #9d9d9d;
+	margin-bottom: 10px;
+}
 </style>
 <script>
 $(document).ready(function(){
 	$('#mention').tokenfield({
 		autocomplete: {
-			source: ['Organisasi1', 'Organisasi2', 'Organisasi3', 'Organisasi4', 'Organisasi5'],
+			<?php
+				echo "source: [";
+				foreach ($mention as $row){
+					echo '{label: \''.$row->Name.'\', value: \''.$row->Username.'\'}, ';
+				}
+				echo "],";
+			?>
 			delay: 100
 		},
 		showAutocompleteOnFocus: true
-	})
+	});
+	
+	$('#mention').on('tokenfield:createtoken', function (event) {
+		var existingTokens = $(this).tokenfield('getTokens');
+		$.each(existingTokens, function(index, token) {
+			if (token.value === event.attrs.value)
+				event.preventDefault();
+		});
+	});
+
+	$('#post').focusin(function() {
+		$('#formPost').collapse('show');
+		$('#post').prop('rows', 3);
+	});
+	
+	<?php if ($error != '') { ?>
+		alert(<?php echo $error; ?>);
+	<?php } ?>
 });
 </script>
 <body>
@@ -32,7 +44,6 @@ $(document).ready(function(){
 		<div class="navbar-header">
 			<div class="navbar-brand"><img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="30" height="30"></div>
 			<div class="navbar-brand">UI Smart Report</div>
-			<div class="navbar-brand">About Us</div>
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -40,61 +51,56 @@ $(document).ready(function(){
 			</button>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+        		<li><a href="#">About Us</a></li>
+        	</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><span class="navbar-brand"><a href="Welcome">Timeline</a></span></li>
-				<li><span class="navbar-brand"><a href="Profile">Profile</a></span></li>
-				<li><span class="navbar-brand"><a href="Close">Logout</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('Notifications'); ?>">Notifications</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('logout'); ?>">Logout</a></span></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 <br><br><br><br>
-<div id="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-4">
-		<h1>Timeline</h1>
-		<button type="button" class="btn btn-info btn-primary btn-lg postButton" data-toggle="modal" data-target="#myModal">Post</button>
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title "><b>Post</b></h4>
+<div class="row">
+	<div class="col-md-offset-1 col-md-4">
+		<form role="form" class="form-horizontal" action="<?php echo base_url('timeline'); ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+			<div class="form-group">
+		    	<div class="col-sm-12">
+		    	<textarea class="form-control" id="post" name="post" rows="1" placeholder="Description" required></textarea>
+				</div>
+		  	</div>
+			<div id="formPost" class="collapse">
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="mention" name="mention" placeholder="To Organization" required>
 					</div>
-					
-					<div class="modal-body">
-					<form role="form" action="<?php echo base_url('index.php/Timeline'); ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-						<div id="row">
-							<div class="col-md-7">
-								<div class="form-group">
-									<input type="text" name="mention" class="form-control" id="mention" placeholder="To Organization" />
-								</div>
-								<div class="form-group">
-									<input type="text" name="title" class="form-control" id="title" placeholder="An Event" />
-								</div>
-								<div class="form-group">
-									<textarea name="post" class="form-control" rows="8" id="comment" placeholder="Description"></textarea>
-								</div>
-								<div class="form-group">
-									Gambar<input type="file" name="userfile" class="form-control" id="userfile" />
-								</div>
-							</div>
-							<div class="col-md-4">
-								<button type="submit" data-dismiss="modal" class="btn btn-info btn-primary btn-lg finalPost"><h3>Post!</h3></button>
-								<div class="checkbox anonim">
-									<label><input type="checkbox" name="anonymous" value=""/>Anonim Post</label>
-								</div>
-							</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="title" name="title" placeholder="An Event" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3">
+						<div class="checkbox">
+						<label>
+						<input type="checkbox" name="anonymous" value="true"> Anonymous
+						</label>
 						</div>
-					</form>
 					</div>
-					<div class="modal-footer">
-						
+					<div class="col-sm-6">
+						<input type="file" name="userfile">
 					</div>
-					
+					<div class="col-sm-3">
+						<button type="submit" class="btn btn-primary btn-lg" value="Submit">Post</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 	<div class="col-md-4">
 		<?php if (!$isSPAcc) { ?>
@@ -115,6 +121,83 @@ $(document).ready(function(){
 		<?php } ?>
 	</div>
 </div>
+<?php
+	$i = 1;
+	foreach ($timeline as $row) {
+		date_default_timezone_set("Asia/Jakarta");
+		$timestamp = mysql_to_unix($row->Timestamp);
+		$timespan = timespan($timestamp)." Ago";
+
+		if ((now() - $timestamp) >= (24*60*60)) {
+			$timespan = date('F d, Y', $timestamp);
+		}
+
+		$is_editable = false;
+		if ($this->session->userdata('username') == $row->OwnerId) {
+			if (substr_count($timespan, "Day") == 0 && substr_count($timespan, "Days") == 0) {
+				if (substr_count($timespan, "Hour") == 0 && substr_count($timespan, "Hours") == 0) {
+					if ((substr_count($timespan, "Minutes") == 1 || substr_count($timespan, "Minute") == 1) && (intval(substr($timespan, 0, 2)) <= 30)) {
+						$is_editable = true;
+					} else if (substr_count($timespan, "Seconds") == 1 || substr_count($timespan, "Second") == 1) {
+						$is_editable = true;
+					}
+				}
+			}
+		}
+			
+		if ($row->Status) {
+			if ($i % 3 == 1) {
+				echo "<div class=\"row\">";
+			}
+?>
+		<div class="col-md-offset-1 col-md-3 box-post">
+			<div class="row">
+				<h5 class="text-right"><?php echo $timespan; ?></h5>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<?php if ($row->PictLink == null || ($row->IsAnonymous && !$isSPAcc)) { ?>
+					<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
+					<?php } else { ?>
+					<img src="<?php echo $row->PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="100" height="100">
+					<?php } ?>
+				</div>
+				<div class="col-md-8">
+					<?php if ($row->IsAnonymous && $isSPAcc) { ?>
+					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
+					<?php } else if ($row->IsAnonymous && !$isSPAcc) { ?>
+					<h5>Anonymous</h5>
+					<?php } else { ?>
+					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
+					<?php } ?>
+					<p>To:<br/>
+					<?php $post_mentions = $this->Post_model->get_mentions($row->Id);
+					foreach ($post_mentions as $row2){
+						echo "<a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a><br/>";
+					} ?></p>
+					<p><?php echo $row->Title; ?></p>
+				</div>
+			</div>
+			<div class="row">
+				<?php if ($row->Attachments != null) { ?>
+				<img src="<?php echo $row->Attachments; ?>" class="img-rounded center-block" alt="Cinque Terre" height="150">
+				<?php } ?>
+				<p>
+					<?php echo $row->Data; ?>
+				</p>
+			</div>
+			<div class="row">
+				<h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Comments</a></h5>
+			</div>
+		</div>
+<?php	
+			if ($i % 3 == 0) {
+				echo "</div>";
+			}
+			$i++;
+		}
+	}
+?>
 	
 <!--
 	<?php echo validation_errors(); ?>

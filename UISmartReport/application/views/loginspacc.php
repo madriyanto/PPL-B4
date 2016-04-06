@@ -71,7 +71,7 @@
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<a href="<?php echo base_url('index.php/Login/index'); ?>"><li class="navbar-brand">Login SSO</li></a>
+				<a href="<?php echo base_url('login'); ?>"><li class="navbar-brand">Login SSO</li></a>
 				<li class="navbar-brand">About Us</li>
 			</ul>
 		</div>
@@ -84,8 +84,10 @@
     	<br>
 		<p id="font1"><b>Login</b></p>
 		<p id="font2">Please fill your username and password</p><br>
-		<form role="form" name="myForm" action="<?php echo base_url('index.php/Loginsp'); ?>" method="post" accept-charset="utf-8">
-			<?php echo validation_errors(); ?>
+		<?php if ($result != '') { ?>
+		<div class="alert alert-danger" role="alert"><?php echo $result; ?></div>
+		<?php } ?>
+		<form role="form" name="myForm" action="<?php echo base_url('loginsp'); ?>" method="post" accept-charset="utf-8">
 			<div class="form-group">
 				<label for="text">Username</label>
 				<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" required/>
@@ -94,7 +96,7 @@
 				<label for="text">Password</label>
 				<input type="password" class="form-control" name="password" required/>
 			</div>
-			Forgot your password? Click <a href="<?php echo base_url('index.php/ForgetPassword/index'); ?>">here</a><br><br>
+			Forgot your password? Click <a href="<?php echo base_url('forgetpassword'); ?>">here</a><br><br>
 			<button class="btn btn-primary btn-lg" type="submit" value="Submit">Login</button>
 		</form>
     </div>

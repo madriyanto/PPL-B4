@@ -111,36 +111,11 @@
 
   <div id="kotak3">
   	<h6 class="text-center">
-    	<a href="<?php echo base_url('index.php/Login/index'); ?>" class="btn btn-primary btn-lg" role="button">Login SSO
+    	<a href="<?php echo base_url('login'); ?>" class="btn btn-primary btn-lg" role="button">Login SSO
     	</a>
   	</h6>
   	<p id="loginsp">Are you BSO / BO? Login 
-    	<a data-toggle="modal" data-target="#TermsAndConditions">here
+    	<a href="<?php echo base_url('loginsp'); ?>">here
     	</a>
   	</p>
-  	
-  	<div class="modal fade" id="TermsAndConditions" role="dialog">
-    	<div class="modal-dialog">
-      <!-- Modal content-->
-      		<div class="modal-content">
-        		<div class="modal-header">
-          		<button type="button" class="close" data-dismiss="modal">&times;
-          		</button>
-          		<h4 class="modal-title text-center">Terms and Conditions
-          		</h4>
-        	</div>
-        
-        	<div class="modal-body">
-          		<p>Are you sure that you are BO / BSO?
-          		</p>
-        	</div>
-        
-        	<div class="modal-footer">
-          		<p class="text-center">
-            		<a href="<?php echo base_url('index.php/Loginsp/index'); ?>" class="btn btn-primary btn-sm" role="button">Yes, I'am BO/BSO
-            		</a>
-          		</p>
-        	</div>
-      	</div> 
-    </div>
   </div>

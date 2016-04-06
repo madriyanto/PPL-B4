@@ -56,11 +56,11 @@
 <script>
 $(document).ready(function(){
 	$('#check').click(function(){
-		if($(this).attr('checked') == false){
-			$('#btn').attr("disabled", "disabled");  
+		if($('#check').prop('checked')){
+			$('#btn').prop('disabled', false);
 		}
 		else {
-			$('#btn').removeAttr("disabled");
+			$('#btn').prop('disabled', true);
 		}
 	});
 });
@@ -82,7 +82,7 @@ $(document).ready(function(){
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<a href="<?php echo base_url('index.php/Login/index'); ?>"><li class="navbar-brand">Login SSO</li></a>
+				<a href="<?php echo base_url('login'); ?>"><li class="navbar-brand">Login SSO</li></a>
 				<li class="navbar-brand">About Us</li>
 			</ul>
 		</div>
@@ -95,8 +95,12 @@ $(document).ready(function(){
     <div class="col-sm-4 forgetForm">
 		<h2 id="font1"><b>Reset Password</b></h2><br>
 		<h4 id="font2">Please fill your email here if you forgot the password. We will give a new password and please to change your password</h4><br>
-		<form role="form" name="myForm" action="<?php echo base_url('index.php/ForgetPassword'); ?>" method="post" accept-charset="utf-8">
-			<?php echo validation_errors(); ?>
+		<form role="form" name="myForm" action="<?php echo base_url('forgetpassword'); ?>" method="post" accept-charset="utf-8">
+			<?php if ($result == 'Please Check Your Inbox') { ?>
+			<div class="alert alert-success" role="alert"><?php echo $result; ?></div>
+			<?php } else if ($result != '') { ?>
+			<div class="alert alert-danger" role="alert"><?php echo $result; ?></div>
+			<?php } ?>
 			<div class="form-group">
 				<label for="text">Email Account :</label>
 				<input type="text" class="form-control" name="email" required/>
