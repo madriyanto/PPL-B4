@@ -25,7 +25,7 @@ class Loginsp extends CI_Controller {
 			$session_id = $this->session->userdata('username');
 			if(isset($session_id))
 			{
-				redirect('Timeline');
+				redirect(base_url());
 			} else {
 				$data['title'] = 'Special Account Login';
 				$data['result'] = '';
@@ -54,7 +54,7 @@ class Loginsp extends CI_Controller {
 				        'SPAcc' => TRUE
 					);
 					$this->session->set_userdata($newdata);
-					redirect('Timeline');
+					redirect(base_url());
 				}
 				else
 				{

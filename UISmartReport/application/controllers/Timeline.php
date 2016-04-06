@@ -144,7 +144,7 @@ class Timeline extends CI_Controller {
 					$this->Post_model->insert_post($newdata1);
 
 					if ($this->input->post('mention') != null) {
-						foreach ($this->input->post('mention') as $mention) {
+						foreach (explode(", ", $this->input->post('mention')) as $mention) {
 							if($mention != null) {
 								$newdata2 = array(
 									'PostId'  => $this->Post_model->get_lastest_post_id(),

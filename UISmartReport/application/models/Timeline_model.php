@@ -8,7 +8,7 @@ class Timeline_model extends CI_Model {
 
 		public function retrieve_posts()
 		{
-			$query = $this->db->query('select * from POST order by IsPinned desc, Id desc;');
+			$query = $this->db->query('select * from POST A, ACCOUNT B where A.OwnerId=B.Username order by IsPinned desc, Id desc;');
 	        return $query->result();
 		}
 
