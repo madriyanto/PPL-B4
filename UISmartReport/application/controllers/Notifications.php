@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Profile extends CI_Controller {
+class Notifications extends CI_Controller {
 
 	public function __construct()
     {
@@ -10,17 +10,15 @@ class Profile extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Loginuser_model');
 		$this->load->model('Loginsp_model');
+		$this->load->model('Notification_model');
     }
 
 	public function index()
 	{
 		$session_id = $this->session->userdata('username');
-		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
-			$data = $this->Loginuser_model->get_user($session_id);
-			$this->load->view('profile', $data);
-		} else if(isset($session_id)) {
-			$data = $this->Loginsp_model->get_user($session_id);
-			$this->load->view('formsuccess', $data);
+		if(isset($session_id)) {
+			$data['notif'] = $this->Notification_model->get($session_id);
+			$this->load->view('notif', $data);
 		}
 		else {
 			redirect('Timeline');

@@ -12,6 +12,7 @@ class Post extends CI_Controller {
 		$this->load->library('upload');
 		$this->load->model('Timeline_model');
 		$this->load->model('Post_model');
+		$this->load->model('Notification_model');
     }
 
     public function index()
@@ -24,10 +25,14 @@ class Post extends CI_Controller {
 		$session_id = $this->session->userdata('username');
 		if(!isset($session_id))
 		{
-			redirect('Welcome');
+			redirect('Timeline');
 		}
 		else
 		{
+			if ($this->Notification_model->is_unread($session_id, $id)) {
+				$this->Notification_model->set_read($session_id, $id);
+			}
+
 			$this->load->library('form_validation');
 
 			$this->form_validation->set_rules('comment', 'Comment', 'required');
@@ -59,7 +64,7 @@ class Post extends CI_Controller {
 		$data = $this->Post_model->get_post($id);
 		if(!isset($session_id))
 		{
-			redirect('Welcome');
+			redirect('Timeline');
 		}
 		else
 		{
@@ -224,7 +229,7 @@ class Post extends CI_Controller {
 		}
 		if(!isset($session_id))
 		{
-			redirect('Welcome');
+			redirect('Timeline');
 		}
 		else if((isset($session_id) && !$is_sp_acc) || !$is_mentioned)
 		{
@@ -250,7 +255,7 @@ class Post extends CI_Controller {
 		}
 		if(!isset($session_id))
 		{
-			redirect('Welcome');
+			redirect('Timeline');
 		}
 		else if((isset($session_id) && !$is_sp_acc) || !$is_mentioned)
 		{
