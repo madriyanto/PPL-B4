@@ -1,8 +1,24 @@
 <style>
-.box-post {
-    background-color: #9d9d9d;
-	margin-bottom: 10px;
-}
+	body {
+	   background-color: #E4E4E4;
+	}
+	
+	.box-post {
+    	   background-color: white;
+    	   border-radius: 20px;
+    	   margin-bottom: 10px;
+	}
+
+	@media screen and (max-width:768px){
+	   #profpic img{
+		display: block;
+ 		margin-left: auto;
+    		margin-right: auto
+		}
+	   #datadiri h3{
+		text-align: center;
+	   }
+	}
 </style>
 <script>
 $(document).ready(function(){
@@ -118,7 +134,7 @@ $(document).ready(function(){
 			</div>
 		</form>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4" id="datadiri">
 		<?php if (!$isSPAcc) { ?>
 		<h3 class="text-right"><?php echo $Name; ?></h3>
 		<h3 class="text-right"><?php echo $NPM; ?></h3>
@@ -129,7 +145,7 @@ $(document).ready(function(){
 		<h3 class="text-right"><?php echo $Contact; ?></h3>
 		<?php } ?>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-3" id="profpic">
 		<?php if ($PictLink == null) { ?>
 		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
 		<?php } else { ?>
