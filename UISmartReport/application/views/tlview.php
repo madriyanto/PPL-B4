@@ -33,7 +33,7 @@
 	   }
 	   
 	   #postAndProfil{
-	   	height: 620px;
+	   	height: 670px;
 	   }
 	   
 	   .formRow{
