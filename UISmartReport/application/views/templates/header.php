@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<title>UI Smart Report | <?php echo $title; ?></title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" />
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-ui.css'); ?>" />
 	<link rel="stylesheet" href="<?php echo base_url('assets/tokenfield/dist/css/bootstrap-tokenfield.css'); ?>" />

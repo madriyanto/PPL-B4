@@ -10,6 +10,7 @@ class Timeline extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('date');
 		$this->load->library('upload');
+		$this->load->library('image_lib');
 		$this->load->model('Timeline_model');
 		$this->load->model('Post_model');
 		$this->load->model('Loginuser_model');
@@ -66,11 +67,9 @@ class Timeline extends CI_Controller {
 			    }
 
 			    $config['upload_path']          = './uploads/'.$session_id.'/';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['max_size']             = 100;
-				$config['max_width']            = 1024;
-				$config['max_height']           = 768;
-				$config['file_name'] 			= uniqid();
+				$config['allowed_types']        = 'gif|jpg|png|jpeg|GIF|JPG|PNG|JPEG';
+				$config['max_size']             = 2048;
+				$config['encrypt_name'] 		= TRUE;
 
 				$this->upload->initialize($config);
 				$this->load->library('upload', $config);
@@ -142,6 +141,15 @@ class Timeline extends CI_Controller {
 					}
 
 					$this->Post_model->insert_post($newdata1);
+					
+					$config['image_library'] 	= 'gd2';
+					$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
+					$config['maintain_ratio'] 	= TRUE;
+					$config['width']			= 1024;
+
+					$this->load->library('image_lib', $config); 
+
+					$this->image_lib->resize();
 
 					if ($this->input->post('mention') != null) {
 						foreach (explode(", ", $this->input->post('mention')) as $mention) {
@@ -154,13 +162,12 @@ class Timeline extends CI_Controller {
 							}
 						}
 					}
-
 					if ($this->session->userdata('SPAcc')) {
 						$data = $this->Loginsp_model->get_user($this->session->userdata('username'));
 					} else {
 						$data = $this->Loginuser_model->get_user($this->session->userdata('username'));
 					}
-
+				
 					$data['error'] = '';
 					$data['timeline'] = $this->Timeline_model->retrieve_posts();
 					$data['isSPAcc'] = $this->session->userdata('SPAcc');

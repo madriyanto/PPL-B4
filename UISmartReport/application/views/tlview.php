@@ -43,15 +43,13 @@ $(document).ready(function(){
 				event.preventDefault();
 		});
 	});
-
+	
 	$('#post').focusin(function() {
 		$('#formPost').collapse('show');
 		$('#post').prop('rows', 3);
+		$('#post').prop('placeholder', 'Description');
 	});
 	
-	<?php if ($error != '') { ?>
-		alert(<?php echo $error; ?>);
-	<?php } ?>
 });
 </script>
 <body>
@@ -99,10 +97,13 @@ $(document).ready(function(){
 <!-- End of Logout Modal-->
 <div class="row">
 	<div class="col-md-offset-1 col-md-4">
+		<?php if ($error != '') { ?>
+		<div class="alert alert-danger" role="alert"><?php echo $error; ?></div>
+		<?php } ?>
 		<form role="form" class="form-horizontal" action="<?php echo base_url('timeline'); ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 			<div class="form-group">
 		    	<div class="col-sm-12">
-		    	<textarea class="form-control" id="post" name="post" rows="1" placeholder="Description" required></textarea>
+		    	<textarea class="form-control" id="post" name="post" rows="1" placeholder="What's happening?" required></textarea>
 				</div>
 		  	</div>
 			<div id="formPost" class="collapse">
@@ -120,12 +121,12 @@ $(document).ready(function(){
 					<div class="col-sm-3">
 						<div class="checkbox">
 						<label>
-						<input type="checkbox" name="anonymous" value="true"> Anonymous
+						<input type="checkbox" id="anonymous" name="anonymous" value="true"> Anonymous
 						</label>
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<input type="file" name="userfile">
+						<input type="file" id="userfile" name="userfile">
 					</div>
 					<div class="col-sm-3">
 						<button type="submit" class="btn btn-primary btn-lg" value="Submit">Post</button>
@@ -195,7 +196,7 @@ $(document).ready(function(){
 					<?php } ?>
 				</div>
 				<div class="col-md-8">
-					<?php if ($row->IsAnonymous && $isSPAcc) { ?>
+					<?php if ($row->IsAnonymous && ($isSPAcc || $row->OwnerId == $this->session->userdata['username'])) { ?>
 					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
 					<?php } else if ($row->IsAnonymous && !$isSPAcc) { ?>
 					<h5>Anonymous</h5>
@@ -215,7 +216,13 @@ $(document).ready(function(){
 				<img src="<?php echo $row->Attachments; ?>" class="img-rounded center-block" alt="Cinque Terre" height="150">
 				<?php } ?>
 				<p>
-					<?php echo $row->Data; ?>
+					<?php
+						if (strlen($row->Data) <= 200) {
+							echo $row->Data;
+						} else {
+							echo substr($row->Data, 0, 200).'... <a href="'.base_url('post/view/'.$row->Id).'">see more</a>';
+						}
+					?>
 				</p>
 			</div>
 			<div class="row">
