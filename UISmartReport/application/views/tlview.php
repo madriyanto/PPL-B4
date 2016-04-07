@@ -12,9 +12,9 @@
 	}
 	
 	.box-post {
-    	   background-color: white;
-    	   border-radius: 20px;
-    	   margin-bottom: 10px;
+    	background-color: white;
+    	border-radius: 20px;
+    	margin-bottom: 10px;
 	}
 
 	@media screen and (max-width:768px){
@@ -39,6 +39,10 @@
 	   .formRow{
 	    margin-bottom: 10px;
 	   }
+	}
+	
+	.bottom-post{
+		margin-bottom: 15%;
 	}
 </style>
 <script>
@@ -120,9 +124,9 @@ $(document).ready(function(){
 <div class="row" id="postAndProfil">
 	<div class="col-md-offset-1 col-md-2" id="profpic">
 		<?php if ($PictLink == null) { ?>
-		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="200" height="200"> 
 		<?php } else { ?>
-		<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+		<img src="<?php echo $PictLink; ?>" class="img-rounded img-responsive" alt="Cinque Terre">
 		<?php } ?>
 	</div>
 	
@@ -207,9 +211,14 @@ $(document).ready(function(){
 			if ($i % 3 == 1) {
 				echo "<div class=\"row\">";
 				echo "<div class=\"col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10\">";
-				echo "<div class=\"col-md-3 box-post\">";
+				echo "<div class=\"row\">";
+				echo "<div class=\"col-md-4\">";
+				echo "<div class=\"row\">";
+				echo "<div class=\"col-md-12 box-post\">";
 			} else {
-				echo "<div class=\"col-md-offset-1 col-md-3 box-post\">";
+				echo "<div class=\"col-md-4\">";
+				echo "<div class=\"row\">";
+				echo "<div class=\"col-md-offset-1 col-md-11 box-post\">";
 			}
 ?>
 			<div class="row">
@@ -218,9 +227,9 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-md-4">
 					<?php if ($row->PictLink == null || ($row->IsAnonymous && !$isSPAcc)) { ?>
-					<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="100" height="100"> 
+					<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded img-responsive" alt="Cinque Terre"> 
 					<?php } else { ?>
-					<img src="<?php echo $row->PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="100" height="100">
+					<img src="<?php echo $row->PictLink; ?>" class="img-rounded img-responsive" alt="Cinque Terre">
 					<?php } ?>
 				</div>
 				<div class="col-md-8">
@@ -242,7 +251,7 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-md-offset-1 col-md-10">
 					<?php if ($row->Attachments != null) { ?>
-					<img src="<?php echo $row->Attachments; ?>" class="img-rounded center-block" alt="Cinque Terre" height="150">
+					<img src="<?php echo $row->Attachments; ?>" class="img-rounded center-block img-responsive" alt="Cinque Terre">
 					<?php } ?>
 					<p>
 						<?php
@@ -259,8 +268,11 @@ $(document).ready(function(){
 				<h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Comments</a></h5>
 			</div>
 		</div>
+		</div>
+		</div>
 <?php	
 			if ($i % 3 == 0) {
+				echo "</div>";
 				echo "</div>";
 				echo "</div>";
 			}
@@ -268,6 +280,10 @@ $(document).ready(function(){
 		}
 	}
 ?>
+
+<div class="bottom-post">
+
+</div>
 	
 <!--
 	<?php echo validation_errors(); ?>
