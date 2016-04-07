@@ -44,6 +44,20 @@
 	.bottom-post{
 		margin-bottom: 15%;
 	}
+	
+	.image{
+		position:relative;
+		overflow:hidden;
+		padding-bottom:100%;
+	}
+	.image img{
+		position:absolute;
+		max-width: 100%;
+		max-height: 100%;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
 </style>
 <script>
 $(document).ready(function(){
@@ -226,11 +240,13 @@ $(document).ready(function(){
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<?php if ($row->PictLink == null || ($row->IsAnonymous && !$isSPAcc)) { ?>
-					<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded img-responsive" alt="Cinque Terre"> 
-					<?php } else { ?>
-					<img src="<?php echo $row->PictLink; ?>" class="img-rounded img-responsive" alt="Cinque Terre">
-					<?php } ?>
+					<div class="image">
+						<?php if ($row->PictLink == null || ($row->IsAnonymous && !$isSPAcc)) { ?>
+						<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img img-rounded img-responsive" alt="Cinque Terre"> 
+						<?php } else { ?>
+						<img src="<?php echo $row->PictLink; ?>" class="img img-rounded img-responsive" alt="Cinque Terre">
+						<?php } ?>
+					</div>
 				</div>
 				<div class="col-md-8">
 					<?php if ($row->IsAnonymous && ($isSPAcc || $row->OwnerId == $this->session->userdata['username'])) { ?>
