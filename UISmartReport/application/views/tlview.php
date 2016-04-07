@@ -7,6 +7,10 @@
 	   height: 300px;
 	}
 	
+	.row{
+	   margin-right: 0px;
+	}
+	
 	.box-post {
     	   background-color: white;
     	   border-radius: 20px;
