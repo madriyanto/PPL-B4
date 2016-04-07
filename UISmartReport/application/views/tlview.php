@@ -59,12 +59,28 @@ $(document).ready(function(){
 				<li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('Notifications'); ?>">Notifications</a></span></li>
-				<li><span class="navbar-brand"><a href="<?php echo base_url('logout'); ?>">Logout</a></span></li>
+				<li><span class="navbar-brand"><a data-toggle="modal" data-target="#myModal">Logout</a></span></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 <br><br><br><br>
+<!-- Logout Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Are you sure you want to log out?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <a href="<?php echo base_url('logout'); ?>" class="btn btn-primary" role="button">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Logout Modal-->
 <div class="row">
 	<div class="col-md-offset-1 col-md-4">
 		<form role="form" class="form-horizontal" action="<?php echo base_url('timeline'); ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
