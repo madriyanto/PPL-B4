@@ -33,9 +33,12 @@
 	   }
 	   
 	   #postAndProfil{
-	   	height: 500px;
+	   	height: 620px;
 	   }
 	   
+	   .formRow{
+	    margin-bottom: 10px;
+	   }
 	}
 </style>
 <script>
@@ -64,6 +67,7 @@ $(document).ready(function(){
 	
 	$('#post').focusin(function() {
 		$('#formPost').collapse('show');
+		$('#formLabel').collapse('hide');
 		$('#post').prop('rows', 3);
 		$('#post').prop('placeholder', 'Description');
 	});
@@ -114,7 +118,7 @@ $(document).ready(function(){
 </div>
 <!-- End of Logout Modal-->
 <div class="row" id="postAndProfil">
-	<div class="col-md-offset-1 col-md-3" id="profpic">
+	<div class="col-md-offset-1 col-md-2" id="profpic">
 		<?php if ($PictLink == null) { ?>
 		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
 		<?php } else { ?>
@@ -122,7 +126,7 @@ $(document).ready(function(){
 		<?php } ?>
 	</div>
 	
-	<div class="col-md-4" id="datadiri">
+	<div class="col-md-3" id="datadiri">
 		<?php if (!$isSPAcc) { ?>
 		<h3 class="text-left"><?php echo $Name; ?></h3>
 		<h3 class="text-left"><?php echo $NPM; ?></h3>
@@ -134,39 +138,40 @@ $(document).ready(function(){
 		<?php } ?>
 	</div>
 	
-	<div class="col-md-4">
+	<div class="col-md-5">
 		<?php if ($error != '') { ?>
 		<div class="alert alert-danger" role="alert"><?php echo $error; ?></div>
 		<?php } ?>
 		<form role="form" class="form-horizontal" action="<?php echo base_url('timeline'); ?>" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 			<div class="form-group">
-		    	<div class="col-sm-12">
-		    	<textarea class="form-control" id="post" name="post" rows="1" placeholder="What's happening?" required></textarea>
+		    	<div class="col-xs-offset-1 col-xs-10 col-sm-12 col-md-12">
+				<h3 class="text-left collapse in" id="formLabel">What's happening in UI?</h3>
+		    	<textarea class="form-control" id="post" name="post" rows="1" placeholder="Write here..." required></textarea>
 				</div>
 		  	</div>
 			<div id="formPost" class="collapse">
 				<div class="form-group">
-					<div class="col-sm-12">
+					<div class="col-xs-offset-1 col-xs-10 col-sm-12 col-md-12">
 					<input type="text" class="form-control" id="mention" name="mention" placeholder="To Organization" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-12">
+					<div class="col-xs-offset-1 col-xs-10 col-sm-12 col-md-12">
 					<input type="text" class="form-control" id="title" name="title" placeholder="An Event" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-3">
+					<div class="col-xs-offset-1 col-xs-11 col-sm-2 col-md-2 formRow">
 						<div class="checkbox">
 						<label>
 						<input type="checkbox" id="anonymous" name="anonymous" value="true"> Anonymous
 						</label>
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-xs-offset-1 col-xs-11 col-sm-3 col-md-3 formRow">
 						<input type="file" id="userfile" name="userfile">
 					</div>
-					<div class="col-sm-3">
+					<div class="col-xs-offset-1 col-xs-11 col-sm-3 col-md-3 formRow">
 						<button type="submit" class="btn btn-primary btn-lg" value="Submit">Post</button>
 					</div>
 				</div>
@@ -201,9 +206,12 @@ $(document).ready(function(){
 		if ($row->Status) {
 			if ($i % 3 == 1) {
 				echo "<div class=\"row\">";
+				echo "<div class=\"col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10\">";
+				echo "<div class=\"col-md-3 box-post\">";
+			} else {
+				echo "<div class=\"col-md-offset-1 col-md-3 box-post\">";
 			}
 ?>
-		<div class="col-md-offset-1 col-md-3 box-post">
 			<div class="row">
 				<h5 class="text-right"><?php echo $timespan; ?></h5>
 			</div>
@@ -232,18 +240,20 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
-				<?php if ($row->Attachments != null) { ?>
-				<img src="<?php echo $row->Attachments; ?>" class="img-rounded center-block" alt="Cinque Terre" height="150">
-				<?php } ?>
-				<p>
-					<?php
-						if (strlen($row->Data) <= 200) {
-							echo $row->Data;
-						} else {
-							echo substr($row->Data, 0, 200).'... <a href="'.base_url('post/view/'.$row->Id).'">see more</a>';
-						}
-					?>
-				</p>
+				<div class="col-md-offset-1 col-md-10">
+					<?php if ($row->Attachments != null) { ?>
+					<img src="<?php echo $row->Attachments; ?>" class="img-rounded center-block" alt="Cinque Terre" height="150">
+					<?php } ?>
+					<p>
+						<?php
+							if (strlen($row->Data) <= 200) {
+								echo $row->Data;
+							} else {
+								echo substr($row->Data, 0, 200).'... <a href="'.base_url('post/view/'.$row->Id).'">see more</a>';
+							}
+						?>
+					</p>
+				</div>
 			</div>
 			<div class="row">
 				<h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Comments</a></h5>
@@ -251,6 +261,7 @@ $(document).ready(function(){
 		</div>
 <?php	
 			if ($i % 3 == 0) {
+				echo "</div>";
 				echo "</div>";
 			}
 			$i++;

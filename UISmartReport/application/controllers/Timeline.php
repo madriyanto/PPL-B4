@@ -142,14 +142,27 @@ class Timeline extends CI_Controller {
 
 					$this->Post_model->insert_post($newdata1);
 					
-					$config['image_library'] 	= 'gd2';
-					$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
-					$config['maintain_ratio'] 	= TRUE;
-					$config['width']			= 1024;
+					if ($upload_data['image_width'] > 1024) {
+						$config['image_library'] 	= 'gd2';
+						$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
+						$config['maintain_ratio'] 	= TRUE;
+						$config['width']			= 1024;
 
-					$this->load->library('image_lib', $config); 
+						$this->load->library('image_lib', $config); 
 
-					$this->image_lib->resize();
+						$this->image_lib->resize();
+					}
+					
+					if ($upload_data['image_height'] > 1024) {
+						$config['image_library'] 	= 'gd2';
+						$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
+						$config['maintain_ratio'] 	= TRUE;
+						$config['height']			= 1024;
+
+						$this->load->library('image_lib', $config); 
+
+						$this->image_lib->resize();
+					}
 
 					if ($this->input->post('mention') != null) {
 						foreach (explode(", ", $this->input->post('mention')) as $mention) {
