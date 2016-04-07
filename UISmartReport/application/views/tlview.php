@@ -114,7 +114,27 @@ $(document).ready(function(){
 </div>
 <!-- End of Logout Modal-->
 <div class="row" id="postAndProfil">
-	<div class="col-md-offset-1 col-md-4">
+	<div class="col-md-offset-1 col-md-3" id="profpic">
+		<?php if ($PictLink == null) { ?>
+		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+		<?php } else { ?>
+		<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+		<?php } ?>
+	</div>
+	
+	<div class="col-md-4" id="datadiri">
+		<?php if (!$isSPAcc) { ?>
+		<h3 class="text-left"><?php echo $Name; ?></h3>
+		<h3 class="text-left"><?php echo $NPM; ?></h3>
+		<h3 class="text-left"><?php echo ucwords(strtolower($Role.' '.$Faculty)); ?></h3>
+		<?php } else { ?>
+		<h3 class="text-left"><?php echo $Name; ?></h3>
+		<h3 class="text-left"><?php echo $Email; ?></h3>
+		<h3 class="text-left"><?php echo $Contact; ?></h3>
+		<?php } ?>
+	</div>
+	
+	<div class="col-md-4">
 		<?php if ($error != '') { ?>
 		<div class="alert alert-danger" role="alert"><?php echo $error; ?></div>
 		<?php } ?>
@@ -152,24 +172,6 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</form>
-	</div>
-	<div class="col-md-4" id="datadiri">
-		<?php if (!$isSPAcc) { ?>
-		<h3 class="text-right"><?php echo $Name; ?></h3>
-		<h3 class="text-right"><?php echo $NPM; ?></h3>
-		<h3 class="text-right"><?php echo ucwords(strtolower($Role.' '.$Faculty)); ?></h3>
-		<?php } else { ?>
-		<h3 class="text-right"><?php echo $Name; ?></h3>
-		<h3 class="text-right"><?php echo $Email; ?></h3>
-		<h3 class="text-right"><?php echo $Contact; ?></h3>
-		<?php } ?>
-	</div>
-	<div class="col-md-3" id="profpic">
-		<?php if ($PictLink == null) { ?>
-		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
-		<?php } else { ?>
-		<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
-		<?php } ?>
 	</div>
 </div>
 <?php
