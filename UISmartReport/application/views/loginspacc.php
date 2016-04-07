@@ -16,7 +16,8 @@
 	
 	.loginForm {
 		background-color: white; 
-		border: 5px solid;
+		border: 5px solid #a1a1a1;
+		border-radius: 25px;
 		padding-left: 40px;
 		padding-right: 40px;
 		margin: 0 auto;
