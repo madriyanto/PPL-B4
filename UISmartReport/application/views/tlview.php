@@ -3,6 +3,10 @@
 	   background-color: #E4E4E4;
 	}
 	
+	#postAndProfil{
+	   height: 300px;
+	}
+	
 	.box-post {
     	   background-color: white;
     	   border-radius: 20px;
@@ -14,10 +18,20 @@
 		display: block;
  		margin-left: auto;
     		margin-right: auto
-		}
+	   }
+	   
 	   #datadiri h3{
 		text-align: center;
 	   }
+	   
+	   .form-control{
+		width: 90%;
+	   }
+	   
+	   #postAndProfil{
+	   	height: 500px;
+	   }
+	   
 	}
 </style>
 <script>
@@ -95,7 +109,7 @@ $(document).ready(function(){
   </div>
 </div>
 <!-- End of Logout Modal-->
-<div class="row">
+<div class="row" id="postAndProfil">
 	<div class="col-md-offset-1 col-md-4">
 		<?php if ($error != '') { ?>
 		<div class="alert alert-danger" role="alert"><?php echo $error; ?></div>
