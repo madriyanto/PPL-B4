@@ -16,6 +16,10 @@
     	   border-radius: 20px;
     	   margin-bottom: 10px;
 	}
+	
+	.bottom-post{
+	   margin-bottom: 5%;
+	}
 
 	@media screen and (max-width:768px){
 	   #profpic img{
@@ -34,6 +38,10 @@
 	   
 	   #postAndProfil{
 	   	height: 500px;
+	   }
+	   
+	   .bottom-post{
+	   	margin-bottom: 15%;
 	   }
 	   
 	}
@@ -257,6 +265,10 @@ $(document).ready(function(){
 		}
 	}
 ?>
+
+<div class="bottom-post">
+	
+</div>
 	
 <!--
 	<?php echo validation_errors(); ?>
