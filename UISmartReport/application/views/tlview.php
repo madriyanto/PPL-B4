@@ -50,6 +50,7 @@
 		overflow:hidden;
 		padding-bottom:100%;
 	}
+	
 	.image img{
 		position:absolute;
 		max-width: 100%;
@@ -112,7 +113,7 @@ $(document).ready(function(){
 				<li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
-				<li><span class="navbar-brand"><a href="<?php echo base_url('Notifications'); ?>">Notifications</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <span class="label label-warning"><?php echo $this->Notification_model->count_notif($this->session->userdata['username']); ?></span></a></span></li>
 				<li><span class="navbar-brand"><a data-toggle="modal" data-target="#myModal">Logout</a></span></li>
 			</ul>
 		</div>
@@ -138,9 +139,9 @@ $(document).ready(function(){
 <div class="row" id="postAndProfil">
 	<div class="col-md-offset-1 col-md-2" id="profpic">
 		<?php if ($PictLink == null) { ?>
-		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="200" height="200"> 
+		<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="200px" height="200px"> 
 		<?php } else { ?>
-		<img src="<?php echo $PictLink; ?>" class="img-rounded img-responsive" alt="Cinque Terre">
+		<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="200px" height="200px">
 		<?php } ?>
 	</div>
 	
@@ -200,39 +201,39 @@ $(document).ready(function(){
 <?php
 	$i = 1;
 	foreach ($timeline as $row) {
-		date_default_timezone_set("Asia/Jakarta");
-		$timestamp = mysql_to_unix($row->Timestamp);
-		$timespan = timespan($timestamp)." Ago";
+		if ($row->Status) {
+			date_default_timezone_set("Asia/Jakarta");
+			$timestamp = mysql_to_unix($row->Timestamp);
+			$timespan = timespan($timestamp)." Ago";
 
-		if ((now() - $timestamp) >= (24*60*60)) {
-			$timespan = date('F d, Y', $timestamp);
-		}
+			if ((now() - $timestamp) >= (24*60*60)) {
+				$timespan = date('F d, Y', $timestamp);
+			}
 
-		$is_editable = false;
-		if ($this->session->userdata('username') == $row->OwnerId) {
-			if (substr_count($timespan, "Day") == 0 && substr_count($timespan, "Days") == 0) {
-				if (substr_count($timespan, "Hour") == 0 && substr_count($timespan, "Hours") == 0) {
-					if ((substr_count($timespan, "Minutes") == 1 || substr_count($timespan, "Minute") == 1) && (intval(substr($timespan, 0, 2)) <= 30)) {
-						$is_editable = true;
-					} else if (substr_count($timespan, "Seconds") == 1 || substr_count($timespan, "Second") == 1) {
-						$is_editable = true;
+			$is_editable = false;
+			if ($this->session->userdata('username') == $row->OwnerId) {
+				if (substr_count($timespan, "Day") == 0 && substr_count($timespan, "Days") == 0) {
+					if (substr_count($timespan, "Hour") == 0 && substr_count($timespan, "Hours") == 0) {
+						if ((substr_count($timespan, "Minutes") == 1 || substr_count($timespan, "Minute") == 1) && (intval(substr($timespan, 0, 2)) <= 30)) {
+							$is_editable = true;
+						} else if (substr_count($timespan, "Seconds") == 1 || substr_count($timespan, "Second") == 1) {
+							$is_editable = true;
+						}
 					}
 				}
 			}
-		}
-			
-		if ($row->Status) {
+		
 			if ($i % 3 == 1) {
 				echo "<div class=\"row\">";
-				echo "<div class=\"col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10\">";
+				echo "<div class=\"col-xs-offset-1 col-xs-11 col-sm-offset-1 col-sm-11 col-md-offset-1 col-md-10\">";
 				echo "<div class=\"row\">";
 				echo "<div class=\"col-md-4\">";
 				echo "<div class=\"row\">";
-				echo "<div class=\"col-md-12 box-post\">";
+				echo "<div class=\"col-xs-12 col-sm-12 col-md-12 box-post\">";
 			} else {
 				echo "<div class=\"col-md-4\">";
 				echo "<div class=\"row\">";
-				echo "<div class=\"col-md-offset-1 col-md-11 box-post\">";
+				echo "<div class=\"col-xs-12 col-sm-12 col-md-12 box-post\">";
 			}
 ?>
 			<div class="row">
@@ -281,7 +282,12 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
-				<h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Comments</a></h5>
+				<div class="col-md-6">
+					<h5><?php echo $this->Post_model->count_comment($row->Id); ?> Comments</h5>
+				</div>
+				<div class="col-md-6">
+					<h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Details</a></h5>
+				</div>
 			</div>
 		</div>
 		</div>
@@ -295,11 +301,12 @@ $(document).ready(function(){
 			$i++;
 		}
 	}
+	if ($i-1 % 3 != 0) {
+		echo "</div>";
+	}
 ?>
 
-<div class="bottom-post">
-
-</div>
+<div class="bottom-post"></div>
 	
 <!--
 	<?php echo validation_errors(); ?>

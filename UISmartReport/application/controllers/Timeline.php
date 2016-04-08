@@ -13,6 +13,7 @@ class Timeline extends CI_Controller {
 		$this->load->library('image_lib');
 		$this->load->model('Timeline_model');
 		$this->load->model('Post_model');
+		$this->load->model('Notification_model');
 		$this->load->model('Loginuser_model');
 		$this->load->model('Loginsp_model');
     }
@@ -169,9 +170,17 @@ class Timeline extends CI_Controller {
 							if($mention != null) {
 								$newdata2 = array(
 									'PostId'  => $this->Post_model->get_lastest_post_id(),
-									'SPAcc' => $mention,
+									'SPAcc' => $mention
 								);
 								$this->Post_model->insert_mention($newdata2);
+								
+								$newdata3 = array(
+									'Dest'  => $mention,
+									'Origins' => $session_id,
+									'PostId'  => $this->Post_model->get_lastest_post_id(),
+									'NotesId' => 2,
+								);
+								$this->Notification_model->insert($newdata3);
 							}
 						}
 					}

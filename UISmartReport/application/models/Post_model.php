@@ -63,8 +63,9 @@ class Post_model extends CI_Model {
 
 		public function count_comment($post_id)
 		{
-			$query = $this->db->query('select count(Id) as comment from COMMENT where PostId="'.$post_id.'";');
-	        return $query->result();
+	        $this->db->where('PostId', $post_id);
+			$this->db->from('COMMENT');
+			echo $this->db->count_all_results();
 		}
 
 		public function pin_post($post_id)

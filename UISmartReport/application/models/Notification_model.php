@@ -12,9 +12,17 @@ class Notification_model extends CI_Model {
 	        return $query->result();
 		}
 
+		public function count_notif($username)
+		{
+	        $this->db->where('Status', 1);
+	        $this->db->where('Dest', $username);
+			$this->db->from('NOTIFICATION');
+			echo $this->db->count_all_results();
+		}
+		
 		public function insert($data)
 		{
-	        
+	        $this->db->insert('NOTIFICATION', $data);
 		}
 
 		public function is_unread($username, $post_id)
