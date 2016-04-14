@@ -49,7 +49,8 @@ class Login extends CI_Controller {
 			}
 			$newdata = array(
 			        'username'  => $data1['Username'],
-			        'SPAcc' => FALSE
+			        'SPAcc' => FALSE,
+					'admin' => FALSE
 			);
 			$this->session->set_userdata($newdata);
 			redirect(base_url());

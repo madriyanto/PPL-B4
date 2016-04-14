@@ -97,7 +97,7 @@ $(document).ready(function(){
 		<h2 id="font1"><b>Reset Password</b></h2><br>
 		<h4 id="font2">Please fill your email here if you forgot the password. We will give a new password and please to change your password</h4><br>
 		<form role="form" name="myForm" action="<?php echo base_url('forgetpassword'); ?>" method="post" accept-charset="utf-8">
-			<?php if ($result == 'Please Check Your Inbox') { ?>
+			<?php if ($result == 'Please Check Your Inbox/Spam') { ?>
 			<div class="alert alert-success" role="alert"><?php echo $result; ?></div>
 			<?php } else if ($result != '') { ?>
 			<div class="alert alert-danger" role="alert"><?php echo $result; ?></div>

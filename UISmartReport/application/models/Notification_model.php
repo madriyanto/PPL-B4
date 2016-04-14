@@ -17,7 +17,7 @@ class Notification_model extends CI_Model {
 	        $this->db->where('Status', 1);
 	        $this->db->where('Dest', $username);
 			$this->db->from('NOTIFICATION');
-			echo $this->db->count_all_results();
+			return $this->db->count_all_results();
 		}
 		
 		public function insert($data)

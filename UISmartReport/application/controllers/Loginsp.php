@@ -40,7 +40,7 @@ class Loginsp extends CI_Controller {
 			if($user == null)
 			{
 				$data['title'] = 'Special Account Login';
-				$data['result'] = 'User Is Not Registered';
+				$data['result'] = 'User is not registered';
 				$this->load->view('templates/header', $data);
 				$this->load->view('loginspacc');
 				$this->load->view('templates/footer');
@@ -49,17 +49,26 @@ class Loginsp extends CI_Controller {
 			{
 				if($this->Loginsp_model->check_pass($user['Username'], $this->input->post('password')))
 				{
-					$newdata = array(
-				        'username'  => $user['Username'],
-				        'SPAcc' => TRUE
-					);
+					if (substr_count($user['Username'], "admin") == 1) {
+						$newdata = array(
+							'username'  => $user['Username'],
+							'SPAcc' => TRUE,
+							'admin' => TRUE
+						);
+					} else {
+						$newdata = array(
+							'username'  => $user['Username'],
+							'SPAcc' => TRUE,
+							'admin' => FALSE
+						);
+					}
 					$this->session->set_userdata($newdata);
 					redirect(base_url());
 				}
 				else
 				{
 					$data['title'] = 'Special Account Login';
-					$data['result'] = 'Wrong Password!';
+					$data['result'] = 'Wrong password!';
 					$this->load->view('templates/header', $data);
 					$this->load->view('loginspacc');
 					$this->load->view('templates/footer');

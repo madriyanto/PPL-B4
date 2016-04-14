@@ -20,7 +20,7 @@ class Forgetpass_model extends CI_Model {
 
 		public function update_pass($email, $pass)
 		{
-	        $this->db->query('update SPAccounts set Password=PASSWORD("'.$pass.'") where Email="'.$email.'"');
+	        $this->db->query('update SPAccounts set Password=PASSWORD("'.$pass.'") where Email="'.$email.'";');
 		}
 
 		public function check_pass($email, $pass)
@@ -32,5 +32,43 @@ class Forgetpass_model extends CI_Model {
 	        } else {
 	        	return true;
 	        }
+		}
+		
+		public function get_encryption($username)
+		{
+			$query = $this->db->query('select Password from ACCOUNT A, SPAccounts B where A.Username=B.Username and B.Username="'.$username.'";');
+	        $result = $query->row_array();
+			
+			return md5($result['Password'].$username);
+		}
+		
+		public function check_encryption($encryption)
+		{
+			$query = $this->db->query('select * from SPAccounts;');
+	        $result = $query->result();
+			
+			foreach($result as $row) {
+				if(md5($row->Password.$row->Username) == $encryption) {
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		public function update_pass_encryption($encryption, $newpass)
+		{
+			$query = $this->db->query('select * from SPAccounts;');
+	        $result = $query->result();
+			
+			foreach($result as $row) {
+				if(md5($row->Password.$row->Username) == $encryption) {
+					$username = $row->Username;
+				}
+			}
+			
+			if ($username != null) {
+				$this->db->query('update SPAccounts set Password=PASSWORD("'.$newpass.'") where Username="'.$username.'";');
+			}
 		}
 }

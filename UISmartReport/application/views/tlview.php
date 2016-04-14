@@ -6,9 +6,10 @@
 	#postAndProfil{
 	   height: 300px;
 	}
-	
-	.row{
-	   margin-right: 0px;
+	@media screen and (min-width:768px){
+		.row{
+		   margin-right: 0px;
+		}
 	}
 	
 	.box-post {
@@ -113,7 +114,7 @@ $(document).ready(function(){
 				<li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
-				<li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <span class="label label-warning"><?php echo $this->Notification_model->count_notif($this->session->userdata['username']); ?></span></a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <?php if ($count_notif > 0) { ?><span class="label label-warning"><?php echo $count_notif; ?></span><?php } ?></a></span></li>
 				<li><span class="navbar-brand"><a data-toggle="modal" data-target="#myModal">Logout</a></span></li>
 			</ul>
 		</div>
@@ -200,6 +201,7 @@ $(document).ready(function(){
 </div>
 <?php
 	$i = 1;
+	$last_page = false;
 	foreach ($timeline as $row) {
 		if ($row->Status) {
 			date_default_timezone_set("Asia/Jakarta");
@@ -225,7 +227,7 @@ $(document).ready(function(){
 		
 			if ($i % 3 == 1) {
 				echo "<div class=\"row\">";
-				echo "<div class=\"col-xs-offset-1 col-xs-11 col-sm-offset-1 col-sm-11 col-md-offset-1 col-md-10\">";
+				echo "<div class=\"col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10\">";
 				echo "<div class=\"row\">";
 				echo "<div class=\"col-md-4\">";
 				echo "<div class=\"row\">";
@@ -237,7 +239,9 @@ $(document).ready(function(){
 			}
 ?>
 			<div class="row">
-				<h5 class="text-right"><?php echo $timespan; ?></h5>
+				<div class="col-xs-offset-4 col-xs-8">
+					<h5 class="text-right"><?php echo $timespan; ?></h5>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
@@ -250,9 +254,9 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="col-md-8">
-					<?php if ($row->IsAnonymous && ($isSPAcc || $row->OwnerId == $this->session->userdata['username'])) { ?>
+					<?php if ($row->IsAnonymous && ($this->session->userdata['admin'] || $row->OwnerId == $this->session->userdata['username'])) { ?>
 					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
-					<?php } else if ($row->IsAnonymous && !$isSPAcc) { ?>
+					<?php } else if ($row->IsAnonymous) { ?>
 					<h5>Anonymous</h5>
 					<?php } else { ?>
 					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
@@ -282,10 +286,10 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<h5><?php echo $this->Post_model->count_comment($row->Id); ?> Comments</h5>
+				<div class="col-xs-6 col-sm-6 col-md-6">
+					<h5><?php if ($this->Post_model->count_comment($row->Id) > 1) {; ?> Comments<?php } else { ?> Comment<?php } ?></h5>
 				</div>
-				<div class="col-md-6">
+				<div class="col-xs-6 col-sm-6 col-md-6">
 					<h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Details</a></h5>
 				</div>
 			</div>
@@ -298,14 +302,31 @@ $(document).ready(function(){
 				echo "</div>";
 				echo "</div>";
 			}
+			
+			if ($row->Id == $this->Post_model->get_first_post_id()) {
+				$last_page = true;
+			}
 			$i++;
 		}
 	}
 	if ($i-1 % 3 != 0) {
 		echo "</div>";
+		echo "</div>";
 	}
+	
 ?>
-
+<div class="row">
+	<div class="col-xs-offset-1 col-xs-5 col-md-offset-1 col-md-5">
+		<?php if ($page > 1) { ?>
+		<a href="<?php echo base_url()."timeline/page/".($page-1); ?>" class="btn btn-primary">Previous Page</a>
+		<?php } ?>
+	</div>
+	<div class="col-xs-5 col-md-5 text-right">
+		<?php if (!$last_page) { ?>
+		<a href="<?php echo base_url()."timeline/page/".($page+1); ?>" class="btn btn-primary">Next Page</a>
+		<?php } ?>
+	</div>
+<div>
 <div class="bottom-post"></div>
 	
 <!--

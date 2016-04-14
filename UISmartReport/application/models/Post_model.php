@@ -60,6 +60,17 @@ class Post_model extends CI_Model {
 	        }
 	        return $count;
 		}
+		
+		public function get_first_post_id()
+		{
+			$query = $this->db->query('select min(Id) as max from POST;');
+	        $result = $query->result();
+	        $count = 0;
+	        foreach($result as $row){
+	        	$count = $row->max;
+	        }
+	        return $count;
+		}
 
 		public function count_comment($post_id)
 		{
