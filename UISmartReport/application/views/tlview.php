@@ -1,59 +1,63 @@
 <style>
 	body {
-	   background-color: #E4E4E4;
+		background-color: #E4E4E4;
 	}
 	
-	#postAndProfil{
-	   height: 300px;
+	#postAndProfil {
+		height: 300px;
 	}
 	@media screen and (min-width:768px){
 		.row{
-		   margin-right: 0px;
+			margin-right: 0px;
 		}
 	}
 	
 	.box-post {
-    	background-color: white;
+		background-color: white;
     	border-radius: 20px;
     	margin-bottom: 10px;
 	}
+	
+	.bottom-post {
+		margin-bottom: 20px;
+	}
+	
+	.navbar-bottom {
+		margin-bottom: 0px;
+	}
 
-	@media screen and (max-width:768px){
-	   #profpic img{
-		display: block;
- 		margin-left: auto;
+	@media screen and (max-width:768px) {
+		#profpic img{
+			display: block;
+			margin-left: auto;
     		margin-right: auto
-	   }
+		}
 	   
-	   #datadiri h3{
-		text-align: center;
-	   }
+		#datadiri h3{
+			text-align: center;
+		}
 	   
-	   .form-control{
-		width: 90%;
-	   }
+		.form-control{
+			width: 90%;
+		}
 	   
-	   #postAndProfil{
-	   	height: 670px;
-	   }
+		#postAndProfil{
+			height: 670px;
+		}
 	   
-	   .formRow{
-	    margin-bottom: 10px;
-	   }
+		.formRow{
+			margin-bottom: 10px;
+		}
 	}
 	
-	.bottom-post{
-		margin-bottom: 15%;
-	}
-	
-	.image{
-		position:relative;
-		overflow:hidden;
+	.image {
+		position: relative;
+		overflow: hidden;
 		padding-bottom:100%;
 	}
 	
-	.image img{
-		position:absolute;
+	.image img {
+		position: absolute;
 		max-width: 100%;
 		max-height: 100%;
 		top: 50%;
@@ -326,89 +330,5 @@ $(document).ready(function(){
 		<a href="<?php echo base_url()."timeline/page/".($page+1); ?>" class="btn btn-primary">Next Page</a>
 		<?php } ?>
 	</div>
-<div>
-<div class="bottom-post"></div>
-	
-<!--
-	<?php echo validation_errors(); ?>
-	<?php echo $error; ?>
-
-	<?php echo form_open_multipart('Timeline'); ?>
-
-	<label>Title</label>
-	<input type="text" name="title" size="50" />
-	<br/><label>Post</label><br/>
-	<textarea name="post" rows="5" cols="50" style="resize:none"></textarea>
-	<br/><label>To: </label>
-	<?php foreach ($mention as $row){
-		echo "<input type=\"checkbox\" name=\"mention[]\" value=\"".$row->Username."\">".$row->Name;
-	} ?>
-	<br/><label>Attachment</label>
-	<input type="file" name="userfile" size="20" />
-	<label>Post as Anonymous</label>
-	<input type="checkbox" name="anonymous" value="true" />
-	<div><input type="submit" value="Submit" /></div>
-
-	</form>
-
-	<?php foreach ($timeline as $row){
-		if ($row->Status) {
-			echo "<div>";
-			date_default_timezone_set("Asia/Jakarta");
-			$timestamp = mysql_to_unix($row->Timestamp);
-			$timespan = timespan($timestamp)." Ago";
-
-			if ((now() - $timestamp) >= (24*60*60)) {
-				$timespan = date('F d, Y', $timestamp);
-			}
-
-			$is_editable = false;
-			if ($this->session->userdata('username') == $row->OwnerId) {
-				if (substr_count($timespan, "Day") == 0 && substr_count($timespan, "Days") == 0) {
-					if (substr_count($timespan, "Hour") == 0 && substr_count($timespan, "Hours") == 0) {
-						if ((substr_count($timespan, "Minutes") == 1 || substr_count($timespan, "Minute") == 1) && (intval(substr($timespan, 0, 2)) <= 30)) {
-							$is_editable = true;
-						} else if (substr_count($timespan, "Seconds") == 1 || substr_count($timespan, "Second") == 1) {
-							$is_editable = true;
-						}
-					}
-				}
-			}
-
-			if ($row->IsPinned) {
-				echo "<h2> <a href=\"./Post/view/".$row->Id."\">".$row->Title." (Pinned)</a></h2>";
-			} else {
-				echo "<h2> <a href=\"./Post/view/".$row->Id."\">".$row->Title."</a></h2>";
-			}
-			
-			if ($row->IsAnonymous && $isSPAcc) {
-				echo "<p>Posted by <a href=\"./People/view/".$row->OwnerId."\">".$row->OwnerId."</a> (Anonymous) On ".$timespan."</p>";
-			} else if($row->IsAnonymous && !$isSPAcc) {
-				echo "<p>Posted by Anonymous On ".$timespan."</p>";
-			} else {
-				echo "<p>Posted by <a href=\"./People/view/".$row->OwnerId."\">".$row->OwnerId."</a> On ".$timespan."</p>";
-			}
-			echo "<p>To: ";
-			$post_mentions = $this->Post_model->get_mentions($row->Id);
-			foreach ($post_mentions as $row2){
-				echo "<br/>".$row2->Name;
-			}
-			echo "</p>";
-			echo "<img src=\"".$row->Attachments."\"/>";
-			echo "<p>".$row->Data."</p>";
-			$count = $this->Post_model->count_comment($row->Id);
-			foreach ($count as $row2) {
-				echo $row2->comment.' Comments';	
-			}
-			echo "<br/><a href=\"./Post/view/".$row->Id."\">Show details</a>";
-			if ($is_editable) {
-				echo "<br/><a href=\"Post/edit/".$row->Id."\">Edit</a>";
-				echo "<br/>Close";
-			}
-			echo "<div>";
-			echo "<br/><br/>";
-		}
-	}
-	?>
 </div>
--->
+<div class="bottom-post"></div>
