@@ -35,6 +35,12 @@
 	.row{
 		margin-right: 0px;
 	}
+	.navbar-bottom {
+	    margin-bottom: 0px;
+	    bottom: 0;
+	    position: fixed;
+	    width: 100%;
+  	}
 
 	@media screen and (max-width:768px){
 		.forgetForm{
@@ -95,9 +101,9 @@ $(document).ready(function(){
 	<div class="col-sm-4"></div>
     <div class="col-sm-4 forgetForm">
 		<h2 id="font1"><b>Reset Password</b></h2><br>
-		<h4 id="font2">Please fill your email here if you forgot the password. We will give a new password and please to change your password</h4><br>
+		<h4 id="font2">Please fill your email here if you forgot the password. We will give a link and please update your password in the following link.</h4><br>
 		<form role="form" name="myForm" action="<?php echo base_url('forgetpassword'); ?>" method="post" accept-charset="utf-8">
-			<?php if ($result == 'Please Check Your Inbox/Spam') { ?>
+			<?php if ($result == 'Please check your inbox/spam') { ?>
 			<div class="alert alert-success" role="alert"><?php echo $result; ?></div>
 			<?php } else if ($result != '') { ?>
 			<div class="alert alert-danger" role="alert"><?php echo $result; ?></div>

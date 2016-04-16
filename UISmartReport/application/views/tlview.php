@@ -23,8 +23,10 @@
 	}
 	
 	.navbar-bottom {
-		margin-bottom: 0px;
-	}
+	    margin-bottom: 0px;
+	    bottom: 0;
+	    width: 100%;
+  	}
 
 	@media screen and (max-width:768px) {
 		#profpic img{
@@ -119,7 +121,7 @@ $(document).ready(function(){
 				<li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <?php if ($count_notif > 0) { ?><span class="label label-warning"><?php echo $count_notif; ?></span><?php } ?></a></span></li>
-				<li><span class="navbar-brand"><a data-toggle="modal" data-target="#myModal">Logout</a></span></li>
+				<li><span class="navbar-brand"><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></span></li>
 			</ul>
 		</div>
 	</div>
@@ -215,19 +217,6 @@ $(document).ready(function(){
 			if ((now() - $timestamp) >= (24*60*60)) {
 				$timespan = date('F d, Y', $timestamp);
 			}
-
-			$is_editable = false;
-			if ($this->session->userdata('username') == $row->OwnerId) {
-				if (substr_count($timespan, "Day") == 0 && substr_count($timespan, "Days") == 0) {
-					if (substr_count($timespan, "Hour") == 0 && substr_count($timespan, "Hours") == 0) {
-						if ((substr_count($timespan, "Minutes") == 1 || substr_count($timespan, "Minute") == 1) && (intval(substr($timespan, 0, 2)) <= 30)) {
-							$is_editable = true;
-						} else if (substr_count($timespan, "Seconds") == 1 || substr_count($timespan, "Second") == 1) {
-							$is_editable = true;
-						}
-					}
-				}
-			}
 		
 			if ($i % 3 == 1) {
 				echo "<div class=\"row\">";
@@ -291,7 +280,7 @@ $(document).ready(function(){
 			</div>
 			<div class="row">
 				<div class="col-xs-6 col-sm-6 col-md-6">
-					<h5><?php if ($this->Post_model->count_comment($row->Id) > 1) {; ?> Comments<?php } else { ?> Comment<?php } ?></h5>
+					<h5><?php if ($this->Post_model->count_comment($row->Id) > 1) { echo $this->Post_model->count_comment($row->Id); ?> Comments<?php } else { echo $this->Post_model->count_comment($row->Id); ?> Comment<?php } ?></h5>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-6">
 					<h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Details</a></h5>

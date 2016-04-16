@@ -33,6 +33,12 @@ class Post_model extends CI_Model {
 	        return $query->result();
 		}
 
+		public function get_commenters($id, $owner)
+		{
+			$query = $this->db->query('select distinct Origins from NOTIFICATION where PostId="'.$id.'" and Origins<>"'.$owner.'" and NotesId="1";');
+	        return $query->result();
+		}
+
 		public function get_mentions($id)
 		{
 			$query = $this->db->query('select Name, Username from MENTION A, ACCOUNT B where A.SPAcc=B.Username and PostId="'.$id.'";');
@@ -76,7 +82,7 @@ class Post_model extends CI_Model {
 		{
 	        $this->db->where('PostId', $post_id);
 			$this->db->from('COMMENT');
-			echo $this->db->count_all_results();
+			return $this->db->count_all_results();
 		}
 
 		public function pin_post($post_id)
@@ -99,5 +105,11 @@ class Post_model extends CI_Model {
 		{
 			$this->db->where('PostId', $id);
 			$this->db->delete('MENTION');
+		}
+
+		public function delete_post($id)
+		{
+			$this->db->where('Id', $id);
+			$this->db->delete('POST');
 		}
 }

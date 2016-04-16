@@ -39,7 +39,7 @@ class Forgetpass_model extends CI_Model {
 			$query = $this->db->query('select Password from ACCOUNT A, SPAccounts B where A.Username=B.Username and B.Username="'.$username.'";');
 	        $result = $query->row_array();
 			
-			return md5($result['Password'].$username);
+			return md5($result['Password']).md5($username);
 		}
 		
 		public function check_encryption($encryption)
@@ -48,7 +48,7 @@ class Forgetpass_model extends CI_Model {
 	        $result = $query->result();
 			
 			foreach($result as $row) {
-				if(md5($row->Password.$row->Username) == $encryption) {
+				if(md5($row->Password).md5($row->Username) == $encryption) {
 					return true;
 				}
 			}
@@ -60,15 +60,19 @@ class Forgetpass_model extends CI_Model {
 		{
 			$query = $this->db->query('select * from SPAccounts;');
 	        $result = $query->result();
+	        $username = null;
 			
 			foreach($result as $row) {
-				if(md5($row->Password.$row->Username) == $encryption) {
+				if(md5($row->Password).md5($row->Username) == $encryption) {
 					$username = $row->Username;
 				}
 			}
 			
 			if ($username != null) {
 				$this->db->query('update SPAccounts set Password=PASSWORD("'.$newpass.'") where Username="'.$username.'";');
+				return true;
+			} else {
+				return false;
 			}
 		}
 }

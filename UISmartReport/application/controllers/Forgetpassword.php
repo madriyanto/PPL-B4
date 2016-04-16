@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ForgetPassword extends CI_Controller {
+class Forgetpassword extends CI_Controller {
 
 	public function __construct()
     {
@@ -42,23 +42,22 @@ class ForgetPassword extends CI_Controller {
 				$email = $this->input->post('email');
 				$account = $this->Forgetpass_model->get_user($email);
 				if (valid_email($email) && $account != null) {
-					$password = uniqid();
-					$this->Forgetpass_model->update_pass($email, $password);
+					$link = $this->Forgetpass_model->get_encryption($account['Username']);
 
 					$this->email->from('uismartreport@madriyanto.com', 'Administrator');
 					$this->email->to($email);
 					$this->email->set_mailtype('html');
 
 					$this->email->subject('Reset Password');
-					$this->email->message('<h2>Hi '.$account['Name'].',</h2> <h5>Your password has been reset.</h5> <h5>Now your password is <b>'.$password.'</b></h5> <h5>Please change your password once you are logging in.</h5>');
+					$this->email->message('<h2>Hi '.$account['Name'].',</h2> <h5>Please change your password on the following link below: .</h5> <h5><a href="'.base_url().'updatepassword/update/'.$link.'">'.base_url().'updatepassword/update/'.$link.'</a></h5>');
 
 					$this->email->send();
 
-					$data['result'] = 'Please Check Your Inbox';
+					$data['result'] = 'Please check your inbox/spam';
 				} else if (valid_email($email) && $account == null) {
-					$data['result'] = 'Email Address Is Not Registered';
+					$data['result'] = 'Email address is not registered';
 				} else {
-					$data['result'] = 'Email Address Is Not Valid';
+					$data['result'] = 'Email address is not valid';
 				}
 				$datahead['title'] = 'Forget Password';
 				$this->load->view('templates/header', $datahead);

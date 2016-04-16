@@ -35,7 +35,13 @@
 	.row{
 		margin-right: 0px;
 	}
-	
+	.navbar-bottom {
+	    margin-bottom: 0px;
+	    bottom: 0;
+	    position: fixed;
+	    width: 100%;
+  	}
+
 	@media screen and (max-width:768px){
 		.loginForm{
 			width: 80%;
