@@ -28,7 +28,10 @@ class Setting extends CI_Controller {
 			{
 				$data = $this->Setting_model->get_user($session_id);
 				$data['result'] = '';
+				$datahead['title'] = 'Setting';
+				$this->load->view('templates/header', $datahead);
 				$this->load->view('settinguser', $data);
+				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -61,7 +64,10 @@ class Setting extends CI_Controller {
 				{
 					$data = $this->Setting_model->get_user($session_id);
 					$data['result'] = $this->upload->display_errors();
+					$datahead['title'] = 'Setting';
+					$this->load->view('templates/header', $datahead);
 					$this->load->view('settinguser', $data);
+					$this->load->view('templates/footer');
 				}
 				else
 				{
@@ -82,7 +88,10 @@ class Setting extends CI_Controller {
 					$this->Setting_model->update_user($newdata1, $session_id);
 					$data = $this->Setting_model->get_user($session_id);
 					$data['result'] = 'Saved!';
+					$datahead['title'] = 'Setting';
+					$this->load->view('templates/header', $datahead);
 					$this->load->view('settinguser', $data);
+					$this->load->view('templates/footer');
 				}
 			}
 		} else if(!isset($session_id)) {
@@ -100,7 +109,10 @@ class Setting extends CI_Controller {
 			{
 				$data = $this->Setting_model->get_sp_acc($session_id);
 				$data['result'] = '';
+				$datahead['title'] = 'Setting';
+				$this->load->view('templates/header', $datahead);
 				$this->load->view('settingspacc', $data);
+				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -133,7 +145,10 @@ class Setting extends CI_Controller {
 				{
 					$data = $this->Setting_model->get_sp_acc($session_id);
 					$data['result'] = $this->upload->display_errors();
+					$datahead['title'] = 'Setting';
+					$this->load->view('templates/header', $datahead);
 					$this->load->view('settingspacc', $data);
+					$this->load->view('templates/footer');
 				}
 				else
 				{
@@ -159,7 +174,10 @@ class Setting extends CI_Controller {
 					$this->Setting_model->update_sp_acc($newdata1, $newdata2, $session_id);
 					$data = $this->Setting_model->get_sp_acc($session_id);
 					$data['result'] = 'Saved!';
+					$datahead['title'] = 'Setting';
+					$this->load->view('templates/header', $datahead);
 					$this->load->view('settingspacc', $data);
+					$this->load->view('templates/footer');
 				}
 			}
 		}
