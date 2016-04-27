@@ -190,7 +190,11 @@
 <!-- End of Logout Modal-->
 <div class="row">
   <div class="col-md-offset-1 col-md-2" id="profpic">
-    <img id="pic" src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="165px" height="165px"> 
+    <?php if ($PictLink == null) { ?>
+    <img id ="pic" src="<?php echo base_url('assets/images/makara.png'); ?>" class="img img-rounded" alt="Cinque Terre" width="165px" height="165px"> 
+    <?php } else { ?>
+    <img id ="pic" src="<?php echo $PictLink; ?>" class="img img-rounded" alt="Cinque Terre" width="165px" height="165px">
+    <?php } ?>
   </div>
 
   <div class="col-md-8" id="finalPost">
