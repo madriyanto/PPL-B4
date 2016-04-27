@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
 				<li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
-				<li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <?php if ($count_notif > 0) { ?><span class="label label-warning"><?php echo $count_notif; ?></span><?php } ?></a></span></li>
 				<li><span class="navbar-brand"><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></span></li>
 			</ul>
 		</div>

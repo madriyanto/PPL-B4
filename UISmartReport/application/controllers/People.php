@@ -39,7 +39,7 @@ class People extends CI_Controller {
 			$this->load->view('profil_user_biasa', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$data = $this->Loginsp_model->get_user($session_id);
+			$data = $this->Loginsp_model->get_user($id);
 			$data['timeline'] = $this->Profile_model->retrieve_posts($id);
 			$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
 			$data['isSPAcc'] = $this->session->userdata('SPAcc');

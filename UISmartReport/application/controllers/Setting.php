@@ -13,6 +13,7 @@ class Setting extends CI_Controller {
 		$this->load->model('Loginsp_model');
 		$this->load->model('Loginuser_model');
 		$this->load->model('Setting_model');
+		$this->load->model('Notification_model');
     }
 
 	public function index()
@@ -29,6 +30,7 @@ class Setting extends CI_Controller {
 			{
 				$data = $this->Setting_model->get_user($session_id);
 				$data['result'] = '';
+				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 				$datahead['title'] = 'Setting';
 				$this->load->view('templates/header', $datahead);
 				$this->load->view('settinguser', $data);
@@ -63,6 +65,7 @@ class Setting extends CI_Controller {
 				{
 					$data = $this->Setting_model->get_user($session_id);
 					$data['result'] = $this->upload->display_errors();
+					$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 					$datahead['title'] = 'Setting';
 					$this->load->view('templates/header', $datahead);
 					$this->load->view('settinguser', $data);
@@ -109,6 +112,7 @@ class Setting extends CI_Controller {
 					$this->Setting_model->update_user($newdata1, $session_id);
 					$data = $this->Setting_model->get_user($session_id);
 					$data['result'] = 'Saved!';
+					$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 					$datahead['title'] = 'Setting';
 					$this->load->view('templates/header', $datahead);
 					$this->load->view('settinguser', $data);
@@ -130,6 +134,7 @@ class Setting extends CI_Controller {
 			{
 				$data = $this->Setting_model->get_sp_acc($session_id);
 				$data['result'] = '';
+				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 				$datahead['title'] = 'Setting';
 				$this->load->view('templates/header', $datahead);
 				$this->load->view('settingspacc', $data);
@@ -164,6 +169,7 @@ class Setting extends CI_Controller {
 				{
 					$data = $this->Setting_model->get_sp_acc($session_id);
 					$data['result'] = $this->upload->display_errors();
+					$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 					$datahead['title'] = 'Setting';
 					$this->load->view('templates/header', $datahead);
 					$this->load->view('settingspacc', $data);
@@ -214,6 +220,7 @@ class Setting extends CI_Controller {
 
 					$this->Setting_model->update_sp_acc($newdata1, $newdata2, $session_id);
 					$data = $this->Setting_model->get_sp_acc($session_id);
+					$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 					$data['result'] = 'Saved!';
 					$datahead['title'] = 'Setting';
 					$this->load->view('templates/header', $datahead);

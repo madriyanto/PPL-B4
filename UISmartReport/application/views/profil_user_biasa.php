@@ -208,7 +208,7 @@
     </div>
 
     <div class="col-md-4" id="coba">
-      <h4 class="text-left">Your Post : <?php echo $count_posts; ?></h4>
+      <h4 class="text-left">Your Posts : <?php echo $count_posts; ?></h4>
     </div>
   </div>
 </div>
@@ -314,6 +314,7 @@
     }
   }
   if ($i-1 % 3 != 0) {
+    echo "</div>";
     echo "</div>";
     echo "</div>";
   }
