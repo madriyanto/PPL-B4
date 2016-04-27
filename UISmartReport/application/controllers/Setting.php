@@ -8,6 +8,7 @@ class Setting extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->library('upload');
+		$this->load->library('image_lib');
 		$this->load->helper('url');
 		$this->load->model('Loginsp_model');
 		$this->load->model('Loginuser_model');
@@ -50,8 +51,6 @@ class Setting extends CI_Controller {
 			    $config['upload_path']          = './uploads/'.$session_id.'/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 2048;
-				$config['max_width']            = 1024;
-				$config['max_height']           = 1024;
 				$config['file_name'] 			= 'profilepicture';
 				$config['overwrite'] 			= TRUE;
 
@@ -73,6 +72,28 @@ class Setting extends CI_Controller {
 				{
 					$upload_data = $this->upload->data();
 					$path = base_url().'uploads/'.$session_id.'/'.$upload_data['file_name'];
+						
+					if ($upload_data['image_width'] > 1024) {
+						$config['image_library'] 	= 'gd2';
+						$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
+						$config['maintain_ratio'] 	= TRUE;
+						$config['width']			= 1024;
+
+						$this->load->library('image_lib', $config); 
+
+						$this->image_lib->resize();
+					}
+						
+					if ($upload_data['image_height'] > 1024) {
+						$config['image_library'] 	= 'gd2';
+						$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
+						$config['maintain_ratio'] 	= TRUE;
+						$config['height']			= 1024;
+
+						$this->load->library('image_lib', $config); 
+
+						$this->image_lib->resize();
+					}
 
 					if ($attachment) {
 						$newdata1 = array(
@@ -131,8 +152,6 @@ class Setting extends CI_Controller {
 			    $config['upload_path']          = './uploads/'.$session_id.'/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['max_size']             = 2048;
-				$config['max_width']            = 1024;
-				$config['max_height']           = 1024;
 				$config['file_name'] 			= 'profilepicture';
 				$config['overwrite'] 			= TRUE;
 
@@ -154,6 +173,28 @@ class Setting extends CI_Controller {
 				{
 					$upload_data = $this->upload->data();
 					$path = base_url().'uploads/'.$session_id.'/'.$upload_data['file_name'];
+
+					if ($upload_data['image_width'] > 1024) {
+						$config['image_library'] 	= 'gd2';
+						$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
+						$config['maintain_ratio'] 	= TRUE;
+						$config['width']			= 1024;
+
+						$this->load->library('image_lib', $config); 
+
+						$this->image_lib->resize();
+					}
+						
+					if ($upload_data['image_height'] > 1024) {
+						$config['image_library'] 	= 'gd2';
+						$config['source_image']		= './uploads/'.$session_id.'/'.$upload_data['file_name'];
+						$config['maintain_ratio'] 	= TRUE;
+						$config['height']			= 1024;
+
+						$this->load->library('image_lib', $config); 
+
+						$this->image_lib->resize();
+					}
 
 					if ($attachment) {
 						$newdata1 = array(

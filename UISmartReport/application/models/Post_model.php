@@ -112,4 +112,19 @@ class Post_model extends CI_Model {
 			$this->db->where('Id', $id);
 			$this->db->delete('POST');
 		}
+
+		public function count_posts($username)
+		{
+			$this->db->where('OwnerId', $username);
+			$this->db->from('POST');
+			return $this->db->count_all_results();
+		}
+
+		public function count_closed_posts($username)
+		{
+			$this->db->where('OwnerId', $username);
+			$this->db->where('Status', '0');
+			$this->db->from('POST');
+			return $this->db->count_all_results();
+		}
 }

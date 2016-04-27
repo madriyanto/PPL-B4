@@ -21,7 +21,7 @@ class Setting_model extends CI_Model {
 
 		public function get_sp_acc($username)
 		{
-	        $query = $this->db->get_where('ACCOUNT A, SPAccounts B', array('A.Username' => 'B.Username', 'A.Username' => $username));
+	        $query = $this->db->query('select * from ACCOUNT A, SPAccounts B where A.Username=B.Username and A.Username = "'.$username.'";');
 	        $result = $query->row_array();
 	        return $result;
 		}

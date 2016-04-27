@@ -40,6 +40,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </nav>
 <br><br><br><br>
+<!-- Logout Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Are you sure you want to log out?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <a href="<?php echo base_url('logout'); ?>" class="btn btn-primary" role="button">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Logout Modal-->
 <div class="container">
 	<div class="col-md-6">
 		<?php
@@ -67,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="form-group">
 				<label for="contact">Contact Details</label>
-				<input id="contact" type="text" class="form-control" name="contact" value=<?php echo '"'.$Contact.'"'; ?> />
+				<input id="contact" type="text" class="form-control" name="contact" value=<?php echo '"'.$Contact.'"'; ?> required/>
 			</div>
 			<button type="submit" class="btn btn-default">Save</button>
 		</form>
