@@ -146,6 +146,27 @@
       border-radius: 20px;
       margin-bottom: 10px;
   }
+
+  .image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom:100%;
+  }
+  
+  .image img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  @media screen and (min-width:768px){
+    .row{
+      margin-right: 0px;
+    }
+  }
 </style>
 <body>
 <nav class="navbar-inverse navbar-fixed-top">
@@ -221,15 +242,19 @@
   </div>
 
   <div class="col-md-offset-1 col-md-10" id="search-content">
-      <form role="form" class="form-inline" action="<?php echo base_url('profile/mention'); ?>" method="get" accept-charset="utf-8">
+      <?php if($this->session->userdata('username') == $Username) { ?>
+      <form role="form" class="form-inline" action="<?php echo base_url('profile/mention'); ?>" method="post" accept-charset="utf-8">
+      <?php } else { ?>
+      <form role="form" class="form-inline" action="<?php echo base_url('people/mention/'.$Username); ?>" method="post" accept-charset="utf-8">
+      <?php } ?>
         <div class="form-group" id="search-input">
-          <input type="text" class="form-control" id="title" placeholder="A title" name="search" required>
+          <input type="text" class="form-control" id="title" value="<?php echo $this->input->post('search'); ?>" name="search" required>
         </div>
         <div class="form-group">
           <select class="form-control" name="status">
-             <option value=null>All Posts</option>
-             <option value="1">Opened Posts</option>
-             <option value="0">Closed Posts</option>
+             <option value="null" <?php if($this->input->post('status') == "null") {echo "selected";} ?>>All Posts</option>
+             <option value="1" <?php if($this->input->post('status') == "1") {echo "selected";} ?>>Opened Posts</option>
+             <option value="0" <?php if($this->input->post('status') == "0") {echo "selected";} ?>>Closed Posts</option>
           </select>
         </div>
         <button type="submit" class="btn btn-default">Search</button>

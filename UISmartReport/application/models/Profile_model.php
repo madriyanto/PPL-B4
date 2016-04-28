@@ -26,7 +26,7 @@ class Profile_model extends CI_Model {
 
 		public function retrieve_search_posts($username, $search, $status)
 		{
-			if ($status != null) {
+			if ($status != "null") {
 				$query = $this->db->query('select A.Id as Id, OwnerId, Timestamp, Status, Title, Data, Attachments, IsPinned, IsAnonymous, IsViewable, C.Username as Username, PictLink, IsSPAcc, Name from POST A, MENTION B, ACCOUNT C where A.OwnerId=C.Username and A.Id=B.PostId and B.SPAcc="'.$username.'" and A.Status="'.$status.'" and (A.Title like "%'.$search.'%" or A.Data like "%'.$search.'%") order by IsPinned desc, A.Id desc;');
 			} else {
 				$query = $this->db->query('select A.Id as Id, OwnerId, Timestamp, Status, Title, Data, Attachments, IsPinned, IsAnonymous, IsViewable, C.Username as Username, PictLink, IsSPAcc, Name from POST A, MENTION B, ACCOUNT C where A.OwnerId=C.Username and A.Id=B.PostId and B.SPAcc="'.$username.'" and (A.Title like "%'.$search.'%" or A.Data like "%'.$search.'%") order by IsPinned desc, A.Id desc;');

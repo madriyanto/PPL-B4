@@ -143,6 +143,27 @@
       border-radius: 20px;
       margin-bottom: 10px;
   }
+
+  .image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom:100%;
+  }
+  
+  .image img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  @media screen and (min-width:768px){
+    .row{
+      margin-right: 0px;
+    }
+  }
 </style>
 <body>
 <nav class="navbar-inverse navbar-fixed-top">
