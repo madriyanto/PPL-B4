@@ -6,6 +6,11 @@
 	#postAndProfil {
 		height: 300px;
 	}
+	
+	#mynavbar a{
+    color: #dfdbdb;
+  	}
+
 	@media screen and (min-width:768px){
 		.row{
 			margin-right: 0px;
