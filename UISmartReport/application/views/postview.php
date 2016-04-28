@@ -1,10 +1,154 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Example</title>
+<!--	
+	<style>
+		body {
+			background-color: #E4E4E4;
+			font-family: Verdana, Geneva, sans-serif;
+			font-size: 18px;
+		}
+	
+		.navbar-bottom {
+			margin-bottom: 0px;
+			bottom: 0;
+			position: fixed;
+			width: 100%;
+		}
+		
+		.waktu {
+			margin-right: 30px;
+			text-align: right;
+		}
+		
+		.tombol {
+
+			text-align: right;
+		}
+		
+		.profpic {
+			margin-left: 20px; 
+		}
+		
+		.post {
+			margin-left: 30px;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+       		 <div class="navbar-brand">UI Smart Report</div>
+       		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>                        
+      		 </button>
+		</div>		
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<a href="#"><li class="navbar-brand">Login SSO</li></a>
+				<li class="navbar-brand">About Us</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<br><br><br>
+<div class="container">
+	<div class="well">
+		<div class="row">
+			<div class="col-sm-2 profpic">
+				<img src="assets/images/makara.png" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-12">Haryanto Rio</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">to BemPacil, FUKIPacil</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button type="button" class="btn btn-default btn-sm"></button>&nbsp Mentorship
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1 waktu">3 s</div>
+		</div>
+		<br>
+		<div class="row post">
+			keren banget acaranya ini. Nggak ada kekurangannya sama sekali. Fix tahun depan dateng lagi :)
+		</div>
+		<div class="row tombol">
+			<div class="col-sm-2 profpic"></div>
+			<div class="col-sm-7"></div>
+			<div class="col-sm-2 tombol">
+				<button type="button" class="btn btn-default btn-md"></button>
+				<button type="button" class="btn btn-default btn-md"></button>
+				<button type="button" class="btn btn-default btn-md"></button>
+				<button type="button" class="btn btn-default btn-md"></button>
+			</div>
+		</div>
+	</div>
+	<div class="well">
+		<form role="form">
+			<div class="form-group">
+				<label for="comment">Your Comment</label>
+				<textarea class="form-control" rows="4" id="comment"></textarea>
+				<br>
+				<button type="submit" class="btn btn-warning">Post Comment</button>
+			</div>
+		</form>
+		<hr width="100%">
+		<p><b>Last Comment</b></p>
+		<div class="row">
+			<div class="col-sm-2 profpic">
+				<img src="assets/images/makara.png" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-12 lead">Dzulfikar</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">Wew, Haryanto komentarnya. Gils gils.</div>
+				</div>
+			</div>
+			<div class="col-sm-1 waktu">1 s</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-2 profpic">
+				<img src="assets/images/makara.png" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-12 lead">Dzulfikar</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">Wew, Haryanto komentarnya. Gils gils.</div>
+				</div>
+			</div>
+			<div class="col-sm-1 waktu">1 s</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-2 profpic">
+				<img src="assets/images/makara.png" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-12 lead">Dzulfikar</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">Wew, Haryanto komentarnya. Gils gils.</div>
+				</div>
+			</div>
+			<div class="col-sm-1 waktu">1 s</div>
+		</div>
+
+	</div>
+</div>
+<br><br>
+-->
 </head>
 <body>
 
