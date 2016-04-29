@@ -44,7 +44,11 @@ class Post extends CI_Controller {
 					redirect(base_url());
 				}
 				$data['isSPAcc'] = $this->session->userdata('SPAcc');
+				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+				$datahead['title'] = 'Post Detail';
+				$this->load->view('templates/header', $datahead);
 				$this->load->view('postview', $data);
+				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -66,7 +70,7 @@ class Post extends CI_Controller {
 				}
 				$mentions = $this->Post_model->get_mentions($id);
 				foreach ($mentions as $row) {
-					if ($session_id != $row->Username) {
+					if ($session_id != $row->Username || $data['OwnerId'] != $row->Username) {
 						$newdata2 = array(
 							'Dest'  => $row->Username,
 							'Origins' => $session_id,
@@ -87,7 +91,11 @@ class Post extends CI_Controller {
 					$this->Notification_model->insert($newdata3);
 				}
 				$data['isSPAcc'] = $this->session->userdata('SPAcc');
+				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+				$datahead['title'] = 'Post Detail';
+				$this->load->view('templates/header', $datahead);
 				$this->load->view('postview', $data);
+				$this->load->view('templates/footer');
 			}
 		}
 	}
@@ -139,7 +147,10 @@ class Post extends CI_Controller {
 						$data = $this->Post_model->get_post($id);
 						$data['error'] = '';
 						$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
-						$this->load->view('templates/header', $data);
+						$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+						$data['post_mentions'] = $this->Post_model->get_mentions($id);
+						$datahead['title'] = 'Edit Post';
+						$this->load->view('templates/header', $datahead);
 						$this->load->view('editview', $data);
 						$this->load->view('templates/footer');
 					}
@@ -172,7 +183,10 @@ class Post extends CI_Controller {
 							$data = $this->Post_model->get_post($id);
 							$data['error'] = $this->upload->display_errors();
 							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
-							$this->load->view('templates/header', $data);
+							$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+							$data['post_mentions'] = $this->Post_model->get_mentions($id);
+							$datahead['title'] = 'Edit Post';
+							$this->load->view('templates/header', $datahead);
 							$this->load->view('editview', $data);
 							$this->load->view('templates/footer');
 						}
@@ -245,20 +259,32 @@ class Post extends CI_Controller {
 							}
 
 							$this->Post_model->delete_mention($id);
+							$this->Notification_model->delete($id, 2);
 							if ($this->input->post('mention') != null) {
-								foreach ($this->input->post('mention') as $mention) {
+								foreach (explode(", ", $this->input->post('mention')) as $mention) {
 									if($mention != null) {
 										$newdata2 = array(
-											'PostId' => $id,
+											'PostId'  => $id,
 											'SPAcc' => $mention
 										);
 										$this->Post_model->insert_mention($newdata2);
+										
+										$newdata3 = array(
+											'Dest'  => $mention,
+											'Origins' => $session_id,
+											'PostId'  => $id,
+											'NotesId' => 2
+										);
+										$this->Notification_model->insert($newdata3);
 									}
 								}
 							}
 							$data['error'] = 'Edit Success!';
 							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
-							$this->load->view('templates/header', $data);
+							$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+							$data['post_mentions'] = $this->Post_model->get_mentions($id);
+							$datahead['title'] = 'Edit Post';
+							$this->load->view('templates/header', $datahead);
 							$this->load->view('editview', $data);
 							$this->load->view('templates/footer');
 						}
@@ -330,6 +356,40 @@ class Post extends CI_Controller {
 				'Origins' => $session_id,
 				'PostId'  => $id,
 				'NotesId' => 4
+			);
+			$this->Notification_model->insert($newdata);
+			redirect(base_url().'post/view/'.$id);
+		}
+	}
+
+	public function close($id)
+	{
+		$session_id = $this->session->userdata('username');
+		$is_sp_acc = $this->session->userdata('SPAcc');
+		$post_mentions = $this->Post_model->get_mentions($id);
+		$is_mentioned = false;
+		$data = $this->Post_model->get_post($id);
+		foreach ($post_mentions as $row){
+			if ($this->session->userdata('username') == $row->Username) {
+				$is_mentioned = true;
+			}
+		}
+		if(!isset($session_id))
+		{
+			redirect(base_url());
+		}
+		else if((isset($session_id) && !$is_sp_acc) || !$is_mentioned || $data == null)
+		{
+			redirect(base_url());
+		}
+		else
+		{
+			$this->Post_model->close_post($id);
+			$newdata = array(
+				'Dest'  => $data['OwnerId'],
+				'Origins' => $session_id,
+				'PostId'  => $id,
+				'NotesId' => 5
 			);
 			$this->Notification_model->insert($newdata);
 			redirect(base_url().'post/view/'.$id);

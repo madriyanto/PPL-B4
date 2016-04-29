@@ -23,13 +23,13 @@ class Post_model extends CI_Model {
 		
         public function get_post($id)
 		{
-			$query = $this->db->query('select * from POST A where A.Id="'.$id.'";');
+			$query = $this->db->query('select * from POST A, ACCOUNT B where A.OwnerId=B.Username and A.Id="'.$id.'";');
 	        return $query->row_array();
 		}
 
 		public function get_comments($id)
 		{
-			$query = $this->db->query('select * from COMMENT A, ACCOUNT B where A.OwnerId=B.Username and PostId="'.$id.'";');
+			$query = $this->db->query('select * from COMMENT A, ACCOUNT B where A.OwnerId=B.Username and PostId="'.$id.'" order by Id desc;');
 	        return $query->result();
 		}
 
@@ -93,6 +93,11 @@ class Post_model extends CI_Model {
 		public function unpin_post($post_id)
 		{
 			$query = $this->db->query('update POST set IsPinned="0" where Id="'.$post_id.'";');
+		}
+
+		public function close_post($post_id)
+		{
+			$query = $this->db->query('update POST set Status="0" where Id="'.$post_id.'";');
 		}
 
 		public function edit_post($data, $id)

@@ -9,13 +9,6 @@
 			color: #dfdbdb;
 		}
 		
-		.navbar-bottom {
-			margin-bottom: 0px;
-			bottom: 0;
-			position: fixed;
-			width: 100%;
-		}
-		
 		.tombol {
 			text-align: center;
 		}
@@ -27,6 +20,12 @@
 			padding-top: 10px;
 			padding-bottom: 10px;
 		}
+
+		.navbar-bottom {
+		    margin-bottom: 0px;
+		    bottom: 0;
+		    width: 100%;
+	  	}
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -43,7 +42,14 @@
 				},
 				showAutocompleteOnFocus: true
 			});
-	
+
+			$('#mention').tokenfield('setTokens', [
+			<?php
+				foreach ($post_mentions as $row){
+					echo "{value: \"".$row->Username."\", label: \"".$row->Name."\"}, ";
+			} ?>
+			]);
+
 			$('#mention').on('tokenfield:createtoken', function (event) {
 				var existingTokens = $(this).tokenfield('getTokens');
 				$.each(existingTokens, function(index, token) {
@@ -71,12 +77,16 @@
         		<li><a href="#">About Us</a></li>
         	</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><span class="navbar-brand logout"><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
+				<li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <?php if ($count_notif > 0) { ?><span class="label label-warning"><?php echo $count_notif; ?></span><?php } ?></a></span></li>
+				<li><span class="navbar-brand"><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></span></li>
 			</ul>
 		</div>
 	</div>
 </nav>
-<br><br><br>
+<br><br><br><br>
 <!-- Logout Modal-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -99,7 +109,7 @@
 		<?php echo validation_errors(); ?>
 		<?php echo $error; ?>
 
-		<?php echo form_open_multipart('Post/edit/'.$Id); ?>
+		<?php echo form_open_multipart('post/edit/'.$Id); ?>
 		<form role="form">
 			<div class="form-group">
 				<label for="text">Event:</label>
@@ -111,18 +121,7 @@
 			</div>
 			<div class="form-group">
 				<label for="text">To:</label>
-				<?php
-					foreach ($mention as $row) {
-						if($this->Post_model->is_mentioned($Id, $row->Username))
-						{
-							echo "<input type=\"checkbox\" name=\"mention[]\" value=\"".$row->Username."\" checked>".$row->Name;
-						}
-						else
-						{
-							echo "<input type=\"checkbox\" name=\"mention[]\" value=\"".$row->Username."\">".$row->Name;
-						}
-					}
-				?>
+				<input type="text" class="form-control" id="mention" name="mention" placeholder="To Organization" required>
 			</div>
 			<div class="form group">
 				<input type="checkbox" id="anonymous" name="anonymous" value="true" <?php if($IsAnonymous) echo "checked"; ?>> Anonymous
@@ -133,10 +132,8 @@
 			</div><br>
 			<div class="form group tombol">
 				<button type="submit" class="btn btn-primary btn-lg" value="Submit">Edit Post</button>
-				<a href="postview.html"><button type="submit" class="btn btn-danger btn-lg" value="Batal">Kembali ke Halaman Sebelumnya</button></a>
+				<a href="<?php echo base_url('post/view/'.$Id); ?>"><button type="button" class="btn btn-danger btn-lg" value="Batal">Kembali ke Halaman Sebelumnya</button></a>
 			</div>
 		</form>
 	</div>
 </div>
-<br><br>
-

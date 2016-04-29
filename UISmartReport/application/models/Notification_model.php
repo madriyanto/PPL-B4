@@ -25,6 +25,13 @@ class Notification_model extends CI_Model {
 	        $this->db->insert('NOTIFICATION', $data);
 		}
 
+		public function delete($post_id, $notes)
+		{
+	        $this->db->where('PostId', $post_id);
+	        $this->db->where('NotesId', $notes);
+			$this->db->delete('NOTIFICATION');
+		}
+
 		public function is_unread($username, $post_id)
 		{
 	        $query = $this->db->query('select Status from NOTIFICATION where Dest="'.$username.'" and PostId="'.$post_id.'" and Status=1;');

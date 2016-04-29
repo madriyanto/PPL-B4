@@ -107,9 +107,7 @@
 	  .navbar-bottom {
 	      margin-bottom: 0px;
 	      bottom: 0;
-	      left: 0;
 	      width: 100%;
-	      position: absolute;
 	  }
 	  .box-post {
 	    background-color: white;
@@ -168,6 +166,22 @@
 		</div>
 	</nav>
 	<br><br><br><br>
+	<!-- Logout Modal-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Are you sure you want to log out?</h4>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+	        <a href="<?php echo base_url('logout'); ?>" class="btn btn-primary" role="button">Yes</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- End of Logout Modal-->
 	<div class="row">
 		<div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="divNotif">
 			<h3><b>Notification</b></h3>

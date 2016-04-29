@@ -138,9 +138,7 @@
   .navbar-bottom {
       margin-bottom: 0px;
       bottom: 0;
-      left: 0;
       width: 100%;
-      position: absolute;
     }
 
     .box-post {
