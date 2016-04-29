@@ -1,20 +1,3 @@
-<?php
-	defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
-<!DOCTYPE <!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>UI Smart Report | Notification</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
-	<link rel="stylesheet" href="http://[::1]/UISmartReport/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://[::1]/UISmartReport/assets/css/jquery-ui.css">
-	<link rel="stylesheet" href="http://[::1]/UISmartReport/assets/tokenfield/dist/css/bootstrap-tokenfield.css">
-	<script type="text/javascript" src="http://[::1]/UISmartReport/assets/js/jquery.js"></script>
-	<script type="text/javascript" src="http://[::1]/UISmartReport/assets/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="http://[::1]/UISmartReport/assets/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://[::1]/UISmartReport/assets/tokenfield/dist/bootstrap-tokenfield.js"></script>
 	<style>
 	  body {
 	    background-color: #E4E4E4;
@@ -131,20 +114,27 @@
 	    border-radius: 20px;
 	    margin-bottom: 10px;
 	  }
-	  .navbar-nav {
-  		margin: 7.5px -15px;
+	  .divJenis {
+	    margin-bottom: 10px;
 	  }
-	  .navbar-nav > li > a {
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    line-height: 20px;
+	  .unread {
+	  	background-color: yellow;
 	  }
-	  #divNotif {	  	
-	  	margin-top: 50px;
-	  	margin-left: 200px;
-	  	margin-right: 150px;
-	  	border: 2px solid gray;	  	
+	  .read {
 	  	background-color: white;
+	  }
+	  .image {
+		position: relative;
+		overflow: hidden;
+		padding-bottom:100%;
+	  }
+	  .image img {
+		position: absolute;
+		max-width: 100%;
+		max-height: 100%;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
 	  }
 </style>
 </head>
@@ -175,41 +165,43 @@
 			</div>
 		</div>
 	</nav>
-	<br></br>
-	<br></br>
-	<br></br>
+	<br><br><br><br>
 	<div class="row">
-		<div class="col-xs-12 col-sm-4 col-md-8" id="divNotif">
+		<div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="divNotif">
 			<h3><b>Notification</b></h3>
-			<div class="row">
-				<div class="col-xs-6 col-sm-4" id="divJenis">
-					<h3>Unread Post</h3>
-					<div id="container">
-						<?php
-							foreach($notif as $row) {
-								echo '<a href="'.base_url().'post/view/'.$row->PostId.'">'.$row->Name.' '.$row->Notes.'</a> '.$row->Timestamps.'<br/>';
-								if ($row->Status) {
-									echo ' (unread)<br/>';
-								}
+					<?php
+						foreach($notif as $row) {
+							echo "<div class=\"row\">";
+							echo "<a href=".base_url()."post/view/".$row->PostId."><div class=\"divJenis";
+							if($row->Status) {
+								echo " unread\">";
+							} else {
+								echo " read\">";
 							}
-						?>
-					</div>	
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6 col-sm-4" id="divJenis">
-					<h3>Read Post</h3>
-						<?php
-							foreach($notif as $row) {
-								echo '<a href="'.base_url().'post/view/'.$row->PostId.'">'.$row->Name.' '.$row->Notes.'</a> '.$row->Timestamps.'<br/>';
-								if ($row->Status) {
-									echo ' (unread)<br/>';
-								}
+							echo "<div class=\"row\">";
+							echo "<div class=\"col-xs-1 col-sm-1 col-md-1\">";
+							echo "<div class=\"image\">";
+							echo "<img src=\"".$row->PictLink."\" class=\"img img-rounded img-responsive\">";
+							echo "</div>";
+							echo "</div>";
+							echo "<div class=\"col-xs-8 col-sm-8 col-md-8\">";
+							echo "<h5>".$row->Name.' '.$row->Notes."</h5>";
+							echo "</div>";
+							echo "<div class=\"col-xs-3 col-sm-3 col-md-3\">";
+							date_default_timezone_set("Asia/Jakarta");
+							$timestamp = mysql_to_unix($row->Timestamps);
+							$timespan = timespan($timestamp)." Ago";
+
+							if ((now() - $timestamp) >= (24*60*60)) {
+								$timespan = date('F d, Y', $timestamp);
 							}
-						?>
-				</div>
+							echo "<h5 class=\"text-right\">".$timespan."</h5>";
+							echo "</div>";
+							echo "</div>";
+							echo "</div></a>";
+							echo "</div>";
+						}
+					?>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
