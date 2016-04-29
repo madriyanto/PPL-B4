@@ -8,7 +8,7 @@
 	}
 	
 	#mynavbar a{
-    color: #dfdbdb;
+    	color: #dfdbdb;
   	}
 
 	@media screen and (min-width:768px){

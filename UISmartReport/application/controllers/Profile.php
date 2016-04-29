@@ -78,7 +78,9 @@ class Profile extends CI_Controller {
 
 			$this->load->library('form_validation');
 
-			if ($this->form_validation->run() == TRUE)
+			$this->form_validation->set_rules('search', 'Search', 'required');
+
+			if ($this->form_validation->run() == FALSE)
 			{
 				$data = $this->Loginsp_model->get_user($session_id);
 				$data['timeline'] = $this->Profile_model->retrieve_mention_posts($session_id);
@@ -93,7 +95,7 @@ class Profile extends CI_Controller {
 				$this->load->view('templates/footer');
 			} else {
 				$data = $this->Loginsp_model->get_user($session_id);
-				$data['timeline'] = $this->Profile_model->retrieve_search_posts($session_id, str_replace(" ", "+", $this->input->get('search')), $this->input->get('status'));
+				$data['timeline'] = $this->Profile_model->retrieve_search_posts($session_id, str_replace(" ", "+", $this->input->post('search')), $this->input->post('status'));
 				$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
 				$data['isSPAcc'] = $this->session->userdata('SPAcc');
 				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));

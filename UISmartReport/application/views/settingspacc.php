@@ -11,6 +11,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    position: fixed;
 	    width: 100%;
   	}
+
+  	#mynavbar a{
+	    color: #dfdbdb;
+	}
 </style>
 </head>
 <body>

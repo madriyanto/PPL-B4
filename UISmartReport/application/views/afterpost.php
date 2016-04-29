@@ -42,6 +42,9 @@
 	    position: fixed;
 	    width: 100%;
   	}
+  	#mynavbar a{
+	    color: #dfdbdb;
+	}
 
 	@media screen and (max-width:768px){
 		.forgetForm{
