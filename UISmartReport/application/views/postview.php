@@ -6,6 +6,10 @@
 			font-size: 18px;
 		}
 	
+		#mynavbar a{
+			color: #dfdbdb;
+		}
+		
 		.navbar-bottom {
 			margin-bottom: 0px;
 			bottom: 0;
@@ -19,7 +23,6 @@
 		}
 		
 		.tombol {
-
 			text-align: right;
 		}
 		
@@ -34,9 +37,6 @@
 	<script>
 		$(document).ready(function(){
 			$('[data-toggle="tooltip"]').tooltip();  
-			$("#editPost").click(function(){
-				$("#postModal").modal();
-			});
 			$("#deletePost").click(function(){
 				$("#deleteModal").modal();
 			});
@@ -51,25 +51,27 @@
 	</script>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-       		 <div class="navbar-brand">UI Smart Report</div>
-       		 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>                        
-      		 </button>
-		</div>		
+			<div class="navbar-brand"><img src="assets/images/makara.png" class="img-rounded" alt="Cinque Terre" width="30" height="30"></div>
+			<div class="navbar-brand">UI Smart Report</div>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			</button>
+		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+        		<li><a href="#">About Us</a></li>
+        	</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<a href="#"><li class="navbar-brand">Login SSO</li></a>
-				<li class="navbar-brand">About Us</li>
+				<li><span class="navbar-brand"><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></span></li>
 			</ul>
 		</div>
 	</div>
 </nav>
-
 <br><br><br>
 <div class="container">
 	<div class="well">
@@ -100,42 +102,7 @@
 			<div class="col-sm-2 profpic"></div>
 			<div class="col-sm-7"></div>
 			<div class="col-sm-2 tombol">
-				<button type="button" id="editPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Edit This Post"></button>
-				<div id="postModal" class="modal fade" role="dialog">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header" style="text-align: center;">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">Edit This Post</h4>
-							</div>
-							<div class="modal-body" style="text-align: left;">
-								<form role="form">
-									<div class="form-group">
-										<label for="textarea">Description:</label>
-										<textarea class="form-control" id="post" name="post" rows="6" placeholder="Description of Post" required></textarea>
-									</div>
-									<div class="form-group">
-										<label for="text">To:</label>
-										<input type="text" class="form-control" id="mention" name="mention" placeholder="To Organization" required>
-									</div>
-									<div class="form-group">
-										<label for="text">Event:</label>
-										<input type="text" class="form-control" id="title" name="title" placeholder="An Event" required>
-									</div>
-									<div class="form-group">
-										<div class="checkbox">
-											<label><input type="checkbox" id="anonymous" name="anonymous" value="true">Anonymous</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<input type="file" id="userfile" name="userfile">
-									</div>
-									<button type="submit" class="btn btn-primary btn-lg" value="Submit">Edit Post</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
+				<a href="editview.html"><button type="button" id="editPost" class="btn btn-default btn-lg" title="Edit This Post"></button></a>
 				<button type="button" id="deletePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Delete This Post"></button>
 				<div id="deleteModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
