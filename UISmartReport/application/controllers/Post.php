@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Post extends CI_Controller {
 
 	public function __construct()
-    {
+    	{
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->helper('url');
@@ -13,12 +13,12 @@ class Post extends CI_Controller {
 		$this->load->model('Timeline_model');
 		$this->load->model('Post_model');
 		$this->load->model('Notification_model');
-    }
+    	}
 
-    public function index()
-    {
-    	redirect(base_url());	
-    }
+	public function index()
+    	{
+    		redirect(base_url());	
+    	}
 
 	public function view($id)
 	{
