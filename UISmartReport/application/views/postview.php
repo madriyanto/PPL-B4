@@ -31,6 +31,24 @@
 			margin-left: 30px;
 		}
 	</style>
+	<script>
+		$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip();  
+			$("#editPost").click(function(){
+				$("#postModal").modal();
+			});
+			$("#deletePost").click(function(){
+				$("#deleteModal").modal();
+			});
+			$("#pinPost").click(function(){
+				$("#pinModal").modal();
+			});
+			$("#closePost").click(function(){
+				$("#closeModal").modal();
+			});
+		});
+		
+	</script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -82,10 +100,108 @@
 			<div class="col-sm-2 profpic"></div>
 			<div class="col-sm-7"></div>
 			<div class="col-sm-2 tombol">
-				<button type="button" class="btn btn-default btn-md"></button>
-				<button type="button" class="btn btn-default btn-md"></button>
-				<button type="button" class="btn btn-default btn-md"></button>
-				<button type="button" class="btn btn-default btn-md"></button>
+				<button type="button" id="editPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Edit This Post"></button>
+				<div id="postModal" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header" style="text-align: center;">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Edit This Post</h4>
+							</div>
+							<div class="modal-body" style="text-align: left;">
+								<form role="form">
+									<div class="form-group">
+										<label for="textarea">Description:</label>
+										<textarea class="form-control" id="post" name="post" rows="6" placeholder="Description of Post" required></textarea>
+									</div>
+									<div class="form-group">
+										<label for="text">To:</label>
+										<input type="text" class="form-control" id="mention" name="mention" placeholder="To Organization" required>
+									</div>
+									<div class="form-group">
+										<label for="text">Event:</label>
+										<input type="text" class="form-control" id="title" name="title" placeholder="An Event" required>
+									</div>
+									<div class="form-group">
+										<div class="checkbox">
+											<label><input type="checkbox" id="anonymous" name="anonymous" value="true">Anonymous</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<input type="file" id="userfile" name="userfile">
+									</div>
+									<button type="submit" class="btn btn-primary btn-lg" value="Submit">Edit Post</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="button" id="deletePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Delete This Post"></button>
+				<div id="deleteModal" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header" style="text-align: center;">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Confirmation</h4>
+							</div>
+							<div class="modal-body" style="text-align: left;">
+								<form role="form">
+									<div class="form-group">
+										<label for="textarea">Are you sure you want to delete this post ?</label>
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-primary btn-lg" value="Yes">Yes</button>
+										<button type="button" class="btn btn-danger btn-lg active" value="No" data-dismiss="modal">No</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="button" id="pinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Pin This Post"></button>
+				<div id="pinModal" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header" style="text-align: center;">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Confirmation</h4>
+							</div>
+							<div class="modal-body" style="text-align: left;">
+								<form role="form">
+									<div class="form-group">
+										<label for="textarea">Are you sure you want to pin this post ?</label>
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-primary btn-lg" value="Yes">Yes</button>
+										<button type="button" class="btn btn-danger btn-lg active" value="No" data-dismiss="modal">No</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="button" id="closePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Close This Post (Thread)"></button>
+				<div id="closeModal" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header" style="text-align: center;">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Confirmation</h4>
+							</div>
+							<div class="modal-body" style="text-align: left;">
+								<form role="form">
+									<div class="form-group">
+										<label for="textarea">Are you sure you want to close this post (thread) ?</label>
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-primary btn-lg" value="Yes">Yes</button>
+										<button type="button" class="btn btn-danger btn-lg active" value="No" data-dismiss="modal">No</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -144,7 +260,6 @@
 			</div>
 			<div class="col-sm-1 waktu">1 s</div>
 		</div>
-
 	</div>
 </div>
 <br><br>
