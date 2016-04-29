@@ -139,7 +139,9 @@ class Post extends CI_Controller {
 						$data = $this->Post_model->get_post($id);
 						$data['error'] = '';
 						$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
+						$this->load->view('templates/header', $data);
 						$this->load->view('editview', $data);
+						$this->load->view('templates/footer');
 					}
 					else
 					{
@@ -170,7 +172,9 @@ class Post extends CI_Controller {
 							$data = $this->Post_model->get_post($id);
 							$data['error'] = $this->upload->display_errors();
 							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
+							$this->load->view('templates/header', $data);
 							$this->load->view('editview', $data);
+							$this->load->view('templates/footer');
 						}
 						else
 						{
@@ -254,7 +258,9 @@ class Post extends CI_Controller {
 							}
 							$data['error'] = 'Edit Success!';
 							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
+							$this->load->view('templates/header', $data);
 							$this->load->view('editview', $data);
+							$this->load->view('templates/footer');
 						}
 					}
 				}
