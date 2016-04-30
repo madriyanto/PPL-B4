@@ -271,7 +271,7 @@
     
       if ($i % 3 == 1) {
         echo "<div class=\"row\">";
-        echo "<div class=\"col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10\">";
+        echo "<div class=\"col-xs-offset-1 col-xs-11 col-sm-offset-1 col-sm-11 col-md-offset-1 col-md-10\">";
         echo "<div class=\"row\">";
         echo "<div class=\"col-md-4\">";
         echo "<div class=\"row\">";
