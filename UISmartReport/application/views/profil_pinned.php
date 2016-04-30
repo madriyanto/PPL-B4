@@ -4,6 +4,12 @@
     background-color: #E4E4E4;
   }
 
+  .box-post {
+		background-color: white;
+    	border-radius: 20px;
+    	margin-bottom: 10px;
+	}
+	
   #navbarbawah a{
     color: black;
   }
@@ -183,7 +189,7 @@
       <h3 class="text-left"><?php echo $Contact; ?></h3>
     </div>
 
-    <div class="col-md-3" id="coba">
+    <div class="col-md-3" id="kotakBO">
       <br>
       <h4 class="text-left">Total Posts : <?php echo $count_posts; ?></h4>
       <h4 class="text-left">Closed Posts : <?php echo $count_closed_posts; ?></h4>
