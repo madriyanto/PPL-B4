@@ -131,7 +131,11 @@ class Post extends CI_Controller {
 
 				if(!$is_editable)
 				{
-					redirect(base_url());
+					$datahead['title'] = 'Exceeded Time Limit';
+					$data['id'] = $id;
+					$this->load->view('templates/header', $datahead);
+					$this->load->view('exceeded', $data);
+					$this->load->view('templates/footer');
 				}
 				else
 				{
@@ -420,7 +424,11 @@ class Post extends CI_Controller {
 
 			if(!$is_editable)
 			{
-				redirect(base_url());
+				$datahead['title'] = 'Exceeded Time Limit';
+				$data['id'] = $id;
+				$this->load->view('templates/header', $datahead);
+				$this->load->view('exceeded', $data);
+				$this->load->view('templates/footer');
 			}
 			else
 			{
