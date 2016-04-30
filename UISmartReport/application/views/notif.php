@@ -1,6 +1,11 @@
 	<style>
 	  body {
 	    background-color: #E4E4E4;
+	    font-family: Verdana, Geneva, sans-serif;
+		font-size: 18px;
+	  }
+	  a {
+	  	color: black;
 	  }
 	  #mynavbar a{
 	    color: #dfdbdb;
@@ -57,12 +62,12 @@
 	    height: 45px;
 	  }
 	  #search-content{
-	      margin-top: 30px;
+	    margin-top: 30px;
+	  }
+	  .row{
+	    margin-right: 0px;
 	  }
 	  @media screen and (max-width:1000px){
-	    .row{
-	      margin-right: 0px;
-	    }
 	    .form-control{
 	      width: 90%;
 	    }
@@ -199,9 +204,9 @@
 							echo "<img src=\"".$row->PictLink."\" class=\"img-rounded\" width=\"100%\">";
 							echo "</div>";
 							echo "<div class=\"col-xs-8 col-sm-8 col-md-8\">";
-							echo "<h5>".$row->Name.' '.$row->Notes."</h5>";
+							echo $row->Name.' '.$row->Notes;
 							echo "</div>";
-							echo "<div class=\"col-xs-3 col-sm-3 col-md-3\">";
+							echo "<div class=\"col-xs-3 col-sm-3 col-md-3 text-right\">";
 							date_default_timezone_set("Asia/Jakarta");
 							$timestamp = mysql_to_unix($row->Timestamps);
 							$timespan = timespan($timestamp)." Ago";
@@ -209,7 +214,7 @@
 							if ((now() - $timestamp) >= (24*60*60)) {
 								$timespan = date('F d, Y', $timestamp);
 							}
-							echo "<h5 class=\"text-right\">".$timespan."</h5>";
+							echo $timespan;
 							echo "</div>";
 							echo "</div>";
 							echo "</div></a>";
