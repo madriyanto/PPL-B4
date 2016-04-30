@@ -94,17 +94,14 @@
     top: 2px;
     font-size: 25px;
   }
+  
+  @media screen and (min-width:768px){
+    .row{
+      margin-right: 0px;
+    }
+  }
 
   @media screen and (max-width:1000px){
-
-    .box-post {
-      width: 80%;
-      left: 10%;
-    }
-
-    .row{
-      margin-right: 30px;
-    }
 
     #profpic img{
       display: block;
