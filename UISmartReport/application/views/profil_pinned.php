@@ -1,47 +1,53 @@
 <style>
-
   body {
     background-color: #E4E4E4;
   }
-
   .box-post {
-		background-color: white;
-    	border-radius: 20px;
-    	margin-bottom: 10px;
-	}
-	
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  #mynavbar a{
+    color: #dfdbdb;
+  }
+  .row{
+    margin-right: 0px;
+  }
+  #profpic{
+    margin-right: -15px;
+  }
   #navbarbawah a{
     color: black;
   }
-
   #navbarbawah div{
     margin-top: 3%;
   }
-
+  
+  #navbarbawah{
+    margin-top: 20px;
+    margin-bottom : 30px;
+  }
   #subnavbar{
     text-align: center;
-    font-size: 25px;
-    margin-top: 1%;
+    padding-top: 5px;
+    font-size: 22px;
+    margin-top: 20px;
     border: 2px solid white;
     background-color: white;
     height: 45px;
   }
-
   .postButton{
     background: #FFFF00;
     color: black;
     border-style: none;
   }
-
   #dataAtas{
     border: 5px solid;
     height: 250px;
   }
-
   #datadiri{
     
   }
-
   #finalPost{
     background-color: white;
     color: black;
@@ -49,84 +55,83 @@
     height: 160px;
     border-radius: 10px;
   }
-
   #kotakBO{
     top:50px;
   }
-
   .anonim{
     margin-left: 100px;
   }
-
   .bagian-bawah{
     margin-bottom: 5%;
   }
-
-  #search-content{
-      margin-top: 30px;
+  #kotak-search{
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
-
-  @media screen and (max-width:1000px){
-    .form-control{
-      width: 90%;
+  #search-content{
+  }
+  #totalMention{
+    top: 2px;
+    font-size: 25px;
+  }
+  
+  @media screen and (min-width:768px){
+    .row{
+      margin-right: 0px;
     }
-
+  }
+  @media screen and (max-width:1000px){
     #profpic img{
       display: block;
         margin-left: auto;
         margin-right: auto
     }
-
-    #datadiri{
-      top: 25px;
+    #kotak-search{
+      left: 10%;
     }
-
+    #datadiri{
+      margin-top: 25px;
+      padding: 10px 5px 10px 5px;
+    }
     #datadiri h3{
       text-align: center;
+      font-size: 15px;
     }
-
-    #dataAtas{
-      height: 450px;
-    }
-
     #kotakBO{
-      top: 50px;
+      top: 20px;
       margin-bottom: 30px;
     }
-
     #kotakBO h4{
       text-align: center;
+      font-size: 15px;
     }
     
     .bagian-bawah{
-      margin-bottom: 15%;
-      
+      margin-bottom: 15%; 
     }
-
     #finalPost{
       width: 80%;
-      margin-left: 15%;
-    }
-
-    #subnavbar{
-      width: 85%;
-      left: 13%;
-      border-radius: 5px;
-    }
-
-    #navbarbawah{
-      margin-top: 10px;
+      margin-left: 10%;
       margin-bottom: 10px;
-    }
-
-    .bagian-bawah{
-      margin-bottom: 20%;
-    }
-
-    #finalPost{
       height: 250px;
     }
-
+    #subnavbar{
+      width: 85%;
+      left: 8%;
+      border-radius: 5px;
+      height : 40px;
+      font-size: 16px;
+    }
+    #navbarbawah{
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+    #totalMention{
+      font-size: 20px;
+    }
+    .form-control{
+      width: 90%;
+    }
   }
 </style>
 <body>
