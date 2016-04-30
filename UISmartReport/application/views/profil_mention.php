@@ -1,11 +1,19 @@
 <style>
-  
+
   body {
     background-color: #E4E4E4;
   }
 
   #mynavbar a{
     color: #dfdbdb;
+  }
+
+  .row{
+    margin-right: 0px;
+  }
+
+  #profpic{
+    margin-right: -15px;
   }
 
   #navbarbawah a{
@@ -16,38 +24,42 @@
     margin-top: 3%;
   }
 
+  #subnavbar{
+    text-align: center;
+    padding-top: 5px;
+    font-size: 22px;
+    margin-top: 20px;
+    border: 2px solid white;
+    background-color: white;
+    height: 45px;
+  }
+
   .postButton{
     background: #FFFF00;
     color: black;
     border-style: none;
   }
 
-  #coba{
-    top: 50px;
-  }
 
-  #pic{
-    border: 5px solid white;
-  }
-
-  #tujuan{
-    text-decoration: underline;
-  }
-
-  .inipos{
+  #dataAtas{
     border: 5px solid;
+    height: 250px;
   }
 
-  #profpic{
-    width: 15%;
-    height: 25%;
+  #datadiri{
+    
   }
 
   #finalPost{
-    background: white;
+    background-color: white;
     color: black;
     border-style: none;
-    height: 165px;
+    height: 160px;
+    border-radius: 10px;
+  }
+
+  #kotakBO{
+    top:50px;
   }
 
   .anonim{
@@ -58,22 +70,17 @@
     margin-bottom: 5%;
   }
 
-  #navbar{
-    border: 1px solid blue;
-    margin-top: 3%;
-  }
-
-  #subnavbar{
-    text-align: center;
-    font-size: 25px;
-    margin-top: 1%;
-    border: 2px solid white;
-    background-color: white;
-    height: 45px;
+  #kotak-search{
+    margin-top: 30px;
   }
 
   #search-content{
-      margin-top: 30px;
+
+  }
+
+  #totalMention{
+    top: 2px;
+    font-size: 25px;
   }
 
   @media screen and (max-width:1000px){
@@ -85,26 +92,51 @@
       width: 90%;
     }
 
-    #datadiri {
-      margin-top: 50px;
-      border: 1px solid white;
+    #profpic img{
+      display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    #kotak-search{
+      left: 5%;
+    }
+
+    #datadiri{
+      top: 25px;
     }
 
     #datadiri h3{
       text-align: center;
     }
 
-    #coba h4{
+    #dataAtas{
+      height: 450px;
+    }
+
+    #kotakBO{
+      top: 50px;
+      margin-bottom: 30px;
+    }
+
+    #kotakBO h4{
       text-align: center;
+    }
+    
+    .bagian-bawah{
+      margin-bottom: 15%; 
     }
 
     #finalPost{
-      height: 300px;
-      width: 84%;
-      left: 9%;
-      border-radius: 5px;
+      width: 80%;
+      margin-left: 11%;
     }
 
+    #subnavbar{
+      width: 85%;
+      left: 8.5%;
+      border-radius: 5px;
+    }
 
     #navbarbawah{
       margin-top: 10px;
@@ -112,60 +144,13 @@
     }
 
     .bagian-bawah{
-      margin-bottom: 15%;
+      margin-bottom: 20%;
     }
 
-    #coba{
-      margin-top: 20px; 
+    #finalPost{
+      height: 250px;
     }
 
-    #subnavbar{
-      width: 90%;
-      left: 6%;
-      border-radius: 5px;
-    }
-
-    #profpic img{
-      margin: auto;
-    }
-
-    #search-input input{
-      width: 60%;
-    }
-
-  }
-
-  .navbar-bottom {
-      margin-bottom: 0px;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .box-post {
-    background-color: white;
-      border-radius: 20px;
-      margin-bottom: 10px;
-  }
-
-  .image {
-    position: relative;
-    overflow: hidden;
-    padding-bottom:100%;
-  }
-  
-  .image img {
-    position: absolute;
-    max-width: 100%;
-    max-height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-
-  @media screen and (min-width:768px){
-    .row{
-      margin-right: 0px;
-    }
   }
 </style>
 <body>
@@ -265,9 +250,6 @@
 
 </div>
 
-<div class="bagian-bawah">
-  
-</div>
 <?php
   $i = 1;
   $last_page = false;
@@ -374,3 +356,7 @@
     echo "</div>";
   }
 ?>
+
+<div class="bagian-bawah">
+  
+</div>
