@@ -1,19 +1,7 @@
 <style>
-  
+
   body {
     background-color: #E4E4E4;
-  }
-
-  #coba{
-    top: 50px;
-  }
-
-  #mynavbar a{
-    color: #dfdbdb;
-  }
-
-  .text-left{
-    margin-top: 10px;
   }
 
   #navbarbawah a{
@@ -21,49 +9,6 @@
   }
 
   #navbarbawah div{
-    margin-top: 3%;
-  }
-
-  .postButton{
-    background: #FFFF00;
-    color: black;
-    border-style: none;
-  }
-
-  #pic{
-    border: 5px solid white;
-  }
-
-  #tujuan{
-    text-decoration: underline;
-  }
-
-  .inipos{
-    border: 5px solid;
-  }
-
-  #profpic{
-    width: 15%;
-    height: 25%;
-  }
-
-  #finalPost{
-    background: white;
-    color: black;
-    border-style: none;
-    height: 165px;
-  }
-
-  .anonim{
-    margin-left: 100px;
-  }
-
-  .bagian-bawah{
-    margin-bottom: 5%;
-  }
-
-  #navbar{
-    border: 1px solid blue;
     margin-top: 3%;
   }
 
@@ -76,35 +21,89 @@
     height: 45px;
   }
 
-  @media screen and (max-width:1000px){
-    .row{
-      margin-right: 0px;
-    }
+  .postButton{
+    background: #FFFF00;
+    color: black;
+    border-style: none;
+  }
 
+  #dataAtas{
+    border: 5px solid;
+    height: 250px;
+  }
+
+  #datadiri{
+    
+  }
+
+  #finalPost{
+    background-color: white;
+    color: black;
+    border-style: none;
+    height: 160px;
+    border-radius: 10px;
+  }
+
+  #kotakBO{
+    top:50px;
+  }
+
+  .anonim{
+    margin-left: 100px;
+  }
+
+  .bagian-bawah{
+    margin-bottom: 5%;
+  }
+
+
+  @media screen and (max-width:1000px){
     .form-control{
       width: 90%;
     }
 
-    #datadiri {
-      margin-top: 50px;
-      border: 1px solid white;
+    #profpic img{
+      display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    #datadiri{
+      top: 25px;
     }
 
     #datadiri h3{
       text-align: center;
     }
 
-    #coba h4{
+    #dataAtas{
+      height: 450px;
+    }
+
+    #kotakBO{
+      top: 50px;
+      margin-bottom: 30px;
+    }
+
+    #kotakBO h4{
       text-align: center;
+    }
+    
+    .bagian-bawah{
+      margin-bottom: 15%;
+      
     }
 
     #finalPost{
-      height: 300px;
-      width: 84%;
-      left: 9%;
-      border-radius: 5px;
+      width: 80%;
+      margin-left: 10%;
     }
 
+    #subnavbar{
+      width: 86%;
+      left: 7%;
+      border-radius: 5px;
+    }
 
     #navbarbawah{
       margin-top: 10px;
@@ -112,57 +111,13 @@
     }
 
     .bagian-bawah{
-      margin-bottom: 15%;
+      margin-bottom: 20%;
     }
 
-    #coba{
-      margin-top: 20px; 
+    #finalPost{
+      height: 250px;
     }
 
-    #subnavbar{
-      width: 90%;
-      left: 6%;
-      border-radius: 5px;
-    }
-
-    
-    #profpic img{
-      margin: auto;
-    }
-
-  }
-
-  .navbar-bottom {
-      margin-bottom: 0px;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .box-post {
-    background-color: white;
-      border-radius: 20px;
-      margin-bottom: 10px;
-  }
-
-  .image {
-    position: relative;
-    overflow: hidden;
-    padding-bottom:100%;
-  }
-  
-  .image img {
-    position: absolute;
-    max-width: 100%;
-    max-height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-
-  @media screen and (min-width:768px){
-    .row{
-      margin-right: 0px;
-    }
   }
 </style>
 <body>
@@ -240,9 +195,6 @@
 
 </div>
 
-<div class="bagian-bawah">
-  
-</div>
 <?php
   $i = 1;
   $last_page = false;
@@ -349,3 +301,7 @@
     echo "</div>";
   }
 ?>
+
+<div class="bagian-bawah">
+  
+</div>
