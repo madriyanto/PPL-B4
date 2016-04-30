@@ -74,6 +74,9 @@
     top: 2px;
     font-size: 25px;
   }
+  .navbar-bottom{
+    margin-bottom: 0px;
+  }
   
   @media screen and (min-width:768px){
     .row{

@@ -74,6 +74,9 @@
     top: 2px;
     font-size: 25px;
   }
+  .navbar-bottom{
+    margin-bottom: 0px;
+  }
   
   @media screen and (min-width:768px){
     .row{
@@ -199,10 +202,6 @@
     </div>
   </div>
 </div>
-
-<div class="bagian-bawah">
-  
-</div>
 <?php
   $i = 1;
   $last_page = false;
@@ -309,3 +308,6 @@
     echo "</div>";
   }
 ?>
+<div class="bagian-bawah">
+  
+</div>
