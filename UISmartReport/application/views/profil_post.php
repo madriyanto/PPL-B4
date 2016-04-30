@@ -4,6 +4,12 @@
     background-color: #E4E4E4;
   }
   
+  .box-post {
+		background-color: white;
+    	border-radius: 20px;
+    	margin-bottom: 10px;
+	}
+  
   .row{
     margin-right: 0px;
   }
