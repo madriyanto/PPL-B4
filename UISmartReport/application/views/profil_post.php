@@ -3,6 +3,10 @@
   body {
     background-color: #E4E4E4;
   }
+  
+  .row{
+    margin-right: 0px;
+  }
 
   #navbarbawah a{
     color: black;
