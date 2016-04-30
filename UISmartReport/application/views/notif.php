@@ -118,10 +118,10 @@
 	    margin-bottom: 10px;
 	  }
 	  .unread {
-	  	background-color: yellow;
+	  	background-color: white;
 	  }
 	  .read {
-	  	background-color: white;
+	  	background-color: #f5f5f5;
 	  }
 	  .image {
 		position: relative;
@@ -196,9 +196,7 @@
 							}
 							echo "<div class=\"row\">";
 							echo "<div class=\"col-xs-1 col-sm-1 col-md-1\">";
-							echo "<div class=\"image\">";
-							echo "<img src=\"".$row->PictLink."\" class=\"img img-rounded img-responsive\">";
-							echo "</div>";
+							echo "<img src=\"".$row->PictLink."\" class=\"img-rounded\" width=\"100%\">";
 							echo "</div>";
 							echo "<div class=\"col-xs-8 col-sm-8 col-md-8\">";
 							echo "<h5>".$row->Name.' '.$row->Notes."</h5>";
