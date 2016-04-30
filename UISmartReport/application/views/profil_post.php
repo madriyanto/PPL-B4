@@ -29,6 +29,11 @@
   #navbarbawah div{
     margin-top: 3%;
   }
+  
+  #navbarbawah{
+    margin-top: 20px;
+    margin-bottom : 30px;
+  }
 
   #subnavbar{
     text-align: center;
