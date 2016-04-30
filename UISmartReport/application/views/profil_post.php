@@ -160,10 +160,6 @@
       margin-bottom: 10px;
     }
 
-    .bagian-bawah{
-      margin-bottom: 20%;
-    }
-
     #totalMention{
       font-size: 20px;
     }
