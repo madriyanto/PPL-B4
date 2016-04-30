@@ -14,7 +14,7 @@ class Profile_model extends CI_Model {
 
 		public function retrieve_pinned_posts($username)
 		{
-			$query = $this->db->query('select * from POST A, MENTION B, ACCOUNT C where A.OwnerId=C.Username and A.Id=B.PostId and A.IsPinned="1" and B.SPAcc="'.$username.'" order by A.Id desc;');
+			$query = $this->db->query('select A.Id as Id, OwnerId, Timestamp, Status, Title, Data, Attachments, IsPinned, IsAnonymous, IsViewable, C.Username as Username, PictLink, IsSPAcc, Name from POST A, MENTION B, ACCOUNT C where A.OwnerId=C.Username and A.Id=B.PostId and A.IsPinned="1" and B.SPAcc="'.$username.'" order by A.Id desc;');
 			return $query->result();
 		}
 

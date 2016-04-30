@@ -227,8 +227,22 @@
   </div>
 
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
-    <div class="col-md-4" id="subnavbar"><a href="#">Post</a></div>
-    <div class="col-md-4" id="subnavbar"><a href="">Pinned</a></div>
+    <?php
+    if($Username == $this->session->userdata('username')) {
+      $post_url = base_url('profile/');
+    } else {
+      $post_url = base_url('people/view/'.$Username);
+    }
+    ?>
+    <div class="col-md-4" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    <?php
+    if($Username == $this->session->userdata('username')) {
+      $pinned_url = base_url('profile/pinned/');
+    } else {
+      $pinned_url = base_url('people/pinned/'.$Username);
+    }
+    ?>
+    <div class="col-md-4" id="subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
     <div class="col-md-4" id="subnavbar"><p id="tujuan">Mention</p></div>
   </div>
 
