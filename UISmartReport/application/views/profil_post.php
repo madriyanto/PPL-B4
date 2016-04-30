@@ -139,14 +139,14 @@
 
     #finalPost{
       width: 80%;
-      margin-left: 17%;
+      margin-left: 10%;
       margin-bottom: 10px;
       height: 250px;
     }
 
     #subnavbar{
       width: 85%;
-      left: 15%;
+      left: 8%;
       border-radius: 5px;
       height : 40px;
       font-size: 16px;
@@ -154,7 +154,7 @@
 
     #navbarbawah{
       margin-top: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
     }
 
     #totalMention{
