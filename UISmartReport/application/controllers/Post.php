@@ -133,6 +133,7 @@ class Post extends CI_Controller {
 				{
 					$datahead['title'] = 'Exceeded Time Limit';
 					$data['id'] = $id;
+					$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 					$this->load->view('templates/header', $datahead);
 					$this->load->view('exceeded', $data);
 					$this->load->view('templates/footer');
@@ -426,6 +427,7 @@ class Post extends CI_Controller {
 			{
 				$datahead['title'] = 'Exceeded Time Limit';
 				$data['id'] = $id;
+				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 				$this->load->view('templates/header', $datahead);
 				$this->load->view('exceeded', $data);
 				$this->load->view('templates/footer');
