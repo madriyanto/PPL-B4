@@ -3,15 +3,23 @@
   body {
     background-color: #E4E4E4;
   }
-  
+
   .box-post {
-		background-color: white;
-    	border-radius: 20px;
-    	margin-bottom: 10px;
-	}
-  
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  #mynavbar a{
+    color: #dfdbdb;
+  }
+
   .row{
     margin-right: 0px;
+  }
+
+  #profpic{
+    margin-right: -15px;
   }
 
   #navbarbawah a{
@@ -24,8 +32,9 @@
 
   #subnavbar{
     text-align: center;
-    font-size: 25px;
-    margin-top: 1%;
+    padding-top: 5px;
+    font-size: 22px;
+    margin-top: 20px;
     border: 2px solid white;
     background-color: white;
     height: 45px;
@@ -36,6 +45,7 @@
     color: black;
     border-style: none;
   }
+
 
   #dataAtas{
     border: 5px solid;
@@ -66,10 +76,28 @@
     margin-bottom: 5%;
   }
 
+  #kotak-search{
+    margin-top: 30px;
+  }
+
+  #search-content{
+
+  }
+
+  #totalMention{
+    top: 2px;
+    font-size: 25px;
+  }
 
   @media screen and (max-width:1000px){
-    .form-control{
-      width: 90%;
+
+    .box-post {
+      width: 80%;
+      left: 10%;
+    }
+
+    .row{
+      margin-right: 30px;
     }
 
     #profpic img{
@@ -78,41 +106,47 @@
         margin-right: auto
     }
 
+    #kotak-search{
+      left: 10%;
+    }
+
     #datadiri{
-      top: 25px;
+      margin-top: 25px;
+      padding: 10px 5px 10px 5px;
     }
 
     #datadiri h3{
       text-align: center;
-    }
-
-    #dataAtas{
-      height: 450px;
+      font-size: 15px;
     }
 
     #kotakBO{
-      top: 50px;
+      top: 20px;
       margin-bottom: 30px;
     }
 
     #kotakBO h4{
       text-align: center;
+      font-size: 15px;
     }
     
     .bagian-bawah{
-      margin-bottom: 15%;
-      
+      margin-bottom: 15%; 
     }
 
     #finalPost{
       width: 80%;
-      margin-left: 15%;
+      margin-left: 17%;
+      margin-bottom: 10px;
+      height: 250px;
     }
 
     #subnavbar{
       width: 85%;
-      left: 13%;
+      left: 15%;
       border-radius: 5px;
+      height : 40px;
+      font-size: 16px;
     }
 
     #navbarbawah{
@@ -124,8 +158,12 @@
       margin-bottom: 20%;
     }
 
-    #finalPost{
-      height: 250px;
+    #totalMention{
+      font-size: 20px;
+    }
+
+    .form-control{
+      width: 90%;
     }
 
   }
