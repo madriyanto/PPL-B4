@@ -135,12 +135,12 @@
 
     #finalPost{
       width: 80%;
-      margin-left: 11%;
+      margin-left: 15%;
     }
 
     #subnavbar{
       width: 85%;
-      left: 8.5%;
+      left: 13%;
       border-radius: 5px;
     }
 
