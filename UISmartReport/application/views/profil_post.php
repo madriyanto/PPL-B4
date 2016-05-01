@@ -65,12 +65,12 @@
     background-color: white;
     color: black;
     border-style: none;
-    height: 165px;
+    height: 160px;
     border-radius: 10px;
   }
 
   #kotakBO{
-    top:40px;
+    top:50px;
   }
 
   .anonim{

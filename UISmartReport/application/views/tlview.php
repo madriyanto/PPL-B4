@@ -259,12 +259,19 @@ $(document).ready(function(){
 					<?php } else { ?>
 					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
 					<?php } ?>
-					<p>To:<br/>
+					<p><?php echo "<img src=\"".base_url('assets/images/people.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?> 
 					<?php $post_mentions = $this->Post_model->get_mentions($row->Id);
+					$is_first = true;
 					foreach ($post_mentions as $row2){
-						echo "<a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a><br/>";
+						if($is_first) {
+							echo "<a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a>";
+							$is_first = false;
+						} else {
+							echo ", <a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a>";
+						}
+						
 					} ?></p>
-					<p><?php echo $row->Title; ?></p>
+					<p><?php echo "<img src=\"".base_url('assets/images/tool(2).png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?> <?php echo $row->Title; ?></p>
 				</div>
 			</div>
 			<div class="row">

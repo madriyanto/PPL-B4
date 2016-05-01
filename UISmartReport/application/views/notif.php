@@ -1,7 +1,10 @@
 	<style>
 	  body {
 	    background-color: #E4E4E4;
-	    font-family: Verdana, Geneva, sans-serif;
+	    
+	  }
+	  .divText{
+	  	font-family: Verdana, Geneva, sans-serif;
 		font-size: 18px;
 	  }
 	  a {
@@ -203,10 +206,10 @@
 							echo "<div class=\"col-xs-1 col-sm-1 col-md-1\">";
 							echo "<img src=\"".$row->PictLink."\" class=\"img-rounded\" width=\"100%\">";
 							echo "</div>";
-							echo "<div class=\"col-xs-8 col-sm-8 col-md-8\">";
+							echo "<div class=\"col-xs-8 col-sm-8 col-md-8 divText\">";
 							echo $row->Name.' '.$row->Notes;
 							echo "</div>";
-							echo "<div class=\"col-xs-3 col-sm-3 col-md-3 text-right\">";
+							echo "<div class=\"col-xs-3 col-sm-3 col-md-3 text-right divText\">";
 							date_default_timezone_set("Asia/Jakarta");
 							$timestamp = mysql_to_unix($row->Timestamps);
 							$timespan = timespan($timestamp)." Ago";

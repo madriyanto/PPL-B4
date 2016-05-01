@@ -2,10 +2,14 @@
 	<style>
 		body {
 			background-color: #E4E4E4;
+			
+		}
+		
+		.divText {
 			font-family: Verdana, Geneva, sans-serif;
 			font-size: 18px;
 		}
-	
+
 		#mynavbar a{
 			color: #dfdbdb;
 		}
@@ -129,10 +133,10 @@
 			</div>
 			<div class="col-sm-7">
 				<div class="row">
-					<div class="col-sm-12"><?php echo $Name; ?></div>
+					<div class="col-sm-12 divText"><?php echo $Name; ?></div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12">to 
+					<div class="col-sm-12 divText"><?php echo "<img src=\"".base_url('assets/images/people.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?> 
 					<?php
 					$post_mentions = $this->Post_model->get_mentions($Id);
 					$is_mentioned = false;
@@ -152,24 +156,22 @@
 		</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12">
-						<button type="button" class="btn btn-default btn-sm"></button>&nbsp <?php echo $Title; ?>
+					<div class="col-sm-12 divText">
+						<?php echo "<img src=\"".base_url('assets/images/tool(2).png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?> <?php echo $Title; ?>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-2 text-right waktu"><?php echo $timespan; ?></div>
+			<div class="col-sm-2 text-right waktu divText"><?php echo $timespan; ?></div>
 		</div>
 		<br>
-		<div class="row post">
+		<div class="row post divText">
 			<?php echo $Data; ?>
 		</div>
 		<div class="row tombol">
-			<div class="col-sm-2 profpic"></div>
-			<div class="col-sm-7"></div>
-			<div class="col-sm-2 tombol">
+			<div class="col-sm-offset-7 col-sm-4 text-right tombol">
 				<?php if($is_editable) { ?>
-				<a href="<?php echo base_url('post/edit/'.$Id); ?>"><button type="button" id="editPost" class="btn btn-default btn-lg" title="Edit This Post"></button></a>
-				<button type="button" id="deletePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Delete This Post"></button>
+				<a href="<?php echo base_url('post/edit/'.$Id); ?>"><button type="button" id="editPost" class="btn btn-default btn-lg" title="Edit This Post"><?php echo "<img src=\"".base_url('assets/images/edit.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button></a>
+				<button type="button" id="deletePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Delete This Post"><?php echo "<img src=\"".base_url('assets/images/delete.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="deleteModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
@@ -193,7 +195,7 @@
 				</div>
 				<?php } ?>
 				<?php if($is_mentioned && !$IsPinned) { ?>
-				<button type="button" id="pinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Pin This Post"></button>
+				<button type="button" id="pinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Pin This Post"><?php echo "<img src=\"".base_url('assets/images/office-material.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="pinModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
@@ -216,7 +218,7 @@
 					</div>
 				</div>
 				<?php } else if ($is_mentioned && $IsPinned) { ?>
-				<button type="button" id="unpinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Unpin This Post"></button>
+				<button type="button" id="unpinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Unpin This Post"><?php echo "<img src=\"".base_url('assets/images/office-material.png')."\" class=\"img img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="unpinModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
@@ -240,7 +242,7 @@
 				</div>
 				<?php } ?>
 				<?php if ($is_mentioned) { ?>
-				<button type="button" id="closePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Close This Post"></button>
+				<button type="button" id="closePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Close This Post"><?php echo "<img src=\"".base_url('assets/images/tool.png')."\" class=\"img img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="closeModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
@@ -268,7 +270,7 @@
 	</div>
 	<div class="well">
 		<form role="form" action="<?php echo base_url('post/view/'.$Id); ?>" method="post" accept-charset="utf-8">
-			<div class="form-group">
+			<div class="form-group divText">
 				<label for="comment">Your Comment</label>
 				<textarea class="form-control" rows="4" id="comment" name="comment" required></textarea>
 				<br>
@@ -276,7 +278,7 @@
 			</div>
 		</form>
 		<hr width="100%">
-		<p><b>Last Comments</b></p>
+		<p class="divText"><b>Last Comments</b></p>
 		<?php
 		$comments = $this->Post_model->get_comments($Id);
 		foreach ($comments as $row) {
@@ -291,15 +293,15 @@
 			<div class="col-sm-2 profpic">
 				<img src="<?php echo $row->PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
 			</div>
-			<div class="col-sm-7">
+			<div class="col-sm-6">
 				<div class="row">
 					<div class="col-sm-12 lead"><?php echo $row->Name; ?></div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12"><?php echo $row->Data; ?></div>
+					<div class="col-sm-12 divText"><?php echo $row->Data; ?></div>
 				</div>
 			</div>
-			<div class="col-sm-2 text-right waktu"><?php echo $timespan; ?></div>
+			<div class="col-sm-3 text-right waktu divText"><?php echo $timespan; ?></div>
 		</div>
 		<?php } ?>
 	</div>
