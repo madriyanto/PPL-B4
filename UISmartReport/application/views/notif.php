@@ -116,6 +116,7 @@
 	      margin-bottom: 0px;
 	      bottom: 0;
 	      width: 100%;
+	      position: fixed;
 	  }
 	  .box-post {
 	    background-color: white;
