@@ -26,6 +26,7 @@
   #navbarbawah{
     margin-top: 20px;
     margin-bottom : 30px;
+    
   }
   #subnavbar{
     text-align: center;
@@ -75,8 +76,7 @@
     font-size: 25px;
   }
   .navbar-bottom{
-    margin-bottom: 0px;
-    position: fixed;
+    margin-bottom: 0px;    
   }
   
   @media screen and (min-width:768px){
@@ -111,7 +111,7 @@
     }
     
     .bagian-bawah{
-      margin-bottom: 15%; 
+      margin-bottom: 15%;       
     }
     #finalPost{
       width: 80%;
