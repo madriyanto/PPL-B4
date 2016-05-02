@@ -76,6 +76,7 @@
   }
   .navbar-bottom{
     margin-bottom: 0px;
+    position: fixed;
   }
   
   @media screen and (min-width:768px){
