@@ -76,15 +76,11 @@
     font-size: 25px;
   }
   .navbar-bottom{
-<<<<<<< HEAD
-    margin-bottom: 0px;    
-=======
     margin-bottom: 0px;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
->>>>>>> eddeaf28a4cbc74a92f87ef0a43c0a3114619e37
   }
   
   @media screen and (min-width:768px){
