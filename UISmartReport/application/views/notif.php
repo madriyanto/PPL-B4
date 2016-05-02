@@ -126,7 +126,7 @@
 	  }
 	  .divJenis {
 	    margin-bottom: 10px;
-	    background-color: #f0ad4e;
+	    background-color: #f0ad4e;	    
 	  }
 	  .unread {
 	  	background-color: white;
