@@ -291,7 +291,11 @@
 		</div>
 		<?php } ?>
 		<hr width="100%">
+		<?php if ($count_comment > 0) { ?>
 		<p class="divText"><b>Last Comments</b></p>
+		<?php } else { ?>
+		<p class="divText"><b>No comments yet.</b></p>
+		<?php } ?>
 		<?php
 		$comments = $this->Post_model->get_comments($Id);
 		foreach ($comments as $row) {

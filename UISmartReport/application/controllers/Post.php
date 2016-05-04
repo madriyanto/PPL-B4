@@ -45,6 +45,7 @@ class Post extends CI_Controller {
 				}
 				$data['isSPAcc'] = $this->session->userdata('SPAcc');
 				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+				$data['count_comment'] = $this->Post_model->count_comment($id);
 				$datahead['title'] = 'Post Detail';
 				$this->load->view('templates/header', $datahead);
 				$this->load->view('postview', $data);
@@ -92,6 +93,7 @@ class Post extends CI_Controller {
 				}
 				$data['isSPAcc'] = $this->session->userdata('SPAcc');
 				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+				$data['count_comment'] = $this->Post_model->count_comment($id);
 				$datahead['title'] = 'Post Detail';
 				$this->load->view('templates/header', $datahead);
 				$this->load->view('postview', $data);
