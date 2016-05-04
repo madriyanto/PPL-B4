@@ -284,14 +284,7 @@ class Post extends CI_Controller {
 									}
 								}
 							}
-							$data['error'] = 'Edit Success!';
-							$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
-							$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
-							$data['post_mentions'] = $this->Post_model->get_mentions($id);
-							$datahead['title'] = 'Edit Post';
-							$this->load->view('templates/header', $datahead);
-							$this->load->view('editview', $data);
-							$this->load->view('templates/footer');
+							redirect(base_url().'post/view/'.$id);
 						}
 					}
 				}

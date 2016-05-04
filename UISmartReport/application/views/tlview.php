@@ -237,7 +237,10 @@ $(document).ready(function(){
 			}
 ?>
 			<div class="row">
-				<div class="col-xs-offset-4 col-xs-8">
+				<div class="col-xs-4">
+					<h5><?php if ($row->IsPinned) { echo "<img src=\"".base_url('assets/images/office-material.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\" />";} ?></h5>
+				</div>
+				<div class="col-xs-8">
 					<h5 class="text-right"><?php echo $timespan; ?></h5>
 				</div>
 			</div>

@@ -169,7 +169,7 @@
 		</div>
 		<div class="row tombol">
 			<div class="col-sm-offset-7 col-sm-4 text-right tombol">
-				<?php if($is_editable) { ?>
+				<?php if($is_editable && $Status) { ?>
 				<a href="<?php echo base_url('post/edit/'.$Id); ?>"><button type="button" id="editPost" class="btn btn-default btn-lg" title="Edit This Post"><?php echo "<img src=\"".base_url('assets/images/edit.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button></a>
 				<button type="button" id="deletePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Delete This Post"><?php echo "<img src=\"".base_url('assets/images/delete.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="deleteModal" class="modal fade" role="dialog">
@@ -194,7 +194,7 @@
 					</div>
 				</div>
 				<?php } ?>
-				<?php if($is_mentioned && !$IsPinned) { ?>
+				<?php if($is_mentioned && !$IsPinned && $Status) { ?>
 				<button type="button" id="pinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Pin This Post"><?php echo "<img src=\"".base_url('assets/images/office-material.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="pinModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
@@ -217,7 +217,7 @@
 						</div>
 					</div>
 				</div>
-				<?php } else if ($is_mentioned && $IsPinned) { ?>
+				<?php } else if ($is_mentioned && $IsPinned && $Status) { ?>
 				<button type="button" id="unpinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Unpin This Post"><?php echo "<img src=\"".base_url('assets/images/office-material.png')."\" class=\"img img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="unpinModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
@@ -241,7 +241,7 @@
 					</div>
 				</div>
 				<?php } ?>
-				<?php if ($is_mentioned) { ?>
+				<?php if ($is_mentioned && $Status) { ?>
 				<button type="button" id="closePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Close This Post"><?php echo "<img src=\"".base_url('assets/images/tool.png')."\" class=\"img img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="closeModal" class="modal fade" role="dialog">
 					<div class="modal-dialog modal-lg">
@@ -251,12 +251,12 @@
 								<h4 class="modal-title">Confirmation</h4>
 							</div>
 							<div class="modal-body" style="text-align: left;">
-								<form role="form">
+								<form role="form" action="<?php echo base_url('post/close/'.$Id); ?>" method="post" accept-charset="utf-8">
 									<div class="form-group">
 										<label for="textarea">Are you sure you want to close this post?</label>
 									</div>
 									<div class="form-group">
-										<button type="button" class="btn btn-primary btn-lg" value="Yes">Yes</button>
+										<button type="submit" class="btn btn-primary btn-lg" value="Yes">Yes</button>
 										<button type="button" class="btn btn-danger btn-lg active" value="No" data-dismiss="modal">No</button>
 									</div>
 								</form>
@@ -269,6 +269,7 @@
 		</div>
 	</div>
 	<div class="well">
+		<?php if ($Status) { ?>
 		<form role="form" action="<?php echo base_url('post/view/'.$Id); ?>" method="post" accept-charset="utf-8">
 			<div class="form-group divText">
 				<label for="comment">Your Comment</label>
@@ -277,6 +278,11 @@
 				<button type="submit" class="btn btn-warning">Post Comment</button>
 			</div>
 		</form>
+		<?php } else { ?>
+		<div class="form-group divText">
+			This post has been closed.
+		</div>
+		<?php } ?>
 		<hr width="100%">
 		<p class="divText"><b>Last Comments</b></p>
 		<?php

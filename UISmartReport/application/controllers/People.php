@@ -25,7 +25,10 @@ class People extends CI_Controller {
 	public function view($id)
 	{
 		$session_id = $this->session->userdata('username');
-		if($id == $session_id) {
+		if(!isset($session_id)) {
+			redirect(base_url());
+		}
+		else if($id == $session_id) {
 			redirect('profile');
 		} else if(!$this->Loginsp_model->check_sp($id)) {
 			$data = $this->Loginuser_model->get_user($id);
