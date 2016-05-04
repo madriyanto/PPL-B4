@@ -164,6 +164,13 @@
 			<div class="col-sm-2 text-right waktu divText"><?php echo $timespan; ?></div>
 		</div>
 		<br>
+		<?php if ($Attachments != null) { ?>
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<img src="<?php echo $Attachments; ?>" class="img-rounded img-responsive"/>
+			</div>
+		</div>
+		<?php } ?>
 		<div class="row post divText">
 			<?php echo $Data; ?>
 		</div>

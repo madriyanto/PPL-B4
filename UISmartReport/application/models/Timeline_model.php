@@ -9,10 +9,10 @@ class Timeline_model extends CI_Model {
 		public function retrieve_posts($page)
 		{
 			if ($page > 1) {
-				$query = $this->db->query('select * from POST A, ACCOUNT B where A.OwnerId=B.Username order by IsPinned desc, Id desc limit '.(($page * 9) - 8).', 9;');
+				$query = $this->db->query('select * from POST A, ACCOUNT B where A.OwnerId=B.Username and Status="1" order by IsPinned desc, Id desc limit '.(($page * 9) - 8).', 9;');
 				return $query->result();
 			} else {
-				$query = $this->db->query('select * from POST A, ACCOUNT B where A.OwnerId=B.Username order by IsPinned desc, Id desc limit '.(($page * 9) - 9).', 9;');
+				$query = $this->db->query('select * from POST A, ACCOUNT B where A.OwnerId=B.Username and Status="1" order by IsPinned desc, Id desc limit '.(($page * 9) - 9).', 9;');
 				return $query->result();
 			}
 		}
