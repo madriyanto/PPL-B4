@@ -117,7 +117,7 @@
 	      bottom: 0;
 	      left: 0;
 	      width: 100%;
-	      position: fixed;
+	      position: absolute;
 	  }
 	  .box-post {
 	    background-color: white;
