@@ -29,4 +29,16 @@ class Notifications extends CI_Controller {
 			redirect(base_url());
 		}
 	}
+
+	public function markallasread()
+	{
+		$session_id = $this->session->userdata('username');
+		if(isset($session_id)) {
+			$this->Notification_model->mark_all_as_read($session_id);
+			redirect(base_url('notifications'));
+		}
+		else {
+			redirect(base_url());
+		}
+	}
 }

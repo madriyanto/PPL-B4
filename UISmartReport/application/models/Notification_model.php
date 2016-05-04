@@ -47,4 +47,9 @@ class Notification_model extends CI_Model {
 		{
 	        $query = $this->db->query('update NOTIFICATION set Status="0" where Dest="'.$username.'" and PostId="'.$post_id.'";');
 		}
+
+		public function mark_all_as_read($username)
+		{
+	        $query = $this->db->query('update NOTIFICATION set Status="0" where Dest="'.$username.'";');
+		}
 }

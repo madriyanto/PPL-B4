@@ -193,9 +193,16 @@
 	  </div>
 	</div>
 	<!-- End of Logout Modal-->
+	<div class="">
+		<div class="col-xs-offset-1 col-xs-7 col-sm-offset-1 col-sm-7 col-md-offset-1 col-md-7">
+			<h3><b>Notifications</b></h3>
+		</div>
+		<div class="col-xs-3 col-sm-3 col-md-3 text-right">
+			<a href="<?php echo base_url('notifications/markallasread'); ?>"><button type="button" class="btn btn-default btn-lg" title="Mark all as read">Mark all as read</button></a>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="divNotif">
-			<h3><b>Notification</b></h3>
 					<?php
 						foreach($notif as $row) {
 							echo "<div class=\"row\">";
