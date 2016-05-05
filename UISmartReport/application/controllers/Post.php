@@ -40,16 +40,23 @@ class Post extends CI_Controller {
 			if ($this->form_validation->run() == FALSE)
 			{
 				$data = $this->Post_model->get_post($id);
-				if ($data == null || !$data['IsViewable']) {
+				if ($data == null) {
 					redirect(base_url());
+				} else if (!$data['IsViewable']) {
+					$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+					$datahead['title'] = 'Post Has Been Blocked';
+					$this->load->view('templates/header', $datahead);
+					$this->load->view('blockedpost', $data);
+					$this->load->view('templates/footer');
+				} else {
+					$data['isSPAcc'] = $this->session->userdata('SPAcc');
+					$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+					$data['count_comment'] = $this->Post_model->count_comment($id);
+					$datahead['title'] = 'Post Detail';
+					$this->load->view('templates/header', $datahead);
+					$this->load->view('postview', $data);
+					$this->load->view('templates/footer');
 				}
-				$data['isSPAcc'] = $this->session->userdata('SPAcc');
-				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
-				$data['count_comment'] = $this->Post_model->count_comment($id);
-				$datahead['title'] = 'Post Detail';
-				$this->load->view('templates/header', $datahead);
-				$this->load->view('postview', $data);
-				$this->load->view('templates/footer');
 			}
 			else
 			{
@@ -388,7 +395,7 @@ class Post extends CI_Controller {
 		}
 		else
 		{
-			$this->Post_model->close_post($id);
+			$this->Post_model->close_post($id, $this->input->post('isViewable'));
 			$newdata = array(
 				'Dest'  => $data['OwnerId'],
 				'Origins' => $session_id,

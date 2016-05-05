@@ -95,9 +95,9 @@ class Post_model extends CI_Model {
 			$query = $this->db->query('update POST set IsPinned="0" where Id="'.$post_id.'";');
 		}
 
-		public function close_post($post_id)
+		public function close_post($post_id, $is_viewable)
 		{
-			$query = $this->db->query('update POST set Status="0" where Id="'.$post_id.'";');
+			$query = $this->db->query('update POST set Status="0", IsViewable='.$is_viewable.' where Id="'.$post_id.'";');
 		}
 
 		public function edit_post($data, $id)

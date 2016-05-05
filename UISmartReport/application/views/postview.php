@@ -264,11 +264,26 @@
 							<div class="modal-body" style="text-align: left;">
 								<form role="form" action="<?php echo base_url('post/close/'.$Id); ?>" method="post" accept-charset="utf-8">
 									<div class="form-group">
-										<label for="textarea">Are you sure you want to close this post?</label>
+										<label for="textarea">What is the reason for this post to be closed?</label>
 									</div>
 									<div class="form-group">
-										<button type="submit" class="btn btn-primary btn-lg" value="Yes">Yes</button>
-										<button type="button" class="btn btn-danger btn-lg active" value="No" data-dismiss="modal">No</button>
+										<label class="radio-inline">
+											<input type="radio" name="isViewable" id="inlineRadio1" value="1" required> Problem has been solved
+										</label>
+									</div>
+									<div class="form-group">
+										<label class="radio-inline">
+											<input type="radio" name="isViewable" id="inlineRadio2" value="0"> Contains one (or more) of these.
+											<ul>
+												<li>Racism</li>
+												<li>Hate Speech</li>
+												<li>Pornography</li>
+											</ul>
+										</label>
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary btn-lg" value="Close">Close</button>
+										<button type="button" class="btn btn-danger btn-lg active" value="Cancel" data-dismiss="modal">Cancel</button>
 									</div>
 								</form>
 							</div>
