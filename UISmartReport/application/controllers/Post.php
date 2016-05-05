@@ -70,8 +70,9 @@ class Post extends CI_Controller {
 					$this->Notification_model->insert($newdata2);
 				}
 				$mentions = $this->Post_model->get_mentions($id);
+				$is_mentioned = false;
 				foreach ($mentions as $row) {
-					if ($session_id != $row->Username || $data['OwnerId'] != $row->Username) {
+					if ($session_id != $row->Username && $data['OwnerId'] != $row->Username) {
 						$newdata2 = array(
 							'Dest'  => $row->Username,
 							'Origins' => $session_id,
@@ -79,11 +80,12 @@ class Post extends CI_Controller {
 							'NotesId' => 7
 						);
 						$this->Notification_model->insert($newdata2);
+						$is_mentioned = true;
 					}
 				}
 				$commenters = $this->Post_model->get_commenters($id, $session_id);
 				foreach ($commenters as $row) {
-					if ($data['OwnerId'] != $row->Origins) {
+					if ($data['OwnerId'] != $row->Origins && !$is_mentioned) {
 						$newdata3 = array(
 							'Dest'  => $row->Origins,
 							'Origins' => $session_id,

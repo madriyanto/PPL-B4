@@ -178,13 +178,15 @@ class Timeline extends CI_Controller {
 								);
 								$this->Post_model->insert_mention($newdata2);
 								
-								$newdata3 = array(
-									'Dest'  => $mention,
-									'Origins' => $session_id,
-									'PostId'  => $this->Post_model->get_lastest_post_id(),
-									'NotesId' => 2
-								);
-								$this->Notification_model->insert($newdata3);
+								if($mention != $session_id) {
+									$newdata3 = array(
+										'Dest'  => $mention,
+										'Origins' => $session_id,
+										'PostId'  => $this->Post_model->get_lastest_post_id(),
+										'NotesId' => 2
+									);
+									$this->Notification_model->insert($newdata3);
+								}
 							}
 						}
 					}
