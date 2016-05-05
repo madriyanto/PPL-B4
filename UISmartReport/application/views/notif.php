@@ -214,7 +214,11 @@
 							}
 							echo "<div class=\"row\">";
 							echo "<div class=\"col-xs-1 col-sm-1 col-md-1\">";
-							echo "<img src=\"".$row->PictLink."\" class=\"img-rounded\" width=\"100%\">";
+							if($row->PictLink != null) {
+								echo "<img src=\"".$row->PictLink."\" class=\"img-rounded\" width=\"100%\">";
+							} else {
+								echo "<img src=\"".base_url('assets/images/makara.png')."\" class=\"img-rounded\" width=\"100%\">";
+							}
 							echo "</div>";
 							echo "<div class=\"col-xs-8 col-sm-8 col-md-8 divText\">";
 							echo $row->Name.' '.$row->Notes;

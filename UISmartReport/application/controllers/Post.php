@@ -83,13 +83,15 @@ class Post extends CI_Controller {
 				}
 				$commenters = $this->Post_model->get_commenters($id, $session_id);
 				foreach ($commenters as $row) {
-					$newdata3 = array(
-						'Dest'  => $row->Origins,
-						'Origins' => $session_id,
-						'PostId'  => $id,
-						'NotesId' => 6
-					);
-					$this->Notification_model->insert($newdata3);
+					if ($data['OwnerId'] != $row->Origins) {
+						$newdata3 = array(
+							'Dest'  => $row->Origins,
+							'Origins' => $session_id,
+							'PostId'  => $id,
+							'NotesId' => 6
+						);
+						$this->Notification_model->insert($newdata3);
+					}
 				}
 				$data['isSPAcc'] = $this->session->userdata('SPAcc');
 				$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));

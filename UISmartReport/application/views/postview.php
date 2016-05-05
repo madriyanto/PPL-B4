@@ -129,7 +129,11 @@
 			}
 			?>
 			<div class="col-sm-2 profpic">
-				<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+				<?php if ($PictLink != null) { ?>
+				<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+				<?php } else { ?>
+				<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+				<?php } ?>
 			</div>
 			<div class="col-sm-7">
 				<div class="row">
@@ -308,7 +312,11 @@
 		?>
 		<div class="row comment">
 			<div class="col-sm-2 profpic">
-				<img src="<?php echo $row->PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150"> 
+				<?php if ($row->PictLink != null) { ?>
+				<img src="<?php echo $row->PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+				<?php } else { ?>
+				<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
+				<?php } ?>
 			</div>
 			<div class="col-sm-6">
 				<div class="row">
