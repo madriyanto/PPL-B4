@@ -238,15 +238,15 @@
   </div>
 
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
+    <div class="col-md-3" id="subnavbar"><p id="tujuan">About</p></div>
     <?php
     if($Username == $this->session->userdata('username')) {
-      $about_url = base_url('profile/');
+      $post_url = base_url('profile/posts/');
     } else {
-      $about_url = base_url('people/view/'.$Username);
+      $post_url = base_url('people/posts/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
-    <div class="col-md-3" id="subnavbar"><p id="tujuan">Post</p></div>
+    <div class="col-md-3" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
     <?php
     if($Username == $this->session->userdata('username')) {
       $pinned_url = base_url('profile/pinned');
@@ -267,112 +267,11 @@
 
 </div>
 
-<?php
-  $i = 1;
-  $last_page = false;
-  foreach ($timeline as $row) {
-    if ($row->Status) {
-      date_default_timezone_set("Asia/Jakarta");
-      $timestamp = mysql_to_unix($row->Timestamp);
-      $timespan = timespan($timestamp)." Ago";
-
-      if ((now() - $timestamp) >= (24*60*60)) {
-        $timespan = date('F d, Y', $timestamp);
-      }
-    
-      if ($i % 3 == 1) {
-        echo "<div class=\"row\">";
-        echo "<div class=\"col-xs-offset-1 col-xs-11 col-sm-offset-1 col-sm-11 col-md-offset-1 col-md-10\">";
-        echo "<div class=\"row\">";
-        echo "<div class=\"col-md-4\">";
-        echo "<div class=\"row\">";
-        echo "<div class=\"col-xs-12 col-sm-12 col-md-12 box-post\">";
-      } else {
-        echo "<div class=\"col-md-4\">";
-        echo "<div class=\"row\">";
-        echo "<div class=\"col-xs-12 col-sm-12 col-md-12 box-post\">";
-      }
-?>
-      <div class="row">
-        <div class="col-xs-offset-4 col-xs-8">
-          <h5 class="text-right"><?php echo $timespan; ?></h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="image">
-            <?php if ($row->PictLink == null || ($row->IsAnonymous && !$isSPAcc)) { ?>
-            <img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img img-rounded img-responsive" alt="Cinque Terre"> 
-            <?php } else { ?>
-            <img src="<?php echo $row->PictLink; ?>" class="img img-rounded img-responsive" alt="Cinque Terre">
-            <?php } ?>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <?php if ($row->IsAnonymous && ($this->session->userdata['admin'] || $row->OwnerId == $this->session->userdata['username'])) { ?>
-          <h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
-          <?php } else if ($row->IsAnonymous) { ?>
-          <h5>Anonymous</h5>
-          <?php } else { ?>
-          <h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
-          <?php } ?>
-          <p>To:<br/>
-          <?php $post_mentions = $this->Post_model->get_mentions($row->Id);
-          foreach ($post_mentions as $row2){
-            echo "<a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a><br/>";
-          } ?></p>
-          <p><?php echo $row->Title; ?></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-          <?php if ($row->Attachments != null) { ?>
-          <img src="<?php echo $row->Attachments; ?>" class="img-rounded center-block img-responsive" alt="Cinque Terre">
-          <?php } ?>
-          <p>
-            <?php
-              if (strlen($row->Data) <= 200) {
-                echo $row->Data;
-              } else {
-                echo substr($row->Data, 0, 200).'... <a href="'.base_url('post/view/'.$row->Id).'">see more</a>';
-              }
-            ?>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
-          <h5><?php if ($this->Post_model->count_comment($row->Id) > 1) { echo $this->Post_model->count_comment($row->Id); ?> Comments<?php } else { echo $this->Post_model->count_comment($row->Id); ?> Comment<?php } ?></h5>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6">
-          <h5 class="text-right"><a href="<?php echo base_url('post/view/'.$row->Id); ?>">View Details</a></h5>
-        </div>
-      </div>
-    </div>
-    </div>
-    </div>
-<?php 
-      if ($i % 3 == 0) {
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-      }
-      
-      if ($row->Id == $this->Post_model->get_first_post_id()) {
-        $last_page = true;
-      }
-      $i++;
-    }
-  }
-  if ($i-1 % 3 != 0) {
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-  }
-  if($i-1 <= 3) {
-    echo "</div>";
-  }
-?>
+<div class="row">
+	<div class="col-md-offset-1 col-md-10">
+		<?php echo $About; ?>
+	</div>
+</div>
 
 <div class="bagian-bawah">
   

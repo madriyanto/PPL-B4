@@ -17,7 +17,35 @@ class Profile extends CI_Controller {
 		$this->load->model('Profile_model');
     }
 
-	public function index()
+    public function index()
+	{
+		$session_id = $this->session->userdata('username');
+		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
+			$data = $this->Loginuser_model->get_user($session_id);
+			$data['isSPAcc'] = $this->session->userdata('SPAcc');
+			$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+			$data['count_posts'] = $this->Post_model->count_posts($this->session->userdata('username'));
+			$datahead['title'] = 'Profile';
+			$this->load->view('templates/header', $datahead);
+			$this->load->view('profil_user_biasa', $data);
+			$this->load->view('templates/footer');
+		} else if(isset($session_id)) {
+			$data = $this->Loginsp_model->get_user($session_id);
+			$data['isSPAcc'] = $this->session->userdata('SPAcc');
+			$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+			$data['count_posts'] = $this->Post_model->count_posts($this->session->userdata('username'));
+			$data['count_closed_posts'] = $this->Post_model->count_closed_posts($this->session->userdata('username'));
+			$datahead['title'] = 'Profile';
+			$this->load->view('templates/header', $datahead);
+			$this->load->view('profil_about', $data);
+			$this->load->view('templates/footer');
+		}
+		else {
+			redirect(base_url());
+		}
+	}
+
+	public function posts()
 	{
 		$session_id = $this->session->userdata('username');
 		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {

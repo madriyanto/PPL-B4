@@ -207,12 +207,20 @@
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
     <?php
     if($Username == $this->session->userdata('username')) {
-      $post_url = base_url('profile/');
+      $about_url = base_url('profile/');
     } else {
-      $post_url = base_url('people/view/'.$Username);
+      $about_url = base_url('people/view/'.$Username);
     }
     ?>
-    <div class="col-md-4" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    <div class="col-md-3" id="subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
+    <?php
+    if($Username == $this->session->userdata('username')) {
+      $post_url = base_url('profile/posts/');
+    } else {
+      $post_url = base_url('people/posts/'.$Username);
+    }
+    ?>
+    <div class="col-md-3" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
     <?php
     if($Username == $this->session->userdata('username')) {
       $pinned_url = base_url('profile/pinned/');
@@ -220,8 +228,8 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
-    <div class="col-md-4" id="subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
-    <div class="col-md-4" id="subnavbar"><p id="tujuan">Mention</p></div>
+    <div class="col-md-3" id="subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
+    <div class="col-md-3" id="subnavbar"><p id="tujuan">Mention</p></div>
   </div>
 
   <div class="col-md-offset-1 col-md-10" id="search-content">
