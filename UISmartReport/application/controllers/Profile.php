@@ -22,6 +22,8 @@ class Profile extends CI_Controller {
 		$session_id = $this->session->userdata('username');
 		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
 			$data = $this->Loginuser_model->get_user($session_id);
+			$data['timeline'] = $this->Profile_model->retrieve_posts($session_id);
+			$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
 			$data['isSPAcc'] = $this->session->userdata('SPAcc');
 			$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
 			$data['count_posts'] = $this->Post_model->count_posts($this->session->userdata('username'));
@@ -49,16 +51,7 @@ class Profile extends CI_Controller {
 	{
 		$session_id = $this->session->userdata('username');
 		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
-			$data = $this->Loginuser_model->get_user($session_id);
-			$data['timeline'] = $this->Profile_model->retrieve_posts($session_id);
-			$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
-			$data['isSPAcc'] = $this->session->userdata('SPAcc');
-			$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
-			$data['count_posts'] = $this->Post_model->count_posts($this->session->userdata('username'));
-			$datahead['title'] = 'Profile';
-			$this->load->view('templates/header', $datahead);
-			$this->load->view('profil_user_biasa', $data);
-			$this->load->view('templates/footer');
+			redirect(base_url('profile'));
 		} else if(isset($session_id)) {
 			$data = $this->Loginsp_model->get_user($session_id);
 			$data['timeline'] = $this->Profile_model->retrieve_posts($session_id);
