@@ -70,6 +70,11 @@
 	  .row{
 	    margin-right: 0px;
 	  }
+	  .navbar-bottom {
+	      margin-bottom: 0px;
+	      bottom: 0;
+	      width: 100%;
+	  }
 	  @media screen and (max-width:1000px){
 	    .form-control{
 	      width: 90%;
@@ -111,13 +116,6 @@
 	    #search-input input{
 	      width: 60%;
 	    }
-	  }
-	  .navbar-bottom {
-	      margin-bottom: 0px;
-	      bottom: 0;
-	      left: 0;
-	      width: 100%;
-	      position: absolute;
 	  }
 	  .box-post {
 	    background-color: white;
