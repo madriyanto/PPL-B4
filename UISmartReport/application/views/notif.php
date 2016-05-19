@@ -130,7 +130,7 @@
 	  	background-color: white;
 	  }
 	  .read {
-	  	background-color: #f5f5f5;
+	  	background-color: #E4E4E4;
 	  }
 	  .image {
 		position: relative;
