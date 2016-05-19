@@ -74,8 +74,10 @@
     top: 2px;
     font-size: 25px;
   }
-  .navbar-bottom{
-    margin-bottom: 0px;
+  .navbar-bottom {
+	    margin-bottom: 0px;
+	    bottom: 0;
+	    width: 100%;
   }
   
   @media screen and (min-width:768px){
