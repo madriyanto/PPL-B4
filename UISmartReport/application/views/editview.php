@@ -28,6 +28,7 @@
 	  	}
 	</style>
 	<script>
+		//Script ini berisikan fungsi-fungsi untuk Meng-enable fitur Bootstrap-Tokenfield pada Form Input untuk Tujuan Post (akan memunculkan beberapa Organisasi Tujuan Post yang ada)
 		$(document).ready(function(){
 			$('#mention').tokenfield({
 				autocomplete: {
@@ -109,30 +110,38 @@
 		<?php echo $error; ?>
 
 		<?php echo form_open_multipart('post/edit/'.$Id); ?>
+		<!--Form untuk Mengedit suatu Post-->
 		<form role="form">
+			<!--Input untuk Judul Event-->
 			<div class="form-group">
 				<label for="text">Event:</label>
 				<input type="text" class="form-control" id="title" name="title" placeholder="Enter event" value="<?php echo $Title; ?>" required>
 			</div>
+			<!--Input untuk Deskripsi/Isi dari Post-->
 			<div class="form-group">
 				<label for="textarea">Description:</label>
 				<textarea class="form-control" id="post" name="post" rows="6" placeholder="Enter your post description" required><?php echo $Data; ?></textarea>
 			</div>
+			<!--Input untuk Tujuan Organisasi dari Post-->
 			<div class="form-group">
 				<label for="text">To:</label>
 				<input type="text" class="form-control" id="mention" name="mention" placeholder="To Organization" required>
 			</div>
+			<!--Checkbox untuk menentukan Post menjadi Anonymous atau Tidak-->
 			<div class="form group">
 				<input type="checkbox" id="anonymous" name="anonymous" value="true" <?php if($IsAnonymous) echo "checked"; ?>> Anonymous
 			</div>
 			<br>
+			<!--Upload Opsional berupa File pada Post-->
 			<div class="form group">
 				<input type="file" id="userfile" name="userfile" value="<?php echo $Attachments; ?>">
 			</div><br>
+			<!--Tombol-Tombol untuk Men-submit Edit untuk Post atau Batal(Kembali ke Halaman Sebelumnya)-->
 			<div class="form group tombol">
 				<button type="submit" class="btn btn-primary btn-lg" value="Submit">Edit Post</button>
 				<a href="<?php echo base_url('post/view/'.$Id); ?>"><button type="button" class="btn btn-danger btn-lg" value="Batal">Kembali ke Halaman Sebelumnya</button></a>
 			</div>
 		</form>
+		<!--Akhir bagian dari Form untuk Mengedit suatu Post-->
 	</div>
 </div>
