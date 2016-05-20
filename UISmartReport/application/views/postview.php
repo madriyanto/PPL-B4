@@ -44,15 +44,23 @@
 	<script>
 		$(document).ready(function(){
 			$('[data-toggle="tooltip"]').tooltip();  
+			
+			//Memunculkan modal untuk menghapus suatu Post
 			$("#deletePost").click(function(){
 				$("#deleteModal").modal();
 			});
+			
+			//Memunculkan modal untuk mem-Pin suatu Post
 			$("#pinPost").click(function(){
 				$("#pinModal").modal();
 			});
+			
+			//Memunculkan modal untuk meng-Unpin suatu Post
 			$("#unpinPost").click(function(){
 				$("#unpinModal").modal();
 			});
+			
+			//Memunculkan modal untuk meng-Close suatu Post
 			$("#closePost").click(function(){
 				$("#closeModal").modal();
 			});
@@ -106,6 +114,7 @@
 	<div class="well">
 		<div class="row">
 			<?php
+			//Menentukan durasi waktu sejak suatu Post Dipublish
 			date_default_timezone_set("Asia/Jakarta");
 			$timestamp = mysql_to_unix($Timestamp);
 			$timespan = timespan($timestamp)." Ago";
@@ -114,6 +123,7 @@
 				$timespan = date('F d, Y', $timestamp);
 			}
 
+			//Menentukan apakah Post tersebut dapat di-Edit atau Tidak (tidak boleh melebihi 30 menit sejak Post Dipublish
 			$is_editable = false;
 			if ($this->session->userdata('username') == $OwnerId) {
 				if (substr_count($timespan, "Day") == 0 && substr_count($timespan, "Days") == 0) {
@@ -127,6 +137,8 @@
 				}
 			}
 			?>
+			
+			<!--Div untuk memunculkan Profile Picture dari Akun yang membuat Post tersebut-->
 			<div class="col-sm-2 profpic">
 				<?php if ($PictLink != null) { ?>
 				<img src="<?php echo $PictLink; ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
@@ -134,6 +146,8 @@
 				<img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="150" height="150">
 				<?php } ?>
 			</div>
+			
+			<!--Div untuk memunculkan Akun yang Mem-Post serta Tujuan Post tersebut-->
 			<div class="col-sm-7">
 				<div class="row">
 					<div class="col-sm-12 divText"><?php echo $Name; ?></div>
@@ -156,7 +170,7 @@
 						}
 					}
 					?>
-		</div>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-12 divText">
@@ -167,6 +181,8 @@
 			<div class="col-sm-2 text-right waktu divText"><?php echo $timespan; ?></div>
 		</div>
 		<br>
+		
+		<!--Div-div yang memuat isi dari Post serta Attachment File di dalamnya (jika ada)-->
 		<?php if ($Attachments != null) { ?>
 		<div class="row">
 			<div class="col-sm-offset-3 col-sm-6">
@@ -177,8 +193,12 @@
 		<div class="row post divText">
 			<?php echo $Data; ?>
 		</div>
+		
+		<!--Div yang memuat tombol untuk Delete, Pin/Unpin, atau Close suatu Post-->
 		<div class="row tombol">
 			<div class="col-sm-offset-7 col-sm-4 text-right tombol">
+			
+				<!--Bagian memunculkan konfirmasi untuk men-Delete Suatu Post-->
 				<?php if($is_editable && $Status) { ?>
 				<a href="<?php echo base_url('post/edit/'.$Id); ?>"><button type="button" id="editPost" class="btn btn-default btn-lg" title="Edit This Post"><?php echo "<img src=\"".base_url('assets/images/edit.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button></a>
 				<button type="button" id="deletePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Delete This Post"><?php echo "<img src=\"".base_url('assets/images/delete.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
@@ -204,6 +224,8 @@
 					</div>
 				</div>
 				<?php } ?>
+				
+				<!--Bagian memunculkan konfirmasi untuk mem-Pin Suatu Post-->
 				<?php if($is_mentioned && !$IsPinned && $Status) { ?>
 				<button type="button" id="pinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Pin This Post"><?php echo "<img src=\"".base_url('assets/images/office-material.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="pinModal" class="modal fade" role="dialog">
@@ -227,6 +249,8 @@
 						</div>
 					</div>
 				</div>
+				
+				<!--Bagian memunculkan konfirmasi untuk meng-Unpin Suatu Post-->
 				<?php } else if ($is_mentioned && $IsPinned && $Status) { ?>
 				<button type="button" id="unpinPost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Unpin This Post"><?php echo "<img src=\"".base_url('assets/images/office-material.png')."\" class=\"img img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="unpinModal" class="modal fade" role="dialog">
@@ -251,6 +275,8 @@
 					</div>
 				</div>
 				<?php } ?>
+				
+				<!--Bagian memunculkan konfirmasi untuk meng-Close Suatu Post-->
 				<?php if ($is_mentioned && $Status) { ?>
 				<button type="button" id="closePost" class="btn btn-default btn-lg" data-toggle="tooltip" title="Close This Post"><?php echo "<img src=\"".base_url('assets/images/tool.png')."\" class=\"img img-rounded\" width=\"15px\" height=\"15px\">"; ?></button>
 				<div id="closeModal" class="modal fade" role="dialog">
@@ -294,6 +320,8 @@
 		</div>
 	</div>
 	<div class="well">
+	
+		<!--Bagian untuk menampilkan Form untuk memberikan comment pada Suatu Post (tidak muncul jika Post telah di-Closed)-->
 		<?php if ($Status) { ?>
 		<form role="form" action="<?php echo base_url('post/view/'.$Id); ?>" method="post" accept-charset="utf-8">
 			<div class="form-group divText">
@@ -307,6 +335,8 @@
 		<div class="form-group divText">
 			This post has been closed.
 		</div>
+		
+		<!--Bagian untuk menampilkan daftar komentar-komentar terbaru dari Akun Lain pada Post tersebut yang diurut berdasar waktu terbaru-->
 		<?php } ?>
 		<hr width="100%">
 		<?php if ($count_comment > 0) { ?>
