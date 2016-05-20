@@ -249,6 +249,7 @@
     }
     ?>
     <div class="col-md-3" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
       $pinned_url = base_url('profile/pinned');
@@ -265,6 +266,7 @@
     }
     ?>
     <div class="col-md-3" id="subnavbar"><a href="<?php echo $mention_url; ?>">Mention</a></div>
+    <?php } ?>
   </div>
 
 </div>

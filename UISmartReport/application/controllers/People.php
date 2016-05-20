@@ -82,7 +82,7 @@ class People extends CI_Controller {
 	public function pinned($id)
 	{
 		$session_id = $this->session->userdata('username');
-		if(isset($session_id) && $this->Loginsp_model->check_sp($id) && $session_id != $id) {
+		if(isset($session_id) && $this->Loginsp_model->check_sp($id) && $session_id != $id && $this->session->userdata('admin')) {
 			$data = $this->Loginsp_model->get_user($id);
 			$data['timeline'] = $this->Profile_model->retrieve_pinned_posts($id);
 			$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
@@ -102,7 +102,7 @@ class People extends CI_Controller {
 	public function mention($id)
 	{
 		$session_id = $this->session->userdata('username');
-		if(isset($session_id) && $this->Loginsp_model->check_sp($id) && $session_id != $id) {
+		if(isset($session_id) && $this->Loginsp_model->check_sp($id) && $session_id != $id && $this->session->userdata('admin')) {
 
 			$this->load->helper(array('form', 'url'));
 

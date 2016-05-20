@@ -8,7 +8,7 @@ class Notification_model extends CI_Model {
 
         public function get($username)
 		{
-	        $query = $this->db->query('select * from NOTIFICATION A, NOTES B, ACCOUNT C where A.NotesId=B.Id and A.Origins=C.Username and A.Dest="'.$username.'" order by Status desc, A.Id desc;');
+	        $query = $this->db->query('select * from NOTIFICATION A, NOTES B, ACCOUNT C where A.NotesId=B.Id and A.Origins=C.Username and A.Dest="'.$username.'" order by A.Id desc;');
 	        return $query->result();
 		}
 

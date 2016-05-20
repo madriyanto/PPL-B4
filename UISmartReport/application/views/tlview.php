@@ -79,7 +79,9 @@ $(document).ready(function(){
 			<?php
 				echo "source: [";
 				foreach ($mention as $row){
-					echo '{label: \''.$row->Name.'\', value: \''.$row->Username.'\'}, ';
+					if(substr_count($row->Username, "admin") == 0) {
+						echo '{label: \''.$row->Name.'\', value: \''.$row->Username.'\'}, ';
+					}
 				}
 				echo "],";
 			?>
