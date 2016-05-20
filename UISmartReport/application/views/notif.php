@@ -75,6 +75,16 @@
 	      bottom: 0;
 	      width: 100%;
 	  }
+
+	  @media screen and (max-width:728px){
+		  .divText{
+		  	font-family: Verdana, Geneva, sans-serif;
+			font-size: 14px;
+		  }
+		  .headNotif{
+		  	font-size: 16px;
+		  }
+	  }
 	  @media screen and (max-width:1000px){
 	    .form-control{
 	      width: 90%;
@@ -191,16 +201,16 @@
 	  </div>
 	</div>
 	<!-- End of Logout Modal-->
-	<div class="">
-		<div class="col-xs-offset-1 col-xs-7 col-sm-offset-1 col-sm-7 col-md-offset-1 col-md-7">
-			<h3><b>Notifications</b></h3>
+	<div class="row">
+		<div class="col-xs-offset-1 col-xs-5 col-sm-offset-1 col-sm-5 col-md-offset-1 col-md-7">
+			<h3 class="headNotif"><b>Notifications</b></h3>
 		</div>
-		<div class="col-xs-3 col-sm-3 col-md-3 text-right">
-			<a href="<?php echo base_url('notifications/markallasread'); ?>"><button type="button" class="btn btn-default btn-lg" title="Mark all as read">Mark all as read</button></a>
+		<div class="col-xs-6 col-sm-6 col-md-3 text-right">
+			<a href="<?php echo base_url('notifications/markallasread'); ?>" class="headNotif"><button type="button" class="btn btn-default btn-md" title="Mark all as read">Mark all as read</button></a>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="divNotif">
+		<div class="col-xs-offset-1 col-xs-11 col-sm-offset-1 col-sm-11 col-md-offset-1 col-md-10" id="divNotif">
 					<?php
 						foreach($notif as $row) {
 							echo "<div class=\"row\">";
@@ -211,17 +221,17 @@
 								echo " read\">";
 							}
 							echo "<div class=\"row\">";
-							echo "<div class=\"col-xs-1 col-sm-1 col-md-1\">";
+							echo "<div class=\"hidden-xs hidden-sm col-md-1\">";
 							if($row->PictLink != null) {
 								echo "<img src=\"".$row->PictLink."\" class=\"img-rounded\" width=\"100%\">";
 							} else {
 								echo "<img src=\"".base_url('assets/images/makara.png')."\" class=\"img-rounded\" width=\"100%\">";
 							}
 							echo "</div>";
-							echo "<div class=\"col-xs-8 col-sm-8 col-md-8 divText\">";
+							echo "<div class=\"col-xs-7 col-sm-7 col-md-8 divText\">";
 							echo $row->Name.' '.$row->Notes;
 							echo "</div>";
-							echo "<div class=\"col-xs-3 col-sm-3 col-md-3 text-right divText\">";
+							echo "<div class=\"col-xs-5 col-sm-5 col-md-3 text-right divText\">";
 							date_default_timezone_set("Asia/Jakarta");
 							$timestamp = mysql_to_unix($row->Timestamps);
 							$timespan = timespan($timestamp)." Ago";
