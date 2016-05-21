@@ -27,7 +27,15 @@
     margin-top: 20px;
     margin-bottom : 30px;
   }
-  #subnavbar{
+  #special{
+  	background-color: #8D8D8D;
+  }
+  #tujuan{
+  	color: white;
+  	text-decoration: underline;
+  }
+  
+  .subnavbar{
     text-align: center;
     padding-top: 5px;
     font-size: 22px;
@@ -52,11 +60,11 @@
     background-color: white;
     color: black;
     border-style: none;
-    height: 160px;
+    height: 165px;
     border-radius: 10px;
   }
   #kotakBO{
-    top:50px;
+    top:25px;
   }
   .anonim{
     margin-left: 100px;
@@ -120,7 +128,7 @@
       margin-bottom: 10px;
       height: 250px;
     }
-    #subnavbar{
+    .subnavbar{
       width: 85%;
       left: 8%;
       border-radius: 5px;
@@ -128,7 +136,7 @@
       font-size: 16px;
     }
     #navbarbawah{
-      margin-top: 10px;
+      margin-top: 0px;
       margin-bottom: 30px;
     }
     #totalMention{
@@ -208,21 +216,23 @@
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
     <?php
     if($Username == $this->session->userdata('username')) {
-      $about_url = base_url('profile/');
-    } else {
-      $about_url = base_url('people/view/'.$Username);
-    }
-    ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
-    <?php
-    if($Username == $this->session->userdata('username')) {
       $post_url = base_url('profile/posts/');
     } else {
       $post_url = base_url('people/posts/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
-    <div class="col-md-3" id="subnavbar"><p id="tujuan">Pinned</p></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    
+    <?php
+    if($Username == $this->session->userdata('username')) {
+      $about_url = base_url('profile/');
+    } else {
+      $about_url = base_url('people/view/'.$Username);
+    }
+    ?>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
+    
+    <div class="col-md-3 subnavbar" id="special"><p id="tujuan">Pinned</p></div>
     <?php
     if($Username == $this->session->userdata('username')) {
       $mention_url = base_url('profile/mention');
@@ -230,7 +240,7 @@
       $mention_url = base_url('people/mention/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $mention_url; ?>">Mention</a></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $mention_url; ?>">Mention</a></div>
   </div>
 
 </div>
