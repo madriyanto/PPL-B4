@@ -32,7 +32,7 @@
   
   #navbarbawah{
     margin-top: 20px;
-    margin-bottom : 30px;
+    margin-bottom : 20px;
   }
 
   #subnavbar{
@@ -65,12 +65,12 @@
     background-color: white;
     color: black;
     border-style: none;
-    height: 160px;
+    height: 165px;
     border-radius: 10px;
   }
 
   #kotakBO{
-    top:50px;
+    top:25px;
   }
 
   .anonim{
