@@ -22,6 +22,10 @@
     margin-right: -15px;
   }
 
+  #special{
+    background-color: grey;
+  }
+
   #navbarbawah a{
     color: black;
   }
@@ -35,7 +39,7 @@
     margin-bottom : 30px;
   }
 
-  #subnavbar{
+  .subnavbar{
     text-align: center;
     padding-top: 5px;
     font-size: 22px;
@@ -61,6 +65,15 @@
     
   }
 
+  #about-content {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    margin-left: 9.4%;
+    width: 81%;
+  }
+  
   #finalPost{
     background-color: white;
     color: black;
@@ -150,7 +163,7 @@
       height: 250px;
     }
 
-    #subnavbar{
+    .subnavbar{
       width: 85%;
       left: 8%;
       border-radius: 5px;
@@ -240,7 +253,7 @@
   </div>
 
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
-    <div class="col-md-3" id="subnavbar"><p id="tujuan">About</p></div>
+    <div class="col-md-3 special subnavbar" id="special"><p id="tujuan">About</p></div>
     <?php
     if($Username == $this->session->userdata('username')) {
       $post_url = base_url('profile/posts/');
@@ -248,7 +261,7 @@
       $post_url = base_url('people/posts/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
     <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
@@ -257,7 +270,7 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
     <?php
     if($Username == $this->session->userdata('username')) {
       $mention_url = base_url('profile/mention');
@@ -265,14 +278,14 @@
       $mention_url = base_url('people/mention/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $mention_url; ?>">Mention</a></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $mention_url; ?>">Mention</a></div>
     <?php } ?>
   </div>
 
 </div>
 
 <div class="row">
-	<div class="col-md-offset-1 col-md-10">
+	<div class="col-md-offset-1 col-md-10" id="about-content">
 		<?php echo $About; ?>
 	</div>
 </div>
