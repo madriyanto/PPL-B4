@@ -52,11 +52,11 @@
     background-color: white;
     color: black;
     border-style: none;
-    height: 160px;
+    height: 165px;
     border-radius: 10px;
   }
   #kotakBO{
-    top:50px;
+    top:25px;
   }
   .anonim{
     margin-left: 100px;
@@ -69,15 +69,20 @@
     margin-bottom: 30px;
   }
   #search-content{
+    padding-top: 15px;
+    padding-left: 3%;
+    margin-left: 9%;
+    width: 81%;
   }
   #totalMention{
     top: 2px;
     font-size: 25px;
   }
   .navbar-bottom {
-	    margin-bottom: 0px;
-	    bottom: 0;
-	    width: 100%;
+    margin-bottom: 0px;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
   }
   
   @media screen and (min-width:768px){
@@ -118,7 +123,7 @@
       width: 80%;
       margin-left: 10%;
       margin-bottom: 10px;
-      height: 250px;
+      height: 0px;
     }
     #subnavbar{
       width: 85%;
@@ -129,7 +134,7 @@
     }
     #navbarbawah{
       margin-top: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     #totalMention{
       font-size: 20px;
