@@ -27,7 +27,14 @@
     margin-top: 20px;
     margin-bottom : 30px;
   }
-  #subnavbar{
+  #special{
+    background-color: #8D8D8D;
+  }
+  #tujuan{
+    color: white;
+    text-decoration: underline;
+  }
+  .subnavbar{
     text-align: center;
     padding-top: 5px;
     font-size: 22px;
@@ -125,7 +132,7 @@
       margin-bottom: 10px;
       height: 0px;
     }
-    #subnavbar{
+    .subnavbar{
       width: 85%;
       left: 8%;
       border-radius: 5px;
@@ -214,20 +221,22 @@
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
     <?php
     if($Username == $this->session->userdata('username')) {
-      $about_url = base_url('profile/');
-    } else {
-      $about_url = base_url('people/view/'.$Username);
-    }
-    ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
-    <?php
-    if($Username == $this->session->userdata('username')) {
       $post_url = base_url('profile/posts/');
     } else {
       $post_url = base_url('people/posts/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    
+    <?php
+    if($Username == $this->session->userdata('username')) {
+      $about_url = base_url('profile/');
+    } else {
+      $about_url = base_url('people/view/'.$Username);
+    }
+    ?>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
+    
     <?php
     if($Username == $this->session->userdata('username')) {
       $pinned_url = base_url('profile/pinned/');
@@ -235,8 +244,8 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
-    <div class="col-md-3" id="subnavbar"><p id="tujuan">Mention</p></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
+    <div class="col-md-3 subnavbar" id="special"><p id="tujuan">Mention</p></div>
   </div>
 
   <div class="col-md-offset-1 col-md-10" id="search-content">
