@@ -38,6 +38,15 @@
     margin-top: 20px;
     margin-bottom : 30px;
   }
+  
+  #special{
+  	background-color: #8D8D8D;
+  }
+  
+  #tujuan{
+  	color: white;
+  	text-decoration: underline;
+  }
 
   .subnavbar{
     text-align: center;
@@ -253,7 +262,6 @@
   </div>
 
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
-    <div class="col-md-3 special subnavbar" id="special"><p id="tujuan">About</p></div>
     <?php
     if($Username == $this->session->userdata('username')) {
       $post_url = base_url('profile/posts/');
@@ -261,7 +269,10 @@
       $post_url = base_url('people/posts/'.$Username);
     }
     ?>
-    <div class="col-md-3 subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>	
+  
+    <div class="col-md-3 subnavbar" id="special"><p id="tujuan">About</p></div>
+    
     <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
@@ -271,6 +282,7 @@
     }
     ?>
     <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
+    
     <?php
     if($Username == $this->session->userdata('username')) {
       $mention_url = base_url('profile/mention');
