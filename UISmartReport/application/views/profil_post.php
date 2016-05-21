@@ -34,8 +34,17 @@
     margin-top: 20px;
     margin-bottom : 20px;
   }
+  
+  #tujuan{
+  	color: white;
+  	text-decoration: underline;
+  }
+  
+  #special{
+  	background-color: #8D8D8D;
+  }
 
-  #subnavbar{
+  .subnavbar{
     text-align: center;
     padding-top: 5px;
     font-size: 22px;
@@ -150,7 +159,7 @@
       height: 250px;
     }
 
-    #subnavbar{
+    .subnavbar{
       width: 85%;
       left: 8%;
       border-radius: 5px;
@@ -247,8 +256,8 @@
       $about_url = base_url('people/view/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
-    <div class="col-md-3" id="subnavbar"><p id="tujuan">Post</p></div>
+    
+    <div class="col-md-3 subnavbar" id="special"><p id="tujuan">Post</p></div>
     <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
@@ -257,7 +266,10 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
+    
+    <div class="col-md-3 subnavbar"></div><a href="<?php echo $about_url; ?>">About</a></div>
+    
+    <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
     <?php
     if($Username == $this->session->userdata('username')) {
       $mention_url = base_url('profile/mention');
@@ -265,7 +277,7 @@
       $mention_url = base_url('people/mention/'.$Username);
     }
     ?>
-    <div class="col-md-3" id="subnavbar"><a href="<?php echo $mention_url; ?>">Mention</a></div>
+    <div class="col-md-3 subnavbar" ><a href="<?php echo $mention_url; ?>">Mention</a></div>
     <?php } ?>
   </div>
 
