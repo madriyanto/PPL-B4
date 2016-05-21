@@ -28,6 +28,9 @@
     margin-bottom : 30px;
     
   }
+  #kotakAtas{
+    margin-bottom: 30px;
+  }
   #subnavbar{
     text-align: center;
     padding-top: 5px;
