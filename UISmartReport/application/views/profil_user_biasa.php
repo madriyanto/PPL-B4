@@ -60,7 +60,7 @@
     border-radius: 10px;
   }
   #kotakBO{
-    top:50px;
+    top:60px;
   }
   .anonim{
     margin-left: 100px;
@@ -203,7 +203,7 @@
       <h3 class="text-left"><?php echo ucwords(strtolower($Role.' '.$Faculty)); ?></h3>
     </div>
 
-    <div class="col-md-4" id="coba">
+    <div class="col-md-4" id="kotakBO">
       <h4 class="text-left">Your Posts : <?php echo $count_posts; ?></h4>
     </div>
   </div>
