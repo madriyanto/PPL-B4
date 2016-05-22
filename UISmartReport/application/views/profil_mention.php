@@ -69,6 +69,7 @@
     margin-bottom: 30px;
   }
   #search-content{
+    background-color: white;
     padding-top: 15px;
     padding-left: 3%;
     margin-left: 9%;
