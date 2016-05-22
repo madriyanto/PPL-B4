@@ -213,7 +213,7 @@
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
     <?php
     if($Username == $this->session->userdata('username')) {
-      $post_url = base_url('profile/posts/');
+      $post_url = base_url('profile/');
     } else {
       $post_url = base_url('people/posts/'.$Username);
     }
@@ -222,7 +222,7 @@
     
     <?php
     if($Username == $this->session->userdata('username')) {
-      $about_url = base_url('profile/');
+      $about_url = base_url('profile/posts/');
     } else {
       $about_url = base_url('people/view/'.$Username);
     }
