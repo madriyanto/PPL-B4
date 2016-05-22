@@ -207,7 +207,6 @@
             <li><a href="#">About Us</a></li>
           </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <?php if ($count_notif > 0) { ?><span class="label label-warning"><?php echo $count_notif; ?></span><?php } ?></a></span></li>
