@@ -194,7 +194,7 @@
 <body>
 <nav class="navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header" id="myNavbar">
       <div class="navbar-brand"><a href="<?php echo base_url(); ?>">UI Smart Report</a></span></div>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
