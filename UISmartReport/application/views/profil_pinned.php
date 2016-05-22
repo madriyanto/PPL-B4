@@ -86,7 +86,7 @@
 	    margin-bottom: 0px;
 	    bottom: 0;
 	    width: 100%;
-	    position: absolute;
+	    position: fixed;
   }
   
   @media screen and (min-width:768px){
