@@ -259,9 +259,9 @@
   <div class="col-md-offset-1 col-md-10" id="navbarbawah">
     <?php
     if($Username == $this->session->userdata('username')) {
-      $post_url = base_url('profile/posts/');
+      $post_url = base_url('profile/');
     } else {
-      $post_url = base_url('people/posts/'.$Username);
+      $post_url = base_url('people/'.$Username);
     }
     ?>
     <div class="col-md-3 subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>	
