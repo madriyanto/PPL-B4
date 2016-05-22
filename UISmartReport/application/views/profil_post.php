@@ -108,6 +108,7 @@
 	    margin-bottom: 0px;
 	    bottom: 0;
 	    width: 100%;
+	    position: absolute;
   }
   
   @media screen and (min-width:768px){
@@ -185,8 +186,7 @@
 <nav class="navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <div class="navbar-brand"><img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="30" height="30"></div>
-      <div class="navbar-brand">UI Smart Report</div>
+      <div class="navbar-brand"><a href="<?php echo base_url(); ?>">UI Smart Report</a></span></div>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -198,7 +198,6 @@
             <li><a href="#">About Us</a></li>
           </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <?php if ($count_notif > 0) { ?><span class="label label-warning"><?php echo $count_notif; ?></span><?php } ?></a></span></li>
@@ -256,9 +255,12 @@
       $about_url = base_url('people/view/'.$Username);
     }
     ?>
-    
     <div class="col-md-3 subnavbar" id="special"><p id="tujuan">Post</p></div>
+<<<<<<< HEAD
     <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
+=======
+    
+>>>>>>> origin/master
     <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
@@ -267,6 +269,10 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
+<<<<<<< HEAD
+=======
+    <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
+>>>>>>> origin/master
     
     <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
     <?php
