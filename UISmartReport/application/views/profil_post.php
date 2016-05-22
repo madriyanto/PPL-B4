@@ -258,6 +258,7 @@
     ?>
     
     <div class="col-md-3 subnavbar" id="special"><p id="tujuan">Post</p></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
     <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
@@ -266,8 +267,6 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
-    
-    <div class="col-md-3 subnavbar"></div><a href="<?php echo $about_url; ?>">About</a></div>
     
     <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
     <?php
@@ -326,16 +325,16 @@
         </div>
         <div class="col-md-8">
           <?php if ($row->IsAnonymous && ($this->session->userdata['admin'] || $row->OwnerId == $this->session->userdata['username'])) { ?>
-          <h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
+          <h5><a href="<?php echo base_url('people/posts/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
           <?php } else if ($row->IsAnonymous) { ?>
           <h5>Anonymous</h5>
           <?php } else { ?>
-          <h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
+          <h5><a href="<?php echo base_url('people/posts/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
           <?php } ?>
           <p>To:<br/>
           <?php $post_mentions = $this->Post_model->get_mentions($row->Id);
           foreach ($post_mentions as $row2){
-            echo "<a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a><br/>";
+            echo "<a href=\"".base_url('people/posts/'.$row2->Username)."\">".$row2->Name."</a><br/>";
           } ?></p>
           <p><?php echo $row->Title; ?></p>
         </div>

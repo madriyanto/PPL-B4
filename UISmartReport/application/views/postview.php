@@ -191,7 +191,7 @@
 		</div>
 		<?php } ?>
 		<div class="row post divText">
-			<?php echo $Data; ?>
+			<?php echo nl2br($Data); ?>
 		</div>
 		
 		<!--Div yang memuat tombol untuk Delete, Pin/Unpin, atau Close suatu Post-->
@@ -367,7 +367,7 @@
 					<div class="col-sm-12 lead"><?php echo $row->Name; ?></div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12 divText"><?php echo $row->Data; ?></div>
+					<div class="col-sm-12 divText"><?php echo nl2br($row->Data); ?></div>
 				</div>
 			</div>
 			<div class="col-sm-3 text-right waktu divText"><?php echo $timespan; ?></div>

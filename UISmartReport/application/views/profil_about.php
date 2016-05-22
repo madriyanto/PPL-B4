@@ -298,7 +298,7 @@
 
 <div class="row">
 	<div class="col-md-offset-1 col-md-10" id="about-content">
-		<?php echo $About; ?>
+		<?php echo nl2br($About); ?>
 	</div>
 </div>
 

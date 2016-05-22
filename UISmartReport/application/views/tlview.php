@@ -257,21 +257,21 @@ $(document).ready(function(){
 				</div>
 				<div class="col-md-8">
 					<?php if ($row->IsAnonymous && ($this->session->userdata['admin'] || $row->OwnerId == $this->session->userdata['username'])) { ?>
-					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
+					<h5><a href="<?php echo base_url('people/posts/'.$row->Username); ?>"><?php echo $row->Name; ?> (Anonymous)</a></h5>
 					<?php } else if ($row->IsAnonymous) { ?>
 					<h5>Anonymous</h5>
 					<?php } else { ?>
-					<h5><a href="<?php echo base_url('people/view/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
+					<h5><a href="<?php echo base_url('people/posts/'.$row->Username); ?>"><?php echo $row->Name; ?></a></h5>
 					<?php } ?>
 					<p><?php echo "<img src=\"".base_url('assets/images/people.png')."\" class=\"img-rounded\" width=\"15px\" height=\"15px\">"; ?> 
 					<?php $post_mentions = $this->Post_model->get_mentions($row->Id);
 					$is_first = true;
 					foreach ($post_mentions as $row2){
 						if($is_first) {
-							echo "<a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a>";
+							echo "<a href=\"".base_url('people/posts/'.$row2->Username)."\">".$row2->Name."</a>";
 							$is_first = false;
 						} else {
-							echo ", <a href=\"".base_url('people/view/'.$row2->Username)."\">".$row2->Name."</a>";
+							echo ", <a href=\"".base_url('people/posts/'.$row2->Username)."\">".$row2->Name."</a>";
 						}
 						
 					} ?></p>
@@ -286,9 +286,9 @@ $(document).ready(function(){
 					<p>
 						<?php
 							if (strlen($row->Data) <= 200) {
-								echo $row->Data;
+								echo nl2br($row->Data);
 							} else {
-								echo substr($row->Data, 0, 200).'... <a href="'.base_url('post/view/'.$row->Id).'">see more</a>';
+								echo substr(nl2br($row->Data), 0, 200).'... <a href="'.base_url('post/view/'.$row->Id).'">see more</a>';
 							}
 						?>
 					</p>

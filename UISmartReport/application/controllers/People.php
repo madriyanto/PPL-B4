@@ -95,7 +95,7 @@ class People extends CI_Controller {
 			$this->load->view('profil_pinned', $data);
 			$this->load->view('templates/footer');
 		} else {
-			redirect('people/view/'.$id);
+			redirect('people/posts/'.$id);
 		}
 	}
 
@@ -138,7 +138,7 @@ class People extends CI_Controller {
 			}
 
 		} else {
-			redirect('people/view/'.$id);
+			redirect('people/posts/'.$id);
 		}
 	}
 }

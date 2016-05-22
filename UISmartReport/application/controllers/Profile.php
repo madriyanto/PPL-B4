@@ -21,6 +21,29 @@ class Profile extends CI_Controller {
 	{
 		$session_id = $this->session->userdata('username');
 		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
+			redirect(base_url('profile/posts'));
+		} else if(isset($session_id)) {
+			$data = $this->Loginsp_model->get_user($session_id);
+			$data['timeline'] = $this->Profile_model->retrieve_posts($session_id);
+			$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
+			$data['isSPAcc'] = $this->session->userdata('SPAcc');
+			$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
+			$data['count_posts'] = $this->Post_model->count_posts($this->session->userdata('username'));
+			$data['count_closed_posts'] = $this->Post_model->count_closed_posts($this->session->userdata('username'));
+			$datahead['title'] = 'Profile';
+			$this->load->view('templates/header', $datahead);
+			$this->load->view('profil_post', $data);
+			$this->load->view('templates/footer');
+		}
+		else {
+			redirect(base_url());
+		}
+	}
+
+    public function posts()
+	{
+		$session_id = $this->session->userdata('username');
+		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
 			$data = $this->Loginuser_model->get_user($session_id);
 			$data['timeline'] = $this->Profile_model->retrieve_posts($session_id);
 			$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
@@ -40,29 +63,6 @@ class Profile extends CI_Controller {
 			$datahead['title'] = 'Profile';
 			$this->load->view('templates/header', $datahead);
 			$this->load->view('profil_about', $data);
-			$this->load->view('templates/footer');
-		}
-		else {
-			redirect(base_url());
-		}
-	}
-
-	public function posts()
-	{
-		$session_id = $this->session->userdata('username');
-		if(isset($session_id) && !$this->Loginsp_model->check_sp($session_id)) {
-			redirect(base_url('profile'));
-		} else if(isset($session_id)) {
-			$data = $this->Loginsp_model->get_user($session_id);
-			$data['timeline'] = $this->Profile_model->retrieve_posts($session_id);
-			$data['mention'] = $this->Timeline_model->retrieve_sp_acc();
-			$data['isSPAcc'] = $this->session->userdata('SPAcc');
-			$data['count_notif'] = $this->Notification_model->count_notif($this->session->userdata('username'));
-			$data['count_posts'] = $this->Post_model->count_posts($this->session->userdata('username'));
-			$data['count_closed_posts'] = $this->Post_model->count_closed_posts($this->session->userdata('username'));
-			$datahead['title'] = 'Profile';
-			$this->load->view('templates/header', $datahead);
-			$this->load->view('profil_post', $data);
 			$this->load->view('templates/footer');
 		}
 		else {
