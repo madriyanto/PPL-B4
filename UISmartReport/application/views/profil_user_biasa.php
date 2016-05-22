@@ -144,7 +144,7 @@
 <nav class="navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <div class="navbar-brand">UI Smart Report</div>
+      <div class="navbar-brand"><a href="<?php echo base_url(); ?>">UI Smart Report</a></span></div>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -156,7 +156,6 @@
             <li><a href="#">About Us</a></li>
           </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><span class="navbar-brand"><a href="<?php echo base_url(); ?>">Timeline</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('profile'); ?>">Profile</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('setting'); ?>">Setting</a></span></li>
         <li><span class="navbar-brand"><a href="<?php echo base_url('notifications'); ?>">Notifications <?php if ($count_notif > 0) { ?><span class="label label-warning"><?php echo $count_notif; ?></span><?php } ?></a></span></li>
