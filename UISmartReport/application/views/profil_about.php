@@ -70,10 +70,6 @@
     height: 250px;
   }
 
-  #datadiri{
-    
-  }
-
   #about-content {
     background-color: white;
     padding-top: 10px;
@@ -87,7 +83,7 @@
     background-color: white;
     color: black;
     border-style: none;
-    height: 160px;
+    height: 165px;
     border-radius: 10px;
   }
 
