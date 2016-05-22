@@ -195,8 +195,7 @@
 <nav class="navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <div class="navbar-brand"><img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="30" height="30"></div>
-      <div class="navbar-brand">UI Smart Report</div>
+      <div class="navbar-brand"><a href="<?php echo base_url(); ?>">UI Smart Report</a></span></div>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
