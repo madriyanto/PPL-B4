@@ -46,17 +46,13 @@
     border-style: none;
   }
   #dataAtas{
-    border: 5px solid;
-    height: 250px;
-  }
-  #datadiri{
-    
+    height: 200px;
   }
   #finalPost{
     background-color: white;
     color: black;
     border-style: none;
-    height: 160px;
+    height: 165px;
     border-radius: 10px;
   }
   #kotakBO{
@@ -147,7 +143,6 @@
 <nav class="navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <div class="navbar-brand"><img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img-rounded" alt="Cinque Terre" width="30" height="30"></div>
       <div class="navbar-brand">UI Smart Report</div>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -187,7 +182,7 @@
   </div>
 </div>
 <!-- End of Logout Modal-->
-<div class="row">
+<div class="row" id="dataAtas">
   <div class="col-md-offset-1 col-md-2" id="profpic">
     <?php if ($PictLink == null) { ?>
     <img id ="pic" src="<?php echo base_url('assets/images/makara.png'); ?>" class="img img-rounded" alt="Cinque Terre" width="165px" height="165px"> 
