@@ -108,6 +108,7 @@
 	    margin-bottom: 0px;
 	    bottom: 0;
 	    width: 100%;
+	    position: absolute;
   }
   
   @media screen and (min-width:768px){
@@ -256,8 +257,8 @@
       $about_url = base_url('people/view/'.$Username);
     }
     ?>
-    
     <div class="col-md-3 subnavbar" id="special"><p id="tujuan">Post</p></div>
+    
     <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
@@ -266,8 +267,7 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
-    
-    <div class="col-md-3 subnavbar"></div><a href="<?php echo $about_url; ?>">About</a></div>
+    <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
     
     <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
     <?php
