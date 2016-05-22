@@ -92,7 +92,7 @@
   }
 
   #kotakBO{
-    top:50px;
+    top: 25px;
   }
 
   .anonim{
@@ -121,6 +121,7 @@
     margin-bottom: 0px;
     bottom: 0;
     width: 100%;
+    position: absolute;
   }
   
   @media screen and (min-width:768px){
