@@ -218,7 +218,7 @@
     if($Username == $this->session->userdata('username')) {
       $post_url = base_url('profile/');
     } else {
-      $post_url = base_url('people/view/'.$Username);
+      $post_url = base_url('people/posts/'.$Username);
     }
     ?>
     <div class="col-md-3 subnavbar"><a href="<?php echo $post_url; ?>">Post</a></div>
@@ -227,7 +227,7 @@
     if($Username == $this->session->userdata('username')) {
       $about_url = base_url('profile/posts/');
     } else {
-      $about_url = base_url('people/posts/'.$Username);
+      $about_url = base_url('people/view/'.$Username);
     }
     ?>
     <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
