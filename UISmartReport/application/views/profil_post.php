@@ -256,11 +256,9 @@
     }
     ?>
     <div class="col-md-3 subnavbar" id="special"><p id="tujuan">Post</p></div>
-<<<<<<< HEAD
+
     <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
-=======
-    
->>>>>>> origin/master
+
     <?php if($Username == $this->session->userdata('username') || $this->session->userdata('admin')) { ?>
     <?php
     if($Username == $this->session->userdata('username')) {
@@ -269,10 +267,6 @@
       $pinned_url = base_url('people/pinned/'.$Username);
     }
     ?>
-<<<<<<< HEAD
-=======
-    <div class="col-md-3 subnavbar"><a href="<?php echo $about_url; ?>">About</a></div>
->>>>>>> origin/master
     
     <div class="col-md-3 subnavbar"><a href="<?php echo $pinned_url; ?>">Pinned</a></div>
     <?php
