@@ -220,14 +220,18 @@
 							}
 							echo "<div class=\"row\">";
 							echo "<div class=\"hidden-xs hidden-sm col-md-1\">";
-							if($row->PictLink != null) {
+							if($row->PictLink != null && $row->IsAnonymous && $this->session->userdata['admin'] && $row->NotesId == 2) {
 								echo "<img src=\"".$row->PictLink."\" class=\"img-rounded\" width=\"100%\">";
 							} else {
 								echo "<img src=\"".base_url('assets/images/makara.png')."\" class=\"img-rounded\" width=\"100%\">";
 							}
 							echo "</div>";
 							echo "<div class=\"col-xs-7 col-sm-7 col-md-8 divText\">";
-							echo $row->Name.' '.$row->Notes;
+							if($row->IsAnonymous && !$this->session->userdata['admin'] && $row->NotesId == 2) {
+								echo 'Anonymous '.$row->Notes;
+							} else {
+								echo $row->Name.' '.$row->Notes;
+							}
 							echo "</div>";
 							echo "<div class=\"col-xs-5 col-sm-5 col-md-3 text-right divText\">";
 							date_default_timezone_set("Asia/Jakarta");

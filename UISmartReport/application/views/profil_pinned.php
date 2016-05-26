@@ -278,7 +278,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="image">
-            <?php if ($row->PictLink == null || ($row->IsAnonymous && !$isSPAcc)) { ?>
+            <?php if ($row->PictLink == null || ($row->IsAnonymous && !$this->session->userdata['admin'])) { ?>
             <img src="<?php echo base_url('assets/images/makara.png'); ?>" class="img img-rounded img-responsive" alt="Cinque Terre"> 
             <?php } else { ?>
             <img src="<?php echo $row->PictLink; ?>" class="img img-rounded img-responsive" alt="Cinque Terre">
